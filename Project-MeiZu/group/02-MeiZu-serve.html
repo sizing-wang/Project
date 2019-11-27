@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="keyword" content="魅族官网服务支持,魅族服务中心" >
+    <meta name="description" content="魅族官网提供一站式售后服务支持，为您解答有关魅族产品的所有问题，了解购物流程，提供寄送快修、上门快修、预约维修、维修查询、mSupport等售后服务。" >
+    <meta charset="UTF-8">
+    <title>02-魅族官网-服务</title>
+    <link rel="stylesheet" href="CSS/reset.css">
+    <link rel="stylesheet" href="CSS/all.css">
+    <link rel="shortcut icon" href="images/Logo.ico" type="image/x-icon" />
+    <style>
+        /* 公共样式 */
+        a{
+            text-decoration: none;
+        }
+        /*顶部区 - 轮播图/导航栏*/
+        .header-nav{
+            position: relative;
+            width: 100%;
+            height: 82px;
+        }
+        .header-nav .header-top{
+            position: relative;
+            width: 1250px;
+            height: 80px;
+            margin: 0 auto;
+        }
+        .header-nav .header-top .fa_Search{
+            position: absolute;
+            top: 33px;
+            right: 105px;
+            font-size: 18px;
+            color: #6f6f6f;
+        }
+        .header-nav .header-top .fa_Per{
+            position: absolute;
+            top: 30px;
+            right: 48px;
+            color: #7d7d7d;
+        }
+        .header-nav .header-top .fa_Shop{
+            position: absolute;
+            top: 30px;
+            right: 0;
+            color: #7d7d7d;
+        }
+        .header-nav .header-top .fas{
+            transition: all 0.2s;
+        }
+        .header-nav .header-top .fas:hover{
+            transform: scale(1.1);
+            color: #52beca;
+        }
+        .header-nav .header-top .txt{
+            position: absolute;
+            top: 50%;
+            margin-top: -15px;
+            right: 100px;
+            width: 170px;
+            height: 30px;
+            border-radius: 30px;
+            font-size: 12px;
+            border: 1px solid #999999;
+            outline: none;
+            padding-left: 10px;
+            box-sizing: border-box;
+        }
+        .header-nav .header-top .top-loGo{
+            float: left;
+            margin-top: 28px;
+        }
+        .header-nav .header-top .top-center{
+            width: 700px;
+            height: 80px;
+            float: left;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            margin-left: -350px;
+        }
+        .header-nav .header-top .top-center .center-ul li{
+            text-align: center;
+            line-height: 80px;
+            float: left;
+            margin-left: 40px;
+        }
+        .header-nav .header-top .top-center .center-ul li .link-top{
+            font-size: 14px;
+            color: #515151;
+        }
+        .header-nav .header-top .top-center .center-ul li .link-top:hover{
+            color: #00b9f2;
+        }
+
+
+        .header-nav .hideBox{
+            position: absolute;
+            width: 100%;
+            background: #ffff;
+            box-shadow: 0 3px 3px #ccc;
+            z-index: 1050;
+        }
+        .header-nav .hideBox .hidePhone{
+            width: 1250px;
+            height: 200px;
+            margin: 0 auto;
+            position: relative;
+            display: none;
+        }
+        .header-nav .hideBox .hidePhone .hideUl li{
+            margin-top: 10px;
+            margin-right: 30px;
+            float: left;
+            text-align: center;
+        }
+        .header-nav .hideBox .hidePhone .hideUl li:last-child{
+            margin-right: 0;
+        }
+        .header-nav .hideBox .hidePhone .hideUl li .phoneImg{
+            width: 130px;
+            height: 130px;
+        }
+        .header-nav .hideBox .hidePhone .hideUl li .price,
+        .header-nav .hideBox .hidePhone .hideUl li .name{
+            font-size: 14px;
+            color: #333;
+        }
+
+
+
+        /* 顶部区 - 轮播图  */
+        .ad{
+            position: relative;
+            width: 100%;
+            height: 580px;
+            background: url("images/ser-LunBo1.jpg") no-repeat center center;
+            background-size: cover;
+            overflow: hidden;
+        }
+        .ad .LunBo-img{
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%);
+            width: 1903px;
+            height: 580px;
+            transition: all 0.5s;
+            z-index: -1;
+        }
+        .ad .ad-btn{
+            width: 200px;
+            height: 10px;
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            margin-left: -100px;
+            z-index: 1000;
+        }
+        .ad .ad-btn li{
+            width: 12px;
+            height: 12px;
+            background: #fff;
+            border-radius: 50%;
+            float: left;
+            margin-left: 16px;
+        }
+        .ad .ad-btn .sty{
+            border: 1px solid #fff;
+            background: rgba(0,0,0,0);
+            box-sizing: border-box;
+        }
+        .ad .ad-btn .active{
+            border: 1px solid #fff;
+            background: rgba(0,0,0,0);
+            box-sizing: border-box;
+        }
+
+
+        .ad .ad-btn .ad-ul a:first-child li:nth-child(1){
+            border: 1px solid #fff;
+            background: rgba(0,0,0,0);
+            box-sizing: border-box;
+        }
+
+        /* 内容区 - 服务项  */
+        .serve-item{
+            width: 1240px;
+            height: 200px;
+            margin: 10px auto;
+        }
+        .serve-item .item-ul li{
+            width: 177px;
+            height: 200px;
+            text-align: center;
+            float: left;
+        }
+        .serve-item .item-ul li .link-item{
+            display: inline-block;
+            margin-top: 60px;
+        }
+        .serve-item .item-ul li .link-item .item-img{
+            height: 50px;
+        }
+        .serve-item .item-ul li .link-item .item-name{
+            font-size: 21px;
+            color: #333333;
+        }
+
+        /* 内容区 - 服务卡  */
+        .serve-card{
+            width: 1240px;
+            height: 173px;
+            margin: 10px auto;
+        }
+        .serve-card .card-ul li{
+            width: 301px;
+            height: 173px;
+            background: deeppink;
+            float: left;
+            margin-right: 11px;
+            text-align: center;
+        }
+        .serve-card .card-ul li:nth-child(1){
+            background: #398eeb;
+        }
+        .serve-card .card-ul li:nth-child(2){
+            background: #48bf6d;
+        }
+        .serve-card .card-ul li:nth-child(2) .link-card .card-img{
+            margin-top: 20px;
+        }
+        .serve-card .card-ul li:nth-child(3){
+            background: #efaf31;
+        }
+        .serve-card .card-ul li:nth-child(3) .link-card .card-img{
+            margin-top: 26px;
+        }
+        .serve-card .card-ul li:nth-child(4){
+            background: #3ec0d0;
+            margin-right: 0;
+        }
+        .serve-card .card-ul li:nth-child(4) .link-card .card-img{
+            margin-top: 27px;
+        }
+        .serve-card .card-ul li .link-card .card-img{
+            margin-top: 40px;
+        }
+        .serve-card .card-ul li .link-card .card-name{
+            margin-top: 10px;
+            font-size: 16px;
+            color: #ffffff;
+        }
+        .serve-card .card-ul li .link-card .poster{
+            font-size: 21px;
+            color: #ffffff;
+        }
+
+        /* 内容区 - 选择产品  */
+        .content-title{
+            width: 1240px;
+            height: 166px;
+            margin: 50px auto 0;
+            text-align: center;
+            line-height: 166px;
+            overflow: hidden;
+        }
+        .content-title .title-name{
+            font-size: 20px;
+            color: #333;
+        }
+        .opt{
+            width: 1240px;
+            height: 298px;
+            margin: 10px auto;
+        }
+        .opt .opt-ul li{
+            width: 406px;
+            height: 298px;
+            margin-right: 11px;
+            float: left;
+            text-align: center;
+        }
+        .opt .opt-ul li:last-child{
+            margin-right: 0;
+        }
+        .opt .opt-ul li .link-opt .opt-img{
+            margin-top: 25px;
+            width: 180px;
+            height: 180px;
+        }
+        .opt .opt-ul li .link-opt .opt-name{
+            font-size: 21px;
+            color: #333;
+            margin-top: 30px;
+        }
+        .opt-video{
+            width: 1240px;
+            height: 158px;
+            margin: 10px auto;
+        }
+        .opt-video .link-video{
+            position: relative;
+            display: inline-block;
+            float: left;
+            width: 615px;
+            height: 158px;
+        }
+        .opt-video .link-video:last-child{
+            float: right;
+        }
+        .opt-video .link-video .video-img{
+            width: 615px;
+            height: 158px;
+        }
+        .opt-video .link-video .btn-sp{
+            position: absolute;
+            top: 54px;
+            left: 165px;
+        }
+        .opt-video .link-video .tit-sp{
+            display: inline-block;
+            position: absolute;
+            top: 56px;
+            left: 234px;
+            font-size: 16px;
+            color: #fff;
+        }
+        .opt-video .link-video .info-sp{
+            display: inline-block;
+            position: absolute;
+            top: 83px;
+            left: 234px;
+            font-size: 21px;
+            color: #fff;
+        }
+
+        /* 内容区 - 专属权益  */
+        .Equity{
+            width: 1240px;
+            height: 500px;
+            margin: 10px auto;
+        }
+        .Equity .Equity-ul li{
+            position: relative;
+            width: 620px;
+            height: 245px;
+            float: left;
+        }
+        .Equity .Equity-ul li .Equity-img{
+            width: 84px;
+            height: 90px;
+        }
+        .Equity .Equity-ul li .Equity-tit{
+            position: absolute;
+            top: 0;
+            left: 120px;
+            font-size: 16px;
+            color: #333;
+        }
+        .Equity .Equity-ul li .Equity-info{
+            display: inline-block;
+            position: absolute;
+            top: 35px;
+            left: 120px;
+            width: 387px;
+            font-size: 21px;
+            color: #333;
+            line-height: 24px;
+        }
+        .Equity .Equity-ul li .link-Equity{
+            position: absolute;
+            top: 140px;
+            left: 120px;
+            font-size: 21px;
+            color: #00BBF2;
+        }
+
+        /* 内容区 - 了解常见问题  */
+        .matter-tit{
+            margin-top: 0;
+        }
+        .matter{
+            width: 1240px;
+            height: 238px;
+            margin: 0 auto;
+        }
+        .matter .matter-ul .matter-li{
+            width: 248px;
+            height: 238px;
+            float: left;
+            text-align: center;
+        }
+        .matter .matter-ul .matter-li .link-tit{
+            font-size: 21px;
+            color: #333;
+        }
+        .matter .matter-ul .matter-li .matter-item .matter-line{
+            width: 15px;
+            height: 1px;
+            margin: 15px auto 8px;
+            background: #929292;
+        }
+        .matter .matter-ul .matter-li .matter-item .link-matter{
+            font-size: 14px;
+            color: #333;
+        }
+        .matter .matter-ul .matter-li .matter-item li:hover a{
+            color: #0cbbef;
+        }
+
+        /* 内容区 - 联系我们  */
+        .contact{
+            width: 1240px;
+            height: 146px;
+            margin: 0 auto;
+        }
+        .contact .contact-ul li{
+            width: 310px;
+            height: 146px;
+            float: left;
+            text-align: center;
+        }
+        .contact .contact-ul .link-contact .contact-img{
+            width: 34px;
+        }
+        .contact .contact-ul .link-contact .timer{
+            font-size: 16px;
+            color: #333;
+            margin-top: 5px;
+        }
+        .contact .contact-ul .link-contact .timer-info{
+            font-size: 14px;
+            color: #999;
+            margin-top: 8px;
+        }
+
+        /* 内容区 - 魅族店铺  */
+        .shop{
+            width: 1240px;
+            height: 800px;
+            margin: 10px auto;
+        }
+        .shop .shop-ul .shop-li{
+            width: 620px;
+            height: 378px;
+            background: #5a66aa;
+            float: left;
+            padding: 80px 50px 0 60px;
+            box-sizing: border-box;
+        }
+        .shop .shop-ul .shop-li:nth-child(2){
+            background: url("images/shop2.png") no-repeat center center;
+        }
+        .shop .shop-ul .shop-li:nth-child(3){
+            background: url("images/shop3.png") no-repeat center center;
+        }
+        .shop .shop-ul .shop-li:nth-child(4){
+            background: #f4f4f4;
+        }
+        .shop .shop-ul .shop-li:nth-child(4) .shop-name{
+            font-size: 24px;
+            color: #5d5f5d;
+        }
+        .shop .shop-ul .shop-li:nth-child(4) .shop-info{
+            font-size: 21px;
+            color: #393939;
+            margin-top: 23px;
+            margin-bottom: 10px;
+        }
+        .shop .shop-ul .shop-li:nth-child(4) .spirit{
+            width: 560px;
+            height: 53px;
+            background: url("images/shop1.png") no-repeat 16px -57px;
+            margin-top: 45px;
+        }
+        .shop .shop-ul .shop-li:nth-child(4) .spirit-ul .item{
+            float: left;
+            font-size: 12px;
+            color: #767676;
+            margin-top: 34px;
+            margin-right: 42px;
+        }
+        .shop .shop-ul .shop-li:nth-child(4) .spirit-ul .item:nth-child(1){
+            margin-left: 1px;
+        }
+        .shop .shop-ul .shop-li:nth-child(4) .spirit-ul .item:nth-child(3){
+            margin-right: 39px;
+        }
+        .shop .shop-ul .shop-li:nth-child(4) .spirit-ul .item:nth-child(4){
+            margin-right: 39px;
+        }
+        .shop .shop-ul .shop-li .shop-name{
+            font-size: 24px;
+            color: #fff;
+        }
+        .shop .shop-ul .shop-li .shop-info{
+            font-size: 21px;
+            color: #fff;
+            margin-top: 23px;
+            margin-bottom: 10px;
+        }
+        .shop .shop-ul .shop-li .link-shop{
+            font-size: 21px;
+            color: #00BBF2;
+        }
+        .shop .shop-ul .shop-li .spirit{
+            width: 560px;
+            height: 53px;
+            background: url("images/shop1.png") no-repeat 15px 26px;
+            margin-top: 20px;
+        }
+        .shop .shop-ul .shop-li:nth-child(1) .spirit .spirit-ul .item{
+            float: left;
+            font-size: 12px;
+            color: #fff;
+            margin-top: 64px;
+            margin-right: 40px;
+        }
+        .shop .shop-ul .shop-li .spirit .spirit-ul .item:nth-child(2){
+            margin-left: 2px;
+        }
+        .shop .shop-ul .shop-li .spirit .spirit-ul .item:nth-child(3){
+            margin-left: 4px;
+        }
+        .shop .shop-ul .shop-li .spirit .spirit-ul .item:nth-child(4){
+            margin-left: 3px;
+        }
+        .shop .shop-ul .shop-li .spirit .spirit-ul .item:nth-child(5){
+            margin-left: 3px;
+        }
+        .shop .shop-ul .shop-li:nth-child(1) .spirit .spirit-ul .item:nth-child(6){
+            margin-left: 2px;
+        }
+        .shop .shop-ul .bg-img img{
+            width: 621px;
+            height: 378px;
+            display: inline-block;
+        }
+
+        /* 底部区 - 服务 */
+        .serve{
+            position: relative;
+            width: 1250px;
+            height: 150px;
+            margin: 20px auto;
+            border-top: 1px solid #eeeeee;
+            border-bottom: 1px solid #eeeeee;
+        }
+        .serve .serve-ul li{
+            width: 150px;
+            height: 70px;
+            float: left;
+            margin-top: 40px;
+            text-align: center;
+        }
+        .serve .serve-ul li .link-serve .serve-img{
+            width: 50px;
+            height: 40px;
+        }
+        .serve .serve-ul li .link-serve .serve-p{
+            font-size: 14px;
+            color: #999999;
+        }
+        .serve .hot-line{
+            width: 200px;
+            height: 150px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            text-align: right;
+        }
+        .serve .hot-line .hot-line-p{
+            margin-top: 20px;
+            font-size: 14px;
+            color: #999;
+        }
+        .serve .hot-line .number{
+            margin-top: 5px;
+            font-size: 25px;
+            color: #00c3f5;
+        }
+        .serve .hot-line .link-csa{
+            display: inline-block;
+            width: 90px;
+            height: 30px;
+            background: #0bbbef;
+            border-radius: 20px;
+            font-size: 14px;
+            color: #fff;
+            text-align: center;
+            line-height: 30px;
+            margin-left: 110px;
+            margin-top: 8px;
+        }
+
+        /* 底部区 - 网站信息 */
+        .info {
+            position: relative;
+            width: 1250px;
+            height: 70px;
+            margin: 20px auto;
+        }
+        .info .info-ul1{
+            overflow: hidden;
+        }
+        .info .info-ul1 li{
+            float: left;
+        }
+        .info .info-ul1 li .link-info1{
+            display: inline-block;
+            padding-left: 10px;
+            padding-right: 10px;
+            border-right: 1px solid #d6d6d6;
+            font-size: 14px;
+            color: #999;
+        }
+        .info .info-ul1 li .link-info1 .red-flg{
+            vertical-align: middle;
+        }
+        .info .info-ul2 li{
+            float: left;
+            font-size: 12px;
+            color: #999;
+            margin-top: 15px;
+            margin-right: 10px;
+        }
+        .info .info-ul2 li .link-info2{
+            color: #999;
+        }
+        .info .info-ul2 li .Gn-log{
+            vertical-align: -4px;
+        }
+        .info .info-ul3{
+            position: absolute;
+            top: 40px;
+            right: 0;
+        }
+        .info .info-ul3 li{
+            float: left;
+        }
+        .info .info-ul3 li .link-footerIcon .footer-icon{
+            width: 20px;
+            height: 20px;
+            margin-right: 20px;
+        }
+        .info ul li .link-info1:hover,
+        .info ul li .link-info2:hover{
+            color: #31a5e7;
+        }
+    </style>
+</head>
+<body>
+<!-- 顶部区 - 导航栏  -->
+<div class="header-nav">
+    <div class="header-top">
+        <a href="./01-MeiZu.html"><img src="images/ser-Logo.png" alt="" class="top-loGo"></a>
+        <div class="top-center">
+            <ul class="center-ul">
+                <li><a href="./魅族官网-手机.html" class="link-top control">手机</a></li>
+                <li><a href="./声学.html" class="link-top control">声乐</a></li>
+                <li><a href="./配件.html" class="link-top control">配件</a></li>
+                <li><a href="./魅族官网-生活.html" class="link-top control">生活</a></li>
+                <li><a href="javascript:" class="link-top">Fiyme</a></li>
+                <li><a href="javascript:" class="link-top">服务</a></li>
+                <li><a href="javascript:" class="link-top">专卖店</a></li>
+                <li><a href="javascript:" class="link-top">社区</a></li>
+                <li><a href="javascript:" class="link-top">APP下载</a></li>
+            </ul>
+        </div>
+        <input type="text" placeholder="魅族16Xs" class="txt">
+        <a href="javascript:"><i class="fas fa_Search">&#xf002;</i></a>
+        <a href="javascript:"><i class="fas fa_Per">&#xf406;</i></a>
+        <a href="javascript:"><i class="fas fa_Shop">&#xf07a;</i></a>
+    </div>
+
+
+    <div class="hideBox">
+        <div class="hidePhone"></div>
+    </div>
+
+
+</div>
+
+<!-- 顶部区 - 轮播图  -->
+<div class="ad">
+    <img src="images/LunBo1.jpg" alt="" class="LunBo-img">
+    <img src="images/LunBo2.jpg" alt="" class="LunBo-img">
+    <img src="images/LunBo3.jpg" alt="" class="LunBo-img">
+    <img src="images/LunBo4.jpg" alt="" class="LunBo-img">
+    <img src="images/LunBo5.jpg" alt="" class="LunBo-img">
+    <img src="images/LunBo6.jpg" alt="" class="LunBo-img">
+    <div class="ad-btn">
+        <ul class="ad-ul">
+            <li  class="sty"><a href="javascript:"></a></li>
+            <li><a href="javascript:"></a></li>
+            <li><a href="javascript:"></a></li>
+            <li><a href="javascript:"></a></li>
+            <li><a href="javascript:"></a></li>
+            <li><a href="javascript:"></a></li>
+        </ul>
+    </div>
+</div>
+
+<!-- 内容区 - 服务项  -->
+<div class="serve-item">
+    <ul class="item-ul">
+        <li>
+            <a href="javascript:" class="link-item">
+                <img src="images/ser-item1.jpg" alt="" class="item-img">
+                <h5 class="item-name">注册产品</h5>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-item">
+                <img src="images/ser-item2.jpg" alt="" class="item-img">
+                <h5 class="item-name">真伪查询</h5>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-item">
+                <img src="images/ser-item3.jpg" alt="" class="item-img">
+                <h5 class="item-name">维修查询</h5>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-item">
+                <img src="images/ser-item4.png" alt="" class="item-img">
+                <h5 class="item-name">查询支付</h5>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-item">
+                <img src="images/ser-item5.png" alt="" class="item-img">
+                <h5 class="item-name">自助服务</h5>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-item">
+                <img src="images/ser-item6.jpg" alt="" class="item-img">
+                <h5 class="item-name">以旧换新</h5>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-item">
+                <img src="images/ser-item7.jpg" alt="" class="item-img">
+                <h5 class="item-name">查找手机</h5>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<!-- 内容区 - 服务卡  -->
+<div class="serve-card">
+    <ul class="card-ul">
+        <li>
+            <a href="javascript:" class="link-card">
+                <img src="images/card1.png" alt="" class="card-img">
+                <p class="card-name">
+                    寄送快修
+                </p>
+                <h5 class="poster">
+                    自动寄修, 上门取件
+                </h5>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-card">
+                <img src="images/card2.png" alt="" class="card-img">
+                <p class="card-name">
+                    预约维修
+                </p>
+                <h5 class="poster">
+                    500+服务网点, 无忧预约
+                </h5>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-card">
+                <img src="images/card3.png" alt="" class="card-img">
+                <p class="card-name">
+                    上门快修
+                </p>
+                <h5 class="poster">
+                    专业维修工程师, 上门服务
+                </h5>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-card">
+                <img src="images/card4.png" alt="" class="card-img">
+                <p class="card-name">
+                    魅族Care+
+                </p>
+                <h5 class="poster">
+                    服务更多元, 生活更轻松
+                </h5>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<!-- 内容区 - 选择产品 -->
+<div class="content-title">
+    <h2 class="title-name">请选择您的产品</h2>
+</div>
+<div class="opt">
+    <ul class="opt-ul">
+        <li>
+            <a href="javascript:" class="link-opt">
+                <img src="images/opt1.jpg" alt="" class="opt-img">
+                <h3 class="opt-name">魅族</h3>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-opt">
+                <img src="images/opt2.jpg" alt="" class="opt-img">
+                <h3 class="opt-name">魅蓝</h3>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-opt">
+                <img src="images/opt3.jpg" alt="" class="opt-img">
+                <h3 class="opt-name">智能配件</h3>
+            </a>
+        </li>
+    </ul>
+</div>
+<div class="opt-video">
+    <a href="javascript:" class="link-video">
+        <img src="images/opt-video1.jpg" alt="" class="video-img">
+        <span class="btn-sp">
+            <img src="images/opt-video-btn.png" alt="" class="sp-img">
+        </span>
+        <span class="tit-sp">
+            魅族服务 15 周年
+        </span>
+        <span class="info-sp">
+            这是我们
+        </span>
+    </a>
+    <a href="javascript:" class="link-video">
+        <img src="images/opt-video2.jpg" alt="" class="video-img">
+        <span class="btn-sp">
+            <img src="images/opt-video-btn.png" alt="" class="sp-img">
+        </span>
+        <span class="tit-sp">
+            魅族 16 旗舰手机
+        </span>
+        <span class="info-sp">
+            屏下指纹篇: 光学驱动 解锁毫秒间
+        </span>
+    </a>
+</div>
+
+<!-- 内容区 - 专属权益 -->
+<div class="content-title">
+    <h2 class="title-name">您的专属权益服务</h2>
+</div>
+<div class="Equity">
+    <ul class="Equity-ul">
+        <li>
+            <img src="images/Equity1.jpg" alt="" class="Equity-img">
+            <h6 class="Equity-tit">
+                PRO 专享服务
+            </h6>
+            <p class="Equity-info">
+                VIP Service 为 PRO 系列用户提供全国体验中心专属的绿色通道，更有 20 座城市提供首次免费上门快修服务，给您贵宾级的售后服务。
+            </p>
+            <a href="javascript:" class="link-Equity">
+                前往体验旗舰服务 >
+            </a>
+        </li>
+        <li>
+            <img src="images/Equity2.jpg" alt="" class="Equity-img">
+            <h6 class="Equity-tit">
+                远程支持（维护中）
+            </h6>
+            <p class="Equity-info">
+                无论是手机软件设置问题还是使用问题 ，魅族官方技术顾问都可以通过 mSupport APP 一站式为您排除故障。
+            </p>
+        </li>
+        <li>
+            <img src="images/Equity3.jpg" alt="" class="Equity-img">
+            <h6 class="Equity-tit">
+                魅族服务
+            </h6>
+            <p class="Equity-info">
+                「魅族服务」是提供一站式服务的 APP ，内置会员认证、专业客服、智能定位、线上送修等功能，是您身边的专属管家。
+            </p>
+            <a href="javascript:" class="link-Equity">
+                下载并体验 >
+            </a>
+        </li>
+        <li>
+            <img src="images/Equity4.jpg" alt="" class="Equity-img">
+            <h6 class="Equity-tit">
+                百城速达
+            </h6>
+            <p class="Equity-info">
+                与快递行业翘楚深入合作，带来全新的快递体验。 覆盖全国 105 个城市，最晚次日即可送达。
+            </p>
+            <a href="javascript:" class="link-Equity">
+                了解详情 >
+            </a>
+        </li>
+    </ul>
+</div>
+
+<!-- 内容区 - 了解常见问题 -->
+<div class="content-title matter-tit">
+    <h2 class="title-name">了解常见问题</h2>
+</div>
+<div class="matter">
+    <ul class="matter-ul">
+        <li class="matter-li">
+            <a href="javascript:" class="link-tit">
+                购买帮助
+            </a>
+            <ul class="matter-item">
+                <li class="matter-line"></li>
+                <li>
+                    <a href="javascript:" class="link-matter">
+                        支付方式
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:" class="link-matter">
+                        配送说明
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:" class="link-matter">
+                        付款帮助
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:" class="link-matter">
+                        订单查询
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:" class="link-matter">
+                        手机配件价格
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="matter-li">
+            <a href="javascript:" class="link-tit">
+                售后政策
+            </a>
+            <ul class="matter-item">
+                <li class="matter-line"></li>
+                <li>
+                    <a href="javascript:" class="link-matter">
+                        7 天无理由退货
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:" class="link-matter">
+                       15 天换货保障
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:" class="link-matter">
+                        1 年免费保修
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:" class="link-matter">
+                        配件售后政策
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="matter-li">
+            <a href="javascript:" class="link-tit">
+                系统相关
+            </a>
+            <ul class="matter-item">
+                <li class="matter-line"></li>
+                <li>
+                    <a href="javascript:" class="link-matter">
+                        手机系统下载
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:" class="link-matter">
+                        MP3 系统下载
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:" class="link-matter">
+                        应用商店
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:" class="link-matter">
+                        应用公示
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:" class="link-matter">
+                        手机资料迁移教程
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="matter-li">
+            <a href="javascript:" class="link-tit">
+                热门问题
+            </a>
+            <ul class="matter-item">
+                <li class="matter-line"></li>
+                <li>
+                    <a href="javascript:" class="link-matter">
+                        MX6
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:" class="link-matter">
+                        魅蓝 3s
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:" class="link-matter">
+                        魅蓝 3
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:" class="link-matter">
+                        PRO 6
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="matter-li">
+            <a href="javascript:" class="link-tit">
+                特色服务
+            </a>
+            <ul class="matter-item">
+                <li class="matter-line"></li>
+                <li>
+                    <a href="javascript:" class="link-matter">
+                        VIP 服务
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:" class="link-matter">
+                        百城速达
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:" class="link-matter">
+                        2000+专卖店
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:" class="link-matter">
+                        500+服务中心
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<!-- 内容区 - 联系我们 -->
+<div class="content-title matter-tit">
+    <h2 class="title-name">通过以下方式联系我们</h2>
+</div>
+<div class="contact">
+    <ul class="contact-ul">
+        <li>
+            <a href="javascript:" class="link-contact">
+                <img src="images/contact1.jpg" alt="" class="contact-img">
+                <p class="timer">
+                    周一至周日 8:00-20:00
+                </p>
+                <p class="timer-info">
+                    点击在线咨询客服
+                </p>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-contact">
+                <img src="images/contact2.jpg" alt="" class="contact-img">
+                <p class="timer">
+                    400-788-3333
+                </p>
+                <p class="timer-info">
+                    周一至周日 8:00-20:00
+                </p>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-contact">
+                <img src="images/contact3.jpg" alt="" class="contact-img">
+                <p class="timer">
+                    魅族科技
+                </p>
+                <p class="timer-info">
+                    直接对话微信客服
+                </p>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-contact">
+                <img src="images/contact4.jpg" alt="" class="contact-img">
+                <p class="timer">
+                    魅族 care 微博
+                </p>
+                <p class="timer-info">
+                    关注微博, 了解资讯
+                </p>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<!-- 内容区 - 魅族店铺 -->
+<div class="shop">
+    <ul class="shop-ul">
+        <li class="shop-li">
+            <h3 class="shop-name">魅族授权服务体验中心</h3>
+            <p class="shop-info">
+                500+服务中心，为您提供优质的售后服务
+            </p>
+            <a href="javascript:" class="link-shop">
+                查找附近的体验中心 >
+            </a>
+            <div class="spirit">
+                <ul class="spirit-ul">
+                    <li class="item">全年无休</li>
+                    <li class="item">极速快修</li>
+                    <li class="item">软件升级</li>
+                    <li class="item">VIP 服务</li>
+                    <li class="item">新品体验</li>
+                    <li class="item">专家咨询</li>
+                </ul>
+            </div>
+        </li>
+                <li class="shop-li"></li><li class="shop-li">
+                </li>
+        <li class="shop-li">
+            <h3 class="shop-name">魅族专卖店</h3>
+            <p class="shop-info">
+                2000+线下门店，方便您体验和选购魅族产品，并为您提供详细的产品使用指南以及帮助。
+            </p>
+            <a href="javascript:" class="link-shop">
+                查找附近的专卖店 >
+            </a>
+            <div class="spirit">
+                <ul class="spirit-ul">
+                    <li class="item">免费刷机</li>
+                    <li class="item">专家教学</li>
+                    <li class="item">高速wifi</li>
+                    <li class="item">新机体验</li>
+                    <li class="item">应急充电</li>
+                    <li class="item">免费贴膜</li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<!-- 底部区 - 服务 -->
+<div class="serve">
+    <ul class="serve-ul">
+        <li>
+            <a href="javascript:" class="link-serve">
+                <img src="images/serve1.png" alt="" class="serve-img">
+                <p class="serve-p">满80免运费</p>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-serve">
+                <img src="images/serve2.png" alt="" class="serve-img">
+                <p class="serve-p">100+ 城市次日送达</p>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-serve">
+                <img src="images/serve3.png" alt="" class="serve-img">
+                <p class="serve-p">7天无理由退货</p>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-serve">
+                <img src="images/serve4.png" alt="" class="serve-img">
+                <p class="serve-p">15天换货保障</p>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-serve">
+                <img src="images/serve5.png" alt="" class="serve-img">
+                <p class="serve-p">1年免费保修</p>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-serve">
+                <img src="images/serve6.png" alt="" class="serve-img">
+                <p class="serve-p">上门快修</p>
+            </a>
+        </li>
+    </ul>
+    <div class="hot-line">
+        <p class="hot-line-p">
+            周一至周日 8:00-20:00
+        </p>
+        <h2 class="number">
+            400-788-3333
+        </h2>
+        <a href="javascript:" class="link-csa">
+            在线客服
+        </a>
+    </div>
+</div>
+
+<!-- 底部区 - 网站信息 -->
+<div class="info">
+    <ul class="info-ul1">
+        <li>
+            <a href="javascript:" class="link-info1">
+                了解魅族
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-info1">
+                加入我们
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-info1">
+                联系我们
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-info1">
+                Flyme
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-info1">
+                魅族社区
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-info1">
+                天猫旗舰店
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-info1">
+                问题反馈
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-info1">
+                线上销售授权名单公示
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-info1">
+                出版物经营许可证
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-info1">
+                <img src="images/red%20flog.png" alt="" class="red-flg">
+                简体中文
+            </a>
+        </li>
+    </ul>
+    <ul class="info-ul2">
+        <li>
+            ©2019 Meizu Telecom Equipment Co., Ltd. All rights reserved.
+        </li>
+        <li>
+            <a href="javascript:" class="link-info2">
+                粤ICP备13003602号
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-info2">
+                合字B2-20170010
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-info2">
+                营业执照
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-info2">
+                法律声明
+            </a>
+        </li>
+        <li>
+            <img src="images/gongan.png" alt="" class="Gn-log">
+            <span class="Gn-sp">粤公网安备 44049102496009 号</span>
+        </li>
+        <li>
+            <a href="javascript:" class="link-footerIcon">
+                <img src="images/footer-icon1.png" alt="">
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-footerIcon">
+                <img src="images/footer-icon2.png" alt="">
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-footerIcon">
+                <img src="images/footer-icon3.png" alt="">
+            </a>
+        </li>
+    </ul>
+    <ul class="info-ul3">
+        <li>
+            <a href="javascript:" class="link-footerIcon">
+                <img src="images/footer-icon4.png" alt="" class="footer-icon">
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-footerIcon">
+                <img src="images/footer-icon5.png" alt="" class="footer-icon">
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-footerIcon">
+                <img src="images/footer-icon6.png" alt="" class="footer-icon">
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-footerIcon">
+                <img src="images/footer-icon7.png" alt="" class="footer-icon">
+            </a>
+        </li>
+    </ul>
+</div>
+</body>
+<script src="js/data.js"></script>
+<script src="js/03-JS-util.js"></script>
+<script src="js/MeiZhu-serve.js"></script>
+</html>

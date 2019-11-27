@@ -1,0 +1,15 @@
+{% extends "./layout.html" %}
+{% block title %}
+我的列表页
+{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="/css/index.css">
+{% endblock %}
+{% block content %}
+<div class="col-md-8">
+    <!-- 文章信息和分页器 -->
+    {% include "./article_list.html" %}
+</div>
+{% endblock %}
+
+

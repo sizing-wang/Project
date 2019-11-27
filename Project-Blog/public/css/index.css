@@ -1,0 +1,237 @@
+body{
+    background: url("../images/bg.jpg");
+}
+/* 顶部导航条 */
+.navbar-header .navbar-brand{
+    margin-right: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
+.navbar-header .navbar-brand:hover{
+    color: deeppink;
+}
+.collapse .navbar-nav li:first-child a{
+    background: none;
+    color: #777777;
+}
+.collapse .navbar-nav li:first-child a:hover{
+    background: none;
+    color: deeppink;
+}
+.navbar-nav li a{
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 20px;
+}
+.collapse .navbar-nav li a:hover{
+    color: deeppink;
+}
+
+/* 轮播图 */
+.container-carousel{
+    margin-bottom: 20px;
+    padding-left: 0;
+    padding-right: 0;
+    height: 450px;
+}
+.carousel-inner{
+    height: 450px;
+}
+.container_aside{
+    margin-bottom: 20px;
+    padding-left: 0;
+    padding-right: 0;
+}
+.carousel .item img{
+    width: 100%;
+    height: 450px;
+}
+
+/* 详情介绍 */
+.container-center{
+    padding-left: 0;
+    padding-right: 0;
+}
+.container_info .info{
+    float: left;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding-left: 0;
+    padding-right: 0;
+}
+.info .info_top h3{
+    display: inline-block;
+    margin-top: 10px;
+    color: #ccc;
+    padding-left: 10px;
+    border-left: 3px solid #f65a8a;
+    font-size: 22px;
+}
+.info .info_content{
+    width: 100%;
+    padding: 10px 10px 0 10px;
+    color: #ccc;
+}
+.info .info_content p{
+    font-size: 16px;
+    margin-bottom: 0;
+}
+.info .info_bottom{
+    width: 100%;
+    margin-top: 10px;
+}
+.info .info_bottom a{
+    display: inline-block;
+    text-decoration: none;
+    color: #ccc;
+    font-size: 18px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+.info .info_bottom a span:nth-child(2){
+    color: #807e7c;
+}
+/* 评论输入框 */
+.sub-comment{
+    padding: 22px 20px;
+    font-size: 20px;
+    box-sizing: border-box;
+}
+
+/* 用户信息 */
+.user-info{
+    width: 350px;
+    float: right;
+    background: #fff;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+.user-info .panel-body>span,a{
+    display: block;
+}
+.user-info .panel-body>a:hover{
+    text-decoration: none;
+    color: deeppink;
+}
+/* 用户注册 */
+.user-panel{
+    float: right;
+    width: 350px;
+    background: #fff;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.user-panel .btn{
+    color: #ccc;
+}
+.user-panel .btnBox{
+    width: 100%;
+    text-align: right;
+}
+.btnBox .btn-default{
+    width: 100%;
+    border: none;
+    background: #337ab7;
+    margin-bottom: 5px;
+}
+.btnBox a:hover{
+    text-decoration: none;
+}
+/* 轮播图右边图片 */
+.aside_top{
+    float: right;
+    width: 350px;
+    height: 220px;
+    margin-bottom: 10px;
+}
+.aside_bottom{
+    float: right;
+    width: 350px;
+    height: 220px;
+    margin-bottom: 10px;
+}
+.aside_top>img,.aside_bottom>img{
+    width: 350px;
+    height: 220px;
+}
+
+/* 博主介绍 */
+.author{
+    float: right;
+    width: 350px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: #fff;
+}
+.author h3{
+    margin-top: 10px;
+    margin-left: 10px;
+    font-size: 22px;
+    color: #333;
+}
+.media{
+    background: #f7f7f7;
+    width: 100%;
+    height: 129px;
+    padding: 10px;
+}
+.media img{
+    width: 80px;
+    height: 80px;
+    border: 1px solid #fff;
+    border-radius: 50%;
+}
+.media .media-heading{
+    font-size: 22px;
+}
+/* 点击排行 */
+.ranking{
+    width: 350px;
+    float: right;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: #fff;
+}
+.ranking .title{
+    font-size: 22px;
+    margin: 10px;
+    color: #333;
+}
+.ranking .list-group li{
+    width: 100%;
+    border-radius: 0;
+    background: #f7f7f7;
+}
+/* 翻页导航条 */
+.navigation{
+    float: left;
+}
+.pagination li a{
+    background-color: transparent;
+}
+#pre-link,#next_link{
+    background-color: transparent;
+}
+.main_pagination{
+    margin-top: 100px;
+}
+/* 关注我 */
+.followMe{
+    float: right;
+    width: 350px;
+    height: 400px;
+    font-size: 22px;
+    text-align: center;
+}
+.panel .panel-body{
+    text-align: left;
+}
+.panel img{
+    width: 260px;
+    height: 333px;
+}
+

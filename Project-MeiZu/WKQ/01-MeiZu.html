@@ -1,0 +1,1535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keyword" content="魅族官网是魅族官方提供的电子商务平台,包括魅族手机/魅蓝手机/数码配件/生活周边等产品,提供在线购物、产品资讯、售前售后服务、在线社区交流等服务." class="next-head"/>
+    <title>01-魅族官网</title>
+    <link rel="stylesheet" href="CSS/reset.css">
+    <link rel="stylesheet" href="CSS/all.css">
+    <link rel="shortcut icon" href="images/Logo.ico" type="image/x-icon" class="next-head"/>
+    <style>
+        /* 公共样式 */
+        .link-phone:hover{
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.5);
+        }
+        .link-phone{
+            transition: all 0.2s linear;
+        }
+        a{
+            text-decoration: none;
+        }
+        /*顶部区 - 轮播图/导航栏*/
+        .header-ad{
+            position: relative;
+            width: 100%;
+            height: 670px;
+            overflow: hidden;
+        }
+        .header-ad .ad-btn{
+            width: 200px;
+            height: 10px;
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            margin-left: -80px;
+            z-index: 1000;
+        }
+        .header-ad .ad-btn li{
+            width: 8px;
+            height: 8px;
+            background: #fff;
+            border-radius: 50%;
+            float: left;
+            margin-left: 16px;
+        }
+        .header-ad .ad-btn .active{
+            border: 1px solid #fff;
+            background: rgba(0,0,0,0);
+            box-sizing: border-box;
+        }
+        .header-ad .ad-btn .sty{
+            border: 1px solid #fff;
+            background: rgba(0,0,0,0);
+            box-sizing: border-box;
+        }
+        .header-ad .header-top{
+            position: relative;
+            width: 1250px;
+            height: 80px;
+            margin: 0 auto;
+            z-index: 1000;
+        }
+        .header-ad .header-top #Logo{
+            width: 125px;
+            height: 24px;
+            position: absolute;
+            top: 26px;
+        }
+        .header-ad .LunBo-img{
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%);
+            width: 2560px;
+            height: 680px;
+            transition: all 0.5s;
+            z-index: -1;
+        }
+        .header-ad .header-top .fa_Search{
+            position: absolute;
+            top: 33px;
+            right: 105px;
+            font-size: 18px;
+            color: #6f6f6f;
+        }
+        .header-ad .header-top .fa_Per{
+            position: absolute;
+            top: 30px;
+            right: 48px;
+            color: #fff;
+        }
+        .header-ad .header-top .fa_Shop{
+            position: absolute;
+            top: 30px;
+            right: 0;
+            color: #fff;
+        }
+        .header-ad .header-top .txt{
+            position: absolute;
+            top: 50%;
+            margin-top: -15px;
+            right: 100px;
+            width: 170px;
+            height: 30px;
+            border-radius: 30px;
+            font-size: 12px;
+            border: 1px solid #999999;
+            outline: none;
+            padding-left: 10px;
+            box-sizing: border-box;
+        }
+        .header-ad .header-top .top-center{
+            width: 700px;
+            height: 80px;
+            float: left;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            margin-left: -350px;
+        }
+        .header-ad .header-top .top-center .center-ul li{
+            text-align: center;
+            line-height: 80px;
+            float: left;
+            margin-left: 40px;
+        }
+        .header-ad .header-top .top-center .center-ul li .link-top{
+            font-size: 14px;
+            color: #fff;
+        }
+        .header-ad .header-top .top-center .center-ul li .link-top:hover{
+            color: #00b9f2;
+        }
+        .header-ad .hideBox{
+            position: absolute;
+            width: 100%;
+            background: #ffff;
+            box-shadow: 0 3px 3px #ccc;
+            z-index: 1050;
+        }
+        .header-ad .hideBox .hidePhone{
+            width: 1250px;
+            height: 200px;
+            margin: 0 auto;
+            position: relative;
+            display: none;
+        }
+        .header-ad .hideBox .hidePhone .hideUl li{
+            margin-top: 10px;
+            margin-right: 30px;
+            float: left;
+            text-align: center;
+        }
+        .header-ad .hideBox .hidePhone .hideUl li:last-child{
+            margin-right: 0;
+        }
+        .header-ad .hideBox .hidePhone .hideUl li .phoneImg{
+            width: 130px;
+            height: 130px;
+        }
+        .header-ad .hideBox .hidePhone .hideUl li .price,
+        .header-ad .hideBox .hidePhone .hideUl li .name{
+            font-size: 14px;
+            color: #333;
+        }
+
+        /* 轮播图底部手机 */
+        .ad-bottom{
+            position: relative;
+            width: 100%;
+            height: 278px;
+            margin-bottom: 20px;
+        }
+        .ad-bottom .bottom-ul{
+            width: 1240px;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            margin-left: -620px;
+            margin-top: 5px;
+        }
+        .ad-bottom .bottom-ul li{
+            width: 310px;
+            height: 278px;
+            float: left;
+            text-align: center;
+            transition: all 0.2s;
+        }
+        .ad-bottom .bottom-ul li .ad-btm-img{
+            width: 130px;
+            height: 130px;
+            margin-top: 30px;
+        }
+        .ad-bottom .bottom-ul li h2{
+            font-size: 20px;
+            color: #333333;
+            margin-bottom: 10px;
+        }
+        .ad-bottom .bottom-ul li p{
+            font-size: 14px;
+            color: #999999;
+        }
+
+        /* 内容区 - 手机 */
+        .content-title{
+            width: 100%;
+            height: 105px;
+            background: #f4f4f4;
+            border-top: 1px solid #eeeeee;
+            text-align: center;
+        }
+        .content-title .title-name{
+            font-size: 30px;
+            margin-top: 50px;
+        }
+       .phone-ad{
+           position: relative;
+           width: 100%;
+           height: 450px;
+           text-align: center;
+           overflow: hidden;
+       }
+        .phone-ad .link-ad{
+            transition: all 0.2s linear;
+        }
+        .phone-ad .link-ad:hover{
+            opacity: 0.85;
+        }
+       .phone-ad .ad-img{
+           position: absolute;
+           top: 0;
+           left: 50%;
+           margin-left: -1280px;
+           width: auto;
+           height: auto;
+       }
+       .phone{
+           width: 1250px;
+           margin: 10px auto;
+       }
+        .phone .phone-ul{
+            width: 1250px;
+            overflow: hidden;
+        }
+        .phone .phone-ul li .link-phone-big{
+            width: 615px;
+            height: 610px;
+            margin-right: 9px;
+            text-align: center;
+            float: left;
+            transition: all 0.2s;
+        }
+        .phone .phone-ul li .link-phone-big:hover{
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.5);
+        }
+        .phone .phone-ul  li .link-phone-big .new1{
+            width: 70px;
+            height: 70px;
+            text-align: center;
+            line-height: 70px;
+            background: #ff4771;
+            border-radius: 50%;
+            color: #fff4ff;
+            font-size: 18px;
+            position: absolute;
+        }
+        .phone .phone-ul li .link-phone-big .ph-name{
+            font-size: 28px;
+            color: #333333;
+            margin-top: 40px;
+        }
+        .phone .phone-ul li .link-phone-big .news{
+            font-size: 18px;
+            color: #333;
+            margin-top: 5px;
+        }
+        .phone .phone-ul li .link-phone-big .price{
+            font-size: 22px;
+            color: #cc0000;
+            margin-top: 10px;
+        }
+        .phone .phone-ul li .link-phone-big .price .mark{
+            font-size: 14px;
+        }
+        .phone .phone-ul  li .link-phone-big .ph-img{
+            width: 460px;
+            height: 460px;
+            margin-top: -10px;
+        }
+        .phone .phone-ul li .link-phone{
+            width: 303px;
+            height: 375px;
+            margin-top: 10px;
+            margin-right: 9px;
+            text-align: center;
+            float: left;
+        }
+        .phone .phone-ul  .cor .link-phone .new2{
+            background: #ff446d;
+        }
+        .phone .phone-ul  li .link-phone .new2{
+            width: 70px;
+            height: 70px;
+            text-align: center;
+            line-height: 70px;
+            background: #4299f7;
+            border-radius: 50%;
+            color: #fff4ff;
+            font-size: 18px;
+            position: absolute;
+        }
+        .phone .phone-ul li .link-phone .ph-name{
+            font-size: 16px;
+            color: #333333;
+        }
+        .phone .phone-ul li .link-phone .news{
+            font-size: 14px;
+            color: #999999;
+            margin-top: 5px;
+        }
+        .phone .phone-ul  li .link-phone .price{
+            font-size: 22px;
+            color: #cc0000;
+            margin-top: 10px;
+        }
+        .phone .phone-ul  li .link-phone .price .mark{
+            font-size: 14px;
+        }
+        .phone .phone-ul  li .link-phone .ph-img{
+            width: 230px;
+            height: 230px;
+            margin-top: 20px;
+        }
+
+        /* 内容区 - 魅族声学 */
+        .phone .phone-ul .cor .link-phics1{
+            background: url("images/phonics1.jpg") no-repeat center center;
+            background-size: 303px 375px;
+        }
+        .phone .phone-ul .cor .link-phics1 .phics-name{
+            font-size: 21px;
+            color: #ffffff;
+            margin-top: 260px;
+            font-weight: bolder;
+        }
+        .phone .phone-ul .cor .link-phics1 .phics-news{
+            font-size: 14px;
+            color: #defff3;
+        }
+        .phone .phone-ul .cor .link-phics1 .phics-pr{
+            font-size: 24px;
+            color: #ebce6b;
+            font-weight: bolder;
+        }
+        .phone .phone-ul .cor .link-phone .cost-price{
+            font-size: 14px;
+            color: #666;
+        }
+        .phone .phone-ul .cor .link-phics2{
+            background: url("images/phonics5.jpg") no-repeat center center;
+            background-size: 303px 375px;
+        }
+        .phone .phone-ul .cor .link-phics2 .phics-name{
+            font-size: 21px;
+            color: #ffffff;
+            margin-top: 260px;
+            font-weight: bolder;
+        }
+        .phone .phone-ul .cor .link-phics2 .phics-news{
+            font-size: 14px;
+            color: #defff3;
+        }
+        .phone .phone-ul .cor .link-phics2 .phics-pr{
+            font-size: 24px;
+            color: #ebce6b;
+            font-weight: bolder;
+        }
+        .phone .phone-ul .cor .link-phics3{
+            background: url("images/phonics9.jpg") no-repeat center center;
+            background-size: 303px 375px;
+        }
+        .phone .phone-ul .cor .link-phics3 .phics-name{
+            font-size: 21px;
+            color: #ffffff;
+            margin-top: 260px;
+            font-weight: bolder;
+        }
+        .phone .phone-ul .cor .link-phics3 .phics-news{
+            font-size: 14px;
+            color: #defff3;
+        }
+        .phone .phone-ul .cor .link-phics3 .phics-pr{
+            font-size: 24px;
+            color: #ebce6b;
+            font-weight: bolder;
+        }
+
+        /* 内容区 - 智能配件 */
+        .phone .phone-ul .cor .link-parts1{
+            background: url("images/parts1.jpg") no-repeat center center;
+            background-size: 303px 375px;
+        }
+        .phone .phone-ul .cor .link-parts1 .parts-name{
+            font-size: 21px;
+            color: #ffffff;
+            margin-top: 260px;
+            font-weight: bolder;
+        }
+        .phone .phone-ul .cor .link-parts1 .parts-news{
+            font-size: 14px;
+            color: #defff3;
+        }
+        .phone .phone-ul .cor .link-parts1 .parts-pr{
+            font-size: 24px;
+            color: #47b4e1;
+            font-weight: bolder;
+        }
+        .phone .phone-ul .cor .link-parts1 .parts-pr .cost-parts{
+            font-size: 14px;
+            color: #ffffff;
+        }
+        .phone .phone-ul .cor .link-parts2{
+            background: url("images/parts5.jpg") no-repeat center center;
+            background-size: 303px 375px;
+        }
+        .phone .phone-ul .cor .link-parts2 .parts-name{
+            font-size: 21px;
+            color: #ffffff;
+            margin-top: 260px;
+            font-weight: bolder;
+        }
+        .phone .phone-ul .cor .link-parts2 .parts-news{
+            font-size: 14px;
+            color: #defff3;
+        }
+        .phone .phone-ul .cor .link-parts2 .parts-pr{
+            font-size: 24px;
+            color: #ebce6b;
+            font-weight: bolder;
+        }
+
+        /* 内容区 - 生活周边 */
+        .phone .phone-ul .cor .link-life1{
+            background: url("images/life1.jpg") no-repeat center center;
+            background-size: 303px 375px;
+        }
+        .phone .phone-ul .cor .link-life1 .parts-name{
+            font-size: 21px;
+            color: #ffffff;
+            margin-top: 260px;
+            font-weight: bolder;
+        }
+        .phone .phone-ul .cor .link-life1 .parts-news{
+            font-size: 14px;
+            color: #defff3;
+        }
+        .phone .phone-ul .cor .link-life1 .parts-pr{
+            font-size: 24px;
+            color: #47b4e1;
+            font-weight: bolder;
+        }
+        .phone .phone-ul .cor .link-life2{
+            background: url("images/life5.jpg") no-repeat center center;
+            background-size: 303px 375px;
+        }
+        .phone .phone-ul .cor .link-life2 .parts-name{
+            font-size: 21px;
+            color: #ffffff;
+            margin-top: 260px;
+            font-weight: bolder;
+        }
+        .phone .phone-ul .cor .link-life2 .parts-news{
+            font-size: 14px;
+            color: #defff3;
+        }
+        .phone .phone-ul .cor .link-life2 .parts-pr{
+            font-size: 24px;
+            color: #47b4e1;
+            font-weight: bolder;
+        }
+
+        /* 内容区 - 社区热帖 */
+        .hot-notes{
+            width: 1250px;
+            margin: 0 auto;
+        }
+        .hot-notes .notes-ul{
+            overflow: hidden;
+        }
+        .hot-notes .notes-ul li .link-notes{
+            width: 303px;
+            height: 388px;
+            float: left;
+            margin: 10px 9px 9px 0;
+        }
+        .hot-notes .notes-ul li .link-notes .notes-img{
+            width: 303px;
+            height: 190px;
+        }
+        .hot-notes .notes-ul li .link-notes .head-por{
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            margin-top: 3px;
+            margin-left: 13px;
+            display: inline-block;
+        }
+        .hot-notes .notes-ul li .link-notes .author{
+            display: inline-block;
+            font-size: 14px;
+            color: #515151;
+            vertical-align: 10px;
+            margin-left: 10px;
+        }
+        .hot-notes .notes-ul li .link-notes .comment{
+            /*margin: 13px 13px 0 13px;*/
+            width: 303px;
+            height: 66px;
+            padding: 13px 13px 0 13px;
+            box-sizing: border-box;
+            /*white-space: nowrap;*/
+            /*text-overflow: ellipsis;*/
+            /*overflow: hidden;*/
+            font-size: 16px;
+            color: #515151;
+        }
+        .hot-notes .notes-ul li .link-notes .part-name{
+            margin-top: 20px;
+            margin-left: 13px;
+            font-size: 14px;
+            color: #999;
+        }
+
+        /* 内容区 - 精彩视频 */
+        .Video{
+            width: 1250px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        .Video .Video-ul li .link-video{
+            position: relative;
+            width: 303px;
+            height: 245px;
+            float: left;
+            margin: 10px 9px 9px 0;
+            text-align: center;
+        }
+        .Video .Video-ul li .link-video .video-img{
+            width: 303px;
+            height: 190px;
+        }
+        .Video .Video-ul li .link-video .far{
+            font-size: 30px;
+            position: absolute;
+            bottom: 70px;
+            right: 15px;
+            color: #fff;
+            opacity: 0.7;
+        }
+        .Video .Video-ul li .link-video .describe{
+            font-size: 16px;
+            color: #515151;
+        }
+
+        /* 底部区 - 服务 */
+        .serve{
+            position: relative;
+            width: 1250px;
+            height: 150px;
+            margin: 20px auto;
+            border-top: 1px solid #eeeeee;
+            border-bottom: 1px solid #eeeeee;
+        }
+        .serve .serve-ul li{
+            width: 150px;
+            height: 70px;
+            float: left;
+            margin-top: 40px;
+            text-align: center;
+        }
+        .serve .serve-ul li .link-serve .serve-img{
+            width: 50px;
+            height: 40px;
+        }
+        .serve .serve-ul li .link-serve .serve-p{
+            font-size: 14px;
+            color: #999999;
+        }
+        .serve .hot-line{
+            width: 200px;
+            height: 150px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            text-align: right;
+        }
+        .serve .hot-line .hot-line-p{
+            margin-top: 20px;
+            font-size: 14px;
+            color: #999;
+        }
+        .serve .hot-line .number{
+            margin-top: 5px;
+            font-size: 25px;
+            color: #00c3f5;
+        }
+        .serve .hot-line .link-csa{
+            display: inline-block;
+            width: 90px;
+            height: 30px;
+            background: #0bbbef;
+            border-radius: 20px;
+            font-size: 14px;
+            color: #fff;
+            text-align: center;
+            line-height: 30px;
+            margin-left: 110px;
+            margin-top: 8px;
+        }
+
+        /* 底部区 - 网站信息 */
+        .info {
+            position: relative;
+            width: 1250px;
+            height: 70px;
+            margin: 20px auto;
+        }
+        .info .info-ul1{
+            overflow: hidden;
+        }
+        .info .info-ul1 li{
+            float: left;
+        }
+        .info .info-ul1 li .link-info1{
+            display: inline-block;
+            padding-left: 10px;
+            padding-right: 10px;
+            border-right: 1px solid #d6d6d6;
+            font-size: 14px;
+            color: #999;
+        }
+        .info .info-ul1 li .link-info1 .red-flg{
+            vertical-align: middle;
+        }
+        .info .info-ul2 li{
+            float: left;
+            font-size: 12px;
+            color: #999;
+            margin-top: 15px;
+            margin-right: 10px;
+        }
+        .info .info-ul2 li .link-info2{
+            color: #999;
+        }
+        .info .info-ul2 li .Gn-log{
+            vertical-align: -4px;
+        }
+        .info .info-ul3{
+            position: absolute;
+            top: 40px;
+            right: 0;
+        }
+        .info .info-ul3 li{
+            float: left;
+        }
+        .info .info-ul3 li .link-footerIcon .footer-icon{
+            width: 20px;
+            height: 20px;
+            margin-right: 20px;
+        }
+        .info ul li .link-info1:hover,
+        .info ul li .link-info2:hover{
+            color: #31a5e7;
+        }
+    </style>
+</head>
+<body>
+<!-- 顶部区 - 轮播图/导航栏  -->
+<div class="header-ad">
+    <div class="header-top">
+        <svg fill="#00b4ff" version="1.1" id="Logo" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="402.048px" height="73.556px" viewBox="17.318 5.824 402.048 73.556" enable-background="new 17.318 5.824 402.048 73.556">
+            <path d="M321.513,5.824H256.91v12.878h51.478l-49.294,44.581c-8.227,7.023-2.872,16.096,3.958,16.096h65.337V66.472 h-52.117l48.964-44.554C333.52,14.473,328.535,5.824,321.513,5.824">
+
+            </path>
+            <rect x="226.517" y="5.824" width="14.426" height="73.556">
+
+            </rect>
+            <path d="M104.296,5.824h-71.36c-8.576,0-15.618,7.012-15.618,15.588v57.967H31.14V23.743 c0-2.711,2.208-5.041,4.92-5.041h25.31v60.677h14.428V18.702h25.312c2.712,0,4.919,2.329,4.919,5.041v55.636h13.86V21.416 C119.888,12.841,112.872,5.824,104.296,5.824">
+
+            </path>
+            <path d="M148.765,23.614c0-2.712,2.199-4.912,4.911-4.912h55.909V5.824h-58.236c-8.576,0-15.592,7.016-15.592,15.592 v42.37c0,8.576,7.017,15.592,15.592,15.592h58.236V66.5h-55.909c-2.711,0-4.911-2.199-4.911-4.912V49.042h58.43V36.117h-58.43 V23.614z">
+
+            </path>
+            <path d="M405.506,5.824v55.637c0,2.71-2.22,5.039-4.931,5.039h-39.77c-2.711,0-4.892-2.328-4.892-5.039V5.824h-13.86 v57.963c0,8.576,7.018,15.592,15.592,15.592h46.127c8.575,0,15.592-7.017,15.592-15.592V5.824H405.506z">
+
+            </path>
+        </svg>
+        <div class="top-center">
+            <ul class="center-ul">
+                <li><a href="javascript:" class="link-top control">手机</a></li>
+                <li><a href="javascript:" class="link-top control">声乐</a></li>
+                <li><a href="javascript:" class="link-top control">配件</a></li>
+                <li><a href="javascript:" class="link-top control">生活</a></li>
+                <li><a href="javascript:" class="link-top">Fiyme</a></li>
+                <li><a href="./02-MeiZu-serve.html" class="link-top">服务</a></li>
+                <li><a href="javascript:" class="link-top">专卖店</a></li>
+                <li><a href="javascript:" class="link-top">社区</a></li>
+                <li><a href="javascript:" class="link-top">APP下载</a></li>
+            </ul>
+
+        </div>
+        <input type="text" placeholder="魅族16Xs" class="txt">
+        <a href="javascript:"><i class="fas fa_Search">&#xf002;</i></a>
+        <a href="javascript:"><i class="fas fa_Per">&#xf406;</i></a>
+        <a href="javascript:"><i class="fas fa_Shop">&#xf07a;</i></a>
+    </div>
+    <ul class="carousel-ul">
+        <li>
+            <img src="images/LunBo1.jpg" alt="" class="LunBo-img">
+        </li>
+        <li>
+            <img src="images/LunBo2.jpg" alt="" class="LunBo-img">
+        </li>
+        <li>
+            <img src="images/LunBo3.jpg" alt="" class="LunBo-img">
+        </li>
+        <li>
+            <img src="images/LunBo4.jpg" alt="" class="LunBo-img">
+        </li>
+        <li>
+            <img src="images/LunBo5.jpg" alt="" class="LunBo-img">
+        </li>
+        <li>
+            <img src="images/LunBo6.jpg" alt="" class="LunBo-img">
+        </li>
+    </ul>
+    <div class="ad-btn">
+        <ul class="btn-ul">
+            <a href="javascript:"><li class="sty"></li></a>
+            <a href="javascript:"><li></li></a>
+            <a href="javascript:"><li></li></a>
+            <a href="javascript:"><li></li></a>
+            <a href="javascript:"><li></li></a>
+            <a href="javascript:"><li></li></a>
+
+        </ul>
+    </div>
+
+    <div class="hideBox">
+        <div class="hidePhone"></div>
+    </div>
+
+</div>
+
+<!-- 轮播图底部手机 -->
+<div class="ad-bottom">
+    <ul class="bottom-ul">
+        <a href="javascript:" class="link-ad-bottom">
+            <li class="com_hover">
+                <img src="images/ad-bottom-1.png" alt="" class="ad-btm-img">
+                <h2>魅族 16s</h2>
+                <p>最高直降699元</p>
+            </li>
+        </a>
+        <a href="javascript:" class="link-ad-bottom">
+            <li class="com_hover">
+                <img src="images/ad-bottom-2.png" alt="" class="ad-btm-img">
+                <h2>魅族 16Xs</h2>
+                <p>低至1499元</p>
+            </li>
+        </a>
+        <a href="javascript:" class="link-ad-bottom">
+            <li class="com_hover">
+                <img src="images/ad-bottom-3.jpg" alt="" class="ad-btm-img">
+                <h2>魅族 Note9</h2>
+                <p>低至1199元</p>
+            </li>
+        </a>
+        <a href="javascript:" class="link-ad-bottom">
+            <li class="com_hover">
+                <img src="images/ad-bottom-4.jpg" alt="" class="ad-btm-img">
+                <h2>依旧换新</h2>
+                <p>免费寄件 专业检测</p>
+            </li>
+        </a>
+    </ul>
+</div>
+
+<!-- 内容区 - 手机 -->
+<div class="content-title">
+<h2 class="title-name">手机</h2>
+</div>
+<div class="phone-ad">
+    <a href="javascript:" class="link-ad">
+        <img src="images/phone-ad.jpg" alt="" class="ad-img">
+    </a>
+</div>
+<div class="phone">
+    <ul class="phone-ul">
+            <li class="com_hover">
+                <a href="javascript:" class="link-phone-big">
+                <div class="new1">新品</div>
+                <h2 class="ph-name">魅族 16Xs</h2>
+                <p class="news">4800W AI三摄 | 屏幕下指纹</p>
+                <p class="price"><span class="mark">￥</span>1499</p>
+                <img src="images/phone1.png" alt="" class="ph-img">
+                </a>
+            </li>
+            <li class="com_hover">
+                <a href="javascript:" class="link-phone-big">
+                <div class="new1">直降</div>
+                <h2 class="ph-name">魅族 16s</h2>
+                <p class="news">骁龙855 4800W光学防抖</p>
+                <p class="price"><span class="mark">￥</span>2699</p>
+                <img src="images/phone2.png" alt="" class="ph-img">
+                </a>
+            </li>
+            <li class="com_hover cor">
+                <a href="javascript:" class="link-phone">
+                <div class="new2">直降</div>
+                <img src="images/phone3.png" alt="" class="ph-img">
+                <h2 class="ph-name">魅族 Note9</h2>
+                <p class="news">骁龙675 后置4800万</p>
+                <p class="price"><span class="mark">￥</span>1199</p>
+                </a>
+            </li>
+            <li class="com_hover">
+                <a href="javascript:" class="link-phone">
+                <div class="new2">领劵</div>
+                <img src="images/phone4.png" alt="" class="ph-img">
+                <h2 class="ph-name">魅族 16th</h2>
+                <p class="news">骁龙845 屏幕下指纹</p>
+                <p class="price"><span class="mark">￥</span>2299</p>
+                </a>
+            </li>
+            <li class="com_hover">
+                <a href="javascript:" class="link-phone">
+                <div class="new2">领劵</div>
+                <img src="images/phone5.png" alt="" class="ph-img">
+                <h2 class="ph-name">魅族 16th Plus</h2>
+                <p class="news">骁龙845 屏幕下指纹</p>
+                <p class="price"><span class="mark">￥</span>2698</p>
+                </a>
+            </li>
+            <li class="com_hover">
+                <a href="javascript:" class="link-phone">
+                <div class="new2">领劵</div>
+                <img src="images/phone6.png" alt="" class="ph-img">
+                <h2 class="ph-name">魅族 X8</h2>
+                <p class="news">骁龙710 旗舰双摄</p>
+                <p class="price"><span class="mark">￥</span>1298</p>
+                </a>
+            </li>
+            <li class="com_hover">
+                <a href="javascript:" class="link-phone">
+                <div class="new2">领劵</div>
+                <img src="images/phone7.png" alt="" class="ph-img">
+                <h2 class="ph-name">魅族 16X</h2>
+                <p class="news">骁龙710 屏幕下指纹 旗舰双摄</p>
+                <p class="price"><span class="mark">￥</span>1598</p>
+                </a>
+            </li>
+            <li class="com_hover">
+                <a href="javascript:" class="link-phone">
+                <div class="new2">领劵</div>
+                <img src="images/phone8.png" alt="" class="ph-img">
+                <h2 class="ph-name">魅族 M15</h2>
+                <p class="news">骁龙626 前置2000万AI智能美颜</p>
+                <p class="price"><span class="mark">￥</span>1398</p>
+                </a>
+            </li>
+            <li class="com_hover">
+                <a href="javascript:" class="link-phone">
+                <div class="new2">领劵</div>
+                <img src="images/phone9.png" alt="" class="ph-img">
+                <h2 class="ph-name">魅族 15</h2>
+                <p class="news">骁龙660 2000万暗光双摄</p>
+                <p class="price"><span class="mark">￥</span>1498</p>
+                </a>
+            </li>
+            <li class="com_hover">
+                <a href="javascript:" class="link-phone">
+                <div class="new2">领劵</div>
+                <img src="images/phone10.png" alt="" class="ph-img">
+                <h2 class="ph-name">魅族 S6</h2>
+                <p class="news">Exynos 7872疾速游戏芯片 侧面指纹解锁</p>
+                <p class="price"><span class="mark">￥</span>999</p>
+                </a>
+            </li>
+            <li class="com_hover">
+                <a href="javascript:" class="link-phone">
+                <div class="new2">领劵</div>
+                <img src="images/phone11.png" alt="" class="ph-img">
+                <h2 class="ph-name">魅族 16s 白夜童话限量礼盒</h2>
+                <p class="news">以梦为马 乘风破浪</p>
+                <p class="price"><span class="mark">￥</span>3099</p>
+                </a>
+            </li>
+            <li class="com_hover">
+                <a href="javascript:" class="link-phone">
+                <div class="new2">领劵</div>
+                <img src="images/phone12.png" alt="" class="ph-img">
+                <h2 class="ph-name">魅蓝 E3</h2>
+                <p class="news">骁龙636处理器 全系6G大运存</p>
+                <p class="price"><span class="mark">￥</span>1799</p>
+                </a>
+            </li>
+            <li class="com_hover">
+                <a href="javascript:" class="link-phone">
+                <div class="new2">领劵</div>
+                <img src="images/phone13.png" alt="" class="ph-img">
+                <h2 class="ph-name">魅蓝 6T</h2>
+                <p class="news">双摄全面屏 游戏长续航</p>
+                <p class="price"><span class="mark">￥</span>799</p>
+                </a>
+            </li>
+            <li class="com_hover">
+                <a href="javascript:" class="link-phone">
+                <div class="new2">领劵</div>
+                <img src="images/phone14.png" alt="" class="ph-img">
+                <h2 class="ph-name">魅族 V8 高配版</h2>
+                <p class="news">Helio P22 处理器 5.7 英寸全面屏</p>
+                <p class="price"><span class="mark">￥</span>898</p>
+                </a>
+            </li>
+    </ul>
+</div>
+
+<!-- 内容区 - 魅族声学 -->
+<div class="content-title">
+    <h2 class="title-name">魅族声学</h2>
+</div>
+<div class="phone-ad">
+    <a href="javascript:" class="link-ad">
+        <img src="images/phonics-ad.jpg" alt="" class="ad-img">
+    </a>
+</div>
+<div class="phone">
+    <ul class="phone-ul">
+            <li class="com_hover cor">
+                <a href="javascript:" class="link-phics1 link-phone">
+                <h2 class="phics-name ph-name">魅族 HIFI 解码耳放</h2>
+                <p class="phics-news news">高性能DAC芯片</p>
+                <p class="phics-pr price"><span class="phics-mark">￥</span>169</p>
+                </a>
+            </li>
+        <li class="com_hover cor">
+            <a href="javascript:" class="link-phone">
+                <div class="new2">特惠</div>
+                <img src="images/phonics2.png" alt="" class="ph-img">
+                <h2 class="ph-name">魅族 EP2X 耳机</h2>
+                <p class="news">契合声音的流动之美</p>
+                <p class="price"><span class="mark">￥</span>69 <del class="cost-price"><span class="mark">￥</span>129</del>
+                </p>
+            </a>
+        </li>
+        <li class="com_hover cor">
+            <a href="javascript:" class="link-phone">
+                <div class="new2">特惠</div>
+                <img src="images/phonics3.png" alt="" class="ph-img">
+                <h2 class="ph-name">魅蓝 EP52 蓝牙耳机</h2>
+                <p class="news">轻盈悦耳 动无拘束</p>
+                <p class="price"><span class="mark">￥</span>199 <del class="cost-price"><span class="mark">￥</span>299</del>
+                </p>
+            </a>
+        </li>
+        <li class="com_hover cor">
+            <a href="javascript:" class="link-phone">
+                <div class="new2">特惠</div>
+                <img src="images/phonics4.png" alt="" class="ph-img">
+                <h2 class="ph-name">魅族 Flow 三单元耳机</h2>
+                <p class="news">用的惬意 听得尽兴</p>
+                <p class="price"><span class="mark">￥</span>379 <del class="cost-price"><span class="mark">￥</span>599</del>
+                </p>
+            </a>
+        </li>
+        <li class="com_hover cor">
+            <a href="javascript:" class="link-phics2 link-phone">
+                <h2 class="phics-name ph-name">魅族 POP2 真无线蓝牙耳机</h2>
+                <p class="phics-news news">蓝牙5.0 超长续航</p>
+                <p class="phics-pr price"><span class="phics-mark">￥</span>399</p>
+            </a>
+        </li>
+        <li class="com_hover cor">
+            <a href="javascript:" class="link-phone">
+                <div class="new2">特惠</div>
+                <img src="images/phonics6.png" alt="" class="ph-img">
+                <h2 class="ph-name">魅族 HALO 激光蓝牙耳机</h2>
+                <p class="news">夜跑神器 随性张扬</p>
+                <p class="price"><span class="mark">￥</span>499 <del class="cost-price"><span class="mark">￥</span>999</del>
+                </p>
+            </a>
+        </li>
+        <li class="com_hover cor">
+            <a href="javascript:" class="link-phone">
+                <div class="new2">特惠</div>
+                <img src="images/phonics7.png" alt="" class="ph-img">
+                <h2 class="ph-name">魅族 LIVE 四单元动铁耳机</h2>
+                <p class="news">Konwles四动铁 双通道导音系统</p>
+                <p class="price"><span class="mark">￥</span>1099 <del class="cost-price"><span class="mark">￥</span>1299</del>
+                </p>
+            </a>
+        </li>
+        <li class="com_hover cor">
+            <a href="javascript:" class="link-phone">
+<!--                <div class="new2">特惠</div>-->
+                <img src="images/phonics8.png" alt="" class="ph-img">
+                <h2 class="ph-name">魅族 Gravity 悬浮音响</h2>
+                <p class="news">魅族声学15年集大成之作</p>
+                <p class="price"><span class="mark">￥</span>1099</p>
+            </a>
+        </li>
+        <li class="com_hover cor">
+            <a href="javascript:" class="link-phics3 link-phone">
+                <h2 class="phics-name ph-name">魅族 EP63NC 无线降噪耳机</h2>
+                <p class="phics-news news">智能降噪 声临其境</p>
+                <p class="phics-pr price"><span class="phics-mark">￥</span>499</p>
+            </a>
+        </li>
+        <li class="com_hover cor">
+            <a href="javascript:" class="link-phone">
+                <div class="new2">特惠</div>
+                <img src="images/phonics10.png" alt="" class="ph-img">
+                <h2 class="ph-name">魅族 EP21 耳机</h2>
+                <p class="news">悦耳 声形俱佳</p>
+                <p class="price"><span class="mark">￥</span>69 <del class="cost-price"><span class="mark">￥</span>89</del>
+                </p>
+            </a>
+        </li>
+        <li class="com_hover cor">
+            <a href="javascript:" class="link-phone">
+<!--                <div class="new2">特惠</div>-->
+                <img src="images/phonics11.png" alt="" class="ph-img">
+                <h2 class="ph-name">魅族 EP51 蓝牙运动耳机</h2>
+                <p class="news">臻享音质 自在运动</p>
+                <p class="price"><span class="mark">￥</span>229</p>
+            </a>
+        </li>
+        <li class="com_hover cor">
+            <a href="javascript:" class="link-phone">
+                <!--                <div class="new2">特惠</div>-->
+                <img src="images/phonics12.png" alt="" class="ph-img">
+                <h2 class="ph-name">魅族 EP52 Lite 蓝牙耳机</h2>
+                <p class="news">超高性价比创造无线新声代</p>
+                <p class="price"><span class="mark">￥</span>129</p>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<!-- 内容区 - 智能配件 -->
+<div class="content-title">
+    <h2 class="title-name">智能配件</h2>
+</div>
+<div class="phone-ad">
+    <a href="javascript:" class="link-ad">
+        <img src="images/parts-ad.jpg" alt="" class="ad-img">
+    </a>
+</div>
+<div class="phone">
+    <ul class="phone-ul">
+        <li class="com_hover cor">
+            <a href="javascript:" class="link-parts1 link-phone">
+                <h2 class="parts-name ph-name">快充电源适配器</h2>
+                <p class="parts-news news">快速充电 安全无忧</p>
+                <p class="parts-pr price"><span class="parts-mark">￥</span>69 <del class="cost-parts"><span class="mark">￥</span>89</del></p>
+            </a>
+        </li>
+        <li class="com_hover cor">
+            <a href="javascript:" class="link-phone">
+                <img src="images/parts2.png" alt="" class="ph-img">
+                <h2 class="ph-name">魅族 Type-C 金属数据线</h2>
+                <p class="news">支持2A快速充电 耐用又放心</p>
+                <p class="price"><span class="mark">￥</span>39</p>
+            </a>
+        </li>
+        <li class="com_hover cor">
+            <a href="javascript:" class="link-phone">
+                <img src="images/parts3.png" alt="" class="ph-img">
+                <h2 class="ph-name">魅族 X8 高透保护膜</h2>
+                <p class="news">高透光率 助双眼捕捉每一颗像素的色彩</p>
+                <p class="price"><span class="mark">￥</span>19</p>
+            </a>
+        </li>
+        <li class="com_hover cor">
+            <a href="javascript:" class="link-phone">
+                <img src="images/parts4.png" alt="" class="ph-img">
+                <h2 class="ph-name">魅族 16X 亲肤保护壳</h2>
+                <p class="news">轻盈亲近 薄若无形</p>
+                <p class="price"><span class="mark">￥</span>29</p>
+            </a>
+        </li>
+        <li class="com_hover cor">
+            <a href="javascript:" class="link-parts2 link-phone">
+                <h2 class="parts-name ph-name">魅族无线充电器</h2>
+                <p class="parts-news news">10W快速充电 无线即放即充</p>
+                <p class="parts-pr price"><span class="parts-mark">￥</span>99</p>
+            </a>
+        </li>
+        <li class="com_hover cor">
+            <a href="javascript:" class="link-phone">
+                <img src="images/parts6.png" alt="" class="ph-img">
+                <h2 class="ph-name">魅族 X8 亲肤保护壳</h2>
+                <p class="news">轻盈亲近 薄若无形</p>
+                <p class="price"><span class="mark">￥</span>29</p>
+            </a>
+        </li>
+        <li class="com_hover cor">
+            <a href="javascript:" class="link-phone">
+                <img src="images/parts7.png" alt="" class="ph-img">
+                <h2 class="ph-name">魅族 Type-C 2.0数据线</h2>
+                <p class="news">5A大电流充电 高速传输</p>
+                <p class="price"><span class="mark">￥</span>59</p>
+            </a>
+        </li>
+        <li class="com_hover cor">
+            <a href="javascript:" class="link-phone">
+                <img src="images/parts8.jpg" alt="" class="ph-img">
+                <h2 class="ph-name">魅族 16s 壳膜套装</h2>
+                <p class="news">透明保护壳 + 高透保护膜</p>
+                <p class="price"><span class="mark">￥</span>39</p>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<!-- 内容区 - 生活周边 -->
+<div class="content-title">
+    <h2 class="title-name">生活周边</h2>
+</div>
+<div class="phone-ad">
+    <a href="javascript:" class="link-ad">
+        <img src="images/life-ad.jpg" alt="" class="ad-img">
+    </a>
+</div>
+<div class="phone">
+    <ul class="phone-ul">
+        <li class="com_hover cor">
+            <a href="javascript:" class="link-life1 link-phone">
+                <h2 class="parts-name ph-name">魅族极简都市双肩包</h2>
+                <p class="parts-news news">650D高耐磨牛津布 大容量多功能收纳</p>
+                <p class="parts-pr price"><span class="parts-mark">￥</span>179</p>
+            </a>
+        </li>
+        <li class="com_hover cor">
+            <a href="javascript:" class="link-phone">
+                <img src="images/life2.png" alt="" class="ph-img">
+                <h2 class="ph-name">魅族星球探索 帆布袋</h2>
+                <p class="news">星球无限 追求不止</p>
+                <p class="price"><span class="mark">￥</span>69</p>
+            </a>
+        </li>
+        <li class="com_hover cor">
+            <a href="javascript:" class="link-phone">
+                <img src="images/life3.png" alt="" class="ph-img">
+                <h2 class="ph-name">魅族星球探索 鼠标垫</h2>
+                <p class="news">星球无限 追求不止</p>
+                <p class="price"><span class="mark">￥</span>69</p>
+            </a>
+        </li>
+        <li class="com_hover cor">
+            <a href="javascript:" class="link-phone">
+                <img src="images/life4.jpg" alt="" class="ph-img">
+                <h2 class="ph-name">魅族路由器 极速版</h2>
+                <p class="news">天生不凡 快狠稳</p>
+                <p class="price"><span class="mark">￥</span>99 <del class="cost-price"><span class="mark">￥</span>199</del></p>
+            </a>
+        </li>
+        <li class="com_hover cor">
+            <a href="javascript:" class="link-life2 link-phone">
+                <h2 class="parts-name ph-name">J-BELT</h2>
+                <p class="parts-news news">J.Wong Design 无级舒适</p>
+                <p class="parts-pr price"><span class="parts-mark">￥</span>999</p>
+            </a>
+        </li>
+        <li class="com_hover cor">
+            <a href="javascript:" class="link-phone">
+                <img src="images/life6.png" alt="" class="ph-img">
+                <h2 class="ph-name">魅族 Mini 线控自拍杆</h2>
+                <p class="news">轻巧迷你 自在随心</p>
+                <p class="price"><span class="mark">￥</span>59</p>
+            </a>
+        </li>
+        <li class="com_hover cor">
+            <a href="javascript:" class="link-phone">
+                <img src="images/life7.png" alt="" class="ph-img">
+                <h2 class="ph-name">Everyday 乐游系列 酷 MA 萌定制版</h2>
+                <p class="news">萌友为伴, 为出行添点乐趣</p>
+                <p class="price"><span class="mark">￥</span>599</p>
+            </a>
+        </li>
+        <li class="com_hover cor">
+            <a href="javascript:" class="link-phone">
+                <img src="images/life8.png" alt="" class="ph-img">
+                <h2 class="ph-name">魅族蓝牙自拍杆</h2>
+                <p class="news">还给你自由的双手</p>
+                <p class="price"><span class="mark">￥</span>99</p>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<!-- 内容区 - 社区热帖 -->
+<div class="content-title">
+    <h2 class="title-name">社区热帖</h2>
+</div>
+<div class="hot-notes">
+    <ul class="notes-ul">
+        <li>
+            <a href="javascript:" class="link-notes link-phone">
+                <img src="images/shequ1.jpg" alt="" class="notes-img">
+                <img src="images/shequ1.1.jpg" alt="" class="head-por">
+                <span class="author">hooyean</span>
+                <p class="comment">魅族 Note9 邀请函 JK 服妹子出镜, 谁才是最美游戏姬?</p>
+                <p class="part-name">魅族 Note9</p>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-notes link-phone">
+                <img src="images/shequ2.jpg" alt="" class="notes-img">
+                <img src="images/shequ2.2.jpg" alt="" class="head-por">
+                <span class="author">xrx3p</span>
+                <p class="comment">摄影离不开适当的后期, 好在如今你可以在魅族手机上轻松完成操作</p>
+                <p class="part-name">摄影技巧</p>
+            </a>
+        </li>
+
+        <li>
+            <a href="javascript:" class="link-notes link-phone">
+                <img src="images/shequ3.jpg" alt="" class="notes-img">
+                <img src="images/shequ3.3.jpg" alt="" class="head-por">
+                <span class="author">小墨灰</span>
+                <p class="comment">工作和学习中的沟通总离不开邮件</p>
+                <p class="part-name">摄影技巧</p>
+            </a>
+        </li>
+
+        <li>
+            <a href="javascript:" class="link-notes link-phone">
+                <img src="images/shequ4.jpg" alt="" class="notes-img">
+                <img src="images/shequ4.4.jpg" alt="" class="head-por">
+                <span class="author">Keicy520</span>
+                <p class="comment">妙用 Flyme 分身, 做生活和工作的<br>「两面派」</p>
+                <p class="part-name">功能解析</p>
+            </a>
+        </li>
+
+        <li>
+            <a href="javascript:" class="link-notes link-phone">
+                <img src="images/shequ5.jpg" alt="" class="notes-img">
+                <img src="images/shequ5.5.jpg" alt="" class="head-por">
+                <span class="author">步惊云</span>
+                <p class="comment">这款匠心精神打造的十五周年旗舰机, 再不下手就要后悔啦~</p>
+                <p class="part-name">魅族 15</p>
+            </a>
+        </li>
+
+        <li>
+            <a href="javascript:" class="link-notes link-phone">
+                <img src="images/shequ6.jpg" alt="" class="notes-img">
+                <img src="images/shequ6.6.jpg" alt="" class="head-por">
+                <span class="author">郑金龙</span>
+                <p class="comment">千元最强性能手机登场, 高通骁龙710次旗舰级处理器加持, 玩王者永耀</p>
+                <p class="part-name">魅族 X8</p>
+            </a>
+        </li>
+
+        <li>
+            <a href="javascript:" class="link-notes link-phone">
+                <img src="images/shequ7.jpg" alt="" class="notes-img">
+                <img src="images/shequ7.7.jpg" alt="" class="head-por">
+                <span class="author">屌丝扮海绵</span>
+                <p class="comment">"窗含西岭千秋雪"魅族 16th 用旗舰双摄带你领略诗句中的美景</p>
+                <p class="part-name">魅族 16th</p>
+            </a>
+        </li>
+
+        <li>
+            <a href="javascript:" class="link-notes link-phone">
+                <img src="images/shequ8.jpg" alt="" class="notes-img">
+                <img src="images/shequ8.8.jpg" alt="" class="head-por">
+                <span class="author">醉刘的摄影狮</span>
+                <p class="comment">准旗舰游戏拍照手机魅族 X8, 不止有实力, 还有最美刘海屏!</p>
+                <p class="part-name">魅族 X8</p>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<!-- 内容区 - 精彩视频 -->
+<div class="content-title">
+    <h2 class="title-name">精彩视频</h2>
+</div>
+<div class="Video">
+    <ul class="Video-ul">
+        <li>
+            <a href="javascript:" class="link-video link-phone">
+                <img src="images/video1.jpg" alt="" class="video-img">
+                <i class="far">&#xf144;</i>
+                <p class="describe">极边全面屏 三摄长续航: 魅族16Xs 手机</p>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-video link-phone">
+                <img src="images/video2.jpg" alt="" class="video-img">
+                <i class="far">&#xf144;</i>
+                <p class="describe">追求不止 只因热爱: 魅族 16s 旗舰手机</p>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-video link-phone">
+                <img src="images/video3.jpg" alt="" class="video-img">
+                <i class="far">&#xf144;</i>
+                <p class="describe">时刻伴你左右: POP2 真无线蓝牙耳机</p>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-video link-phone">
+                <img src="images/video4.jpg" alt="" class="video-img">
+                <i class="far">&#xf144;</i>
+                <p class="describe">静下来, 更动听: EP63NC 无线降噪耳机</p>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-video link-phone">
+                <img src="images/video5.jpg" alt="" class="video-img">
+                <i class="far">&#xf144;</i>
+                <p class="describe">Flyme 7</p>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-video link-phone">
+                <img src="images/video6.jpg" alt="" class="video-img">
+                <i class="far">&#xf144;</i>
+                <p class="describe">安全家庭</p>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-video link-phone">
+                <img src="images/video7.jpg" alt="" class="video-img">
+                <i class="far">&#xf144;</i>
+                <p class="describe">魅族互娱 MGC 探险嘉年华</p>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-video link-phone">
+                <img src="images/video8.jpg" alt="" class="video-img">
+                <i class="far">&#xf144;</i>
+                <p class="describe">魅族 X8 游戏性能测试</p>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<!-- 底部区 - 服务 -->
+<div class="serve">
+    <ul class="serve-ul">
+        <li>
+            <a href="javascript:" class="link-serve">
+            <img src="images/serve1.png" alt="" class="serve-img">
+            <p class="serve-p">满80免运费</p>
+        </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-serve">
+                <img src="images/serve2.png" alt="" class="serve-img">
+                <p class="serve-p">100+ 城市次日送达</p>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-serve">
+                <img src="images/serve3.png" alt="" class="serve-img">
+                <p class="serve-p">7天无理由退货</p>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-serve">
+                <img src="images/serve4.png" alt="" class="serve-img">
+                <p class="serve-p">15天换货保障</p>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-serve">
+                <img src="images/serve5.png" alt="" class="serve-img">
+                <p class="serve-p">1年免费保修</p>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-serve">
+                <img src="images/serve6.png" alt="" class="serve-img">
+                <p class="serve-p">上门快修</p>
+            </a>
+        </li>
+    </ul>
+    <div class="hot-line">
+        <p class="hot-line-p">
+            周一至周日 8:00-20:00
+        </p>
+        <h2 class="number">
+            400-788-3333
+        </h2>
+        <a href="javascript:" class="link-csa">
+            在线客服
+        </a>
+    </div>
+</div>
+
+<!-- 底部区 - 网站信息 -->
+<div class="info">
+    <ul class="info-ul1">
+        <li>
+            <a href="javascript:" class="link-info1">
+                了解魅族
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-info1">
+                加入我们
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-info1">
+                联系我们
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-info1">
+                Flyme
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-info1">
+                魅族社区
+           </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-info1">
+                天猫旗舰店
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-info1">
+                问题反馈
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-info1">
+                线上销售授权名单公示
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-info1">
+                出版物经营许可证
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-info1">
+                <img src="images/red%20flog.png" alt="" class="red-flg">
+                简体中文
+            </a>
+        </li>
+    </ul>
+    <ul class="info-ul2">
+        <li>
+            ©2019 Meizu Telecom Equipment Co., Ltd. All rights reserved.
+        </li>
+        <li>
+            <a href="javascript:" class="link-info2">
+                粤ICP备13003602号
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-info2">
+                合字B2-20170010
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-info2">
+                营业执照
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-info2">
+                法律声明
+            </a>
+        </li>
+        <li>
+            <img src="images/gongan.png" alt="" class="Gn-log">
+            <span class="Gn-sp">粤公网安备 44049102496009 号</span>
+        </li>
+        <li>
+            <a href="javascript:" class="link-footerIcon">
+                <img src="images/footer-icon1.png" alt="">
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-footerIcon">
+                <img src="images/footer-icon2.png" alt="">
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-footerIcon">
+                <img src="images/footer-icon3.png" alt="">
+            </a>
+        </li>
+    </ul>
+    <ul class="info-ul3">
+        <li>
+            <a href="javascript:" class="link-footerIcon">
+                <img src="images/footer-icon4.png" alt="" class="footer-icon">
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-footerIcon">
+                <img src="images/footer-icon5.png" alt="" class="footer-icon">
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-footerIcon">
+                <img src="images/footer-icon6.png" alt="" class="footer-icon">
+            </a>
+        </li>
+        <li>
+            <a href="javascript:" class="link-footerIcon">
+                <img src="images/footer-icon7.png" alt="" class="footer-icon">
+            </a>
+        </li>
+    </ul>
+</div>
+</body>
+<script src="js/03-JS-util.js"></script>
+<script src="js/data.js"></script>
+<script src="js/MeiZhu.js"></script>
+</html>

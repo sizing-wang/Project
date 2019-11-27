@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="/lib/bootstrap.css">
+    <link rel="stylesheet" href="/css/common.css">
+    {% block head %}{% endblock %}
+</head>
+<body>
+<!-- 顶部导航条 -->
+<nav class="navbar navbar-default">
+    <div class="container-fluid container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">个人博客</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                {% if currentCategoryId %}
+                <li>
+                    <a href="/">首页 <span class="sr-only">(current)</span></a>
+                </li>
+                {% else %}
+                <li class="active">
+                    <a href="/">首页 <span class="sr-only">(current)</span></a>
+                </li>
+                {% endif %}
+                {% for category in categories %}
+                {% if currentCategoryId == category._id.toString() %}
+                <li class="active">
+                    <a href="/list/{{ category._id.toString() }}">{{ category.name }}</a>
+                </li>
+                {% else %}
+                <li>
+                    <a href="/list/{{ category._id.toString() }}">{{ category.name }}</a>
+                </li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+
+<div class="container">
+    {% block content %}{% endblock %}
+<div class="container container_aside col-md-4">
+    <!-- 用户信息 -->
+    {% if userInfo._id %}
+    <div class="user-info">
+        <div class="panel-body">
+            <h5>欢迎回来 <span>{{ userInfo.username }}</span></h5>
+            {% if userInfo.isAdmin %}
+            <a class="link admin_per" href="/admin">进入管理员中心</a>
+            {% else %}
+            <a class="link admin_per" href="/home">进入个人中心</a>
+            {% endif %}
+            <a id="logOut" class="link" href="javascript:">退出</a>
+            <div class="panel panel-default panel_err">
+                <div class="panel-body err">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <!-- 用户注册 -->
+    <div class="user-panel" id='register' style="display: none;">
+        <div class="form-group">
+            <label for="logonInputEmail1">用户名</label>
+            <input class="form-control username" id="logonInputEmail1" placeholder="请输入用户名">
+        </div>
+        <div class="form-group">
+            <label for="logonInputPassword1">密码</label>
+            <input type="password" class="form-control password" id="logonInputPassword1" placeholder="请输入密码">
+        </div>
+        <div class="form-group">
+            <label for="logonInputPassword2">重复密码</label>
+            <input type="password" class="form-control rePassword" id="logonInputPassword2" placeholder="请再次输入密码">
+        </div>
+        <div class="btnBox">
+        <button type="submit" class="btn btn-default logon_btn">提交</button>
+        <a href="javascript:" id="linkSign" class="linkSign">已有账号, 去登陆</a>
+        </div>
+        <div class="panel panel-default panel_err">
+            <div class="panel-body err">
+
+            </div>
+        </div>
+    </div>
+
+    <!-- 用户登录 -->
+    <div class="user-panel" id='login'>
+        <div class="form-group">
+            <label for="exampleInputEmail2">用户名</label>
+            <input class="form-control username" id="exampleInputEmail2" placeholder="请输入用户名">
+        </div>
+        <div class="form-group">
+            <label for="siginInputPassword1">密码</label>
+            <input type="password" class="form-control password" id="siginInputPassword1" placeholder="请输入密码">
+        </div>
+        <div class="btnBox">
+            <button type="submit" class="btn btn-default login_btn">登录</button>
+            <a href="javascript:" id="linkLogon" class="linkSign">免费注册</a>
+        </div>
+        <div class="panel panel-default panel_err">
+            <div class="panel-body err">
+
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    <!-- 轮播图右边图片 -->
+    <div class="aside_top">
+        <img src="/images/aside1.png" alt="">
+
+    </div>
+    <div class="aside_bottom">
+        <img src="/images/aside2.jpg" alt="">
+    </div>
+
+
+    <!-- 博主介绍 -->
+        <div class="author">
+            <h3>博主介绍</h3>
+            <div class="media">
+                <div class="media-left">
+                    <a href="#">
+                        <img class="media-object" src="/images/touxiang.jpg" alt="...">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading">WKQ</h4>
+                    一直努力的90后！一心只想专研web技术，一边工作一边积累经验，努力进步, 突破自我!
+                </div>
+            </div>
+        </div>
+        <!--  点击排行 -->
+        <div class="ranking hot-list">
+            <div class="title">点击排行</div>
+            <ul class="list-group">
+                {% for topArticle in topArticles %}
+                <li class="list-group-item">
+                    <a href="/detail/{{ topArticle._id.toString() }}" class="link text-ellipsis" target="_blank">({{ topArticle.click }}) {{ topArticle.title }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+    <!-- 关注我 -->
+    <div class="panel panel-default followMe">
+        <div class="panel-body">
+            关注我
+        </div>
+        <img src="/images/ewm.jpg" alt="">
+    </div>
+</div>
+</div>
+
+</body>
+<script src="/lib/jquery-1.12.4.js"></script>
+<script src="/lib/bootstrap.js"></script>
+<script src="/js/pagination.js"></script>
+<script src="/lib/moment.js"></script>
+<script src="/js/common.js"></script>
+<script src="/js/logout.js"></script>
+{% block footer %}{% endblock %}
+</html>

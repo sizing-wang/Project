@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>{% block title %}{% endblock %}</title>
+    <!-- Bootstrap core CSS -->
+    <link href="/lib/bootstrap.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="/lib/dashboard.css" rel="stylesheet">
+    <link href="/css/admin.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">欢迎来到个人用户中心</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <!-- Single button -->
+            <div class="btn-group" id="btn-admin">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{ userInfo.username }} <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="/user/logout" id="logOut">退出</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li>
+                    <a href="/home/comment">评论管理</a>
+                </li>
+                <li>
+                    <a href="/home/password">修改密码</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h1 class="page-header">
+                {% block header %}{% endblock %}
+            </h1>
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+</div>
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="/lib/jquery-1.12.4.js"></script>
+<script src="/lib/bootstrap.js"></script>
+<script src="/js/logout.js"></script>
+{% block footer %}{% endblock %}
+</body>
+</html>

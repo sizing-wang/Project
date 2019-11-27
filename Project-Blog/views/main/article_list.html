@@ -1,0 +1,36 @@
+
+<!-- 文章信息 -->
+<div id="article-wrap">
+    {% for article in articles %}
+    <div class="info">
+        <div class="info_top">
+            <a href="/detail/{{ article._id.toString() }}"><h3>{{ article.title }}</h3></a>
+        </div>
+        <div class="info_content">
+            <p>{{ article.intro }}</p>
+        </div>
+        <div class="info_bottom">
+            <a href="javascript:">
+                <span class="glyphicon glyphicon-user"></span>
+                <span class="userName">{{ article.user.username }}</span>
+            </a>
+            <a href="javascript:">
+                <span class="glyphicon glyphicon-th-list"></span>
+                <span class="userName">{{ article.category.name }}</span>
+            </a>
+            <a href="javascript:">
+                <span class="glyphicon glyphicon-time"></span>
+                <span class="userName">{{ article.createTime }}</span>
+            </a>
+            <a href="javascript:">
+                <span class="glyphicon glyphicon-eye-open"></span>
+                <span class="userName">{{ article.click }}已阅读</span>
+            </a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<!-- 分页器 -->
+<nav aria-label="Page navigation" class="main_pagination" id="article_page" data-id="{{ currentCategoryId }}">
+    {% include "./pagination.html" %}
+</nav>

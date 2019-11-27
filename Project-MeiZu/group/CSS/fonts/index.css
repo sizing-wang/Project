@@ -1,0 +1,22 @@
+/*顶部*/
+.top-logo{
+	margin-top: 28px;
+}
+.top-table .box1{
+	width: 636px;
+	float: left;
+	margin-top: 28px;
+	margin-left: 210px;
+}
+.icon{
+	width: 200px;
+	height: 30px;
+	background-color: red;
+}
+.top-li {
+	display: inline;
+	margin-left: 35px;
+}
+/*顶部结束*/
+/*advertising*/
+/*advertising结束*/
