@@ -1,4 +1,3 @@
-// applyMiddleware 派发action时可以处理异步任务(ajax请求) 配合redux-thunk使用
 import { createStore, applyMiddleware } from "redux"
 import reducers from "./reducers";
 import thunk from 'redux-thunk';

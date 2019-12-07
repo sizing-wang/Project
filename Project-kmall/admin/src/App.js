@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom"
 
-import TodoList from "pages/todoList"
+import TodoList from "./pages/todoList/index"
 import "./index.css"
 
 
@@ -13,14 +13,17 @@ class Home extends Component {
         )
     }
 }
-// class TodoList extends Component {
-//
-//     render() {
-//         return (
-//             <h2>this is TodoList page ... </h2>
-//         )
-//     }
-// }
+/*
+class TodoList extends Component {
+
+    render() {
+        return (
+            <h2>this is TodoList page ... </h2>
+        )
+    }
+}
+ */
+
 class About extends Component {
 
     render() {
@@ -40,7 +43,9 @@ class User extends Component {
 
 class Admin extends Component {
 
+
     render() {
+
         return (
             <Switch>
                 <Route exact path="/admin" render={(props)=>(<h2>this is admin page </h2>)} />
@@ -53,6 +58,8 @@ class Admin extends Component {
 }
 
 
+
+
 class App extends Component{
 
     constructor(props) {
@@ -63,15 +70,17 @@ class App extends Component{
     }
 
     render() {
-        const ProtectedRoute = ({component:Component, ...rest}) => {
+        const ProtectRoute = ({component:Component, ...rest}) => {
+            // console.log(rest);
             return <Route
                 {...rest}
                 render={(props) => {
                     return this.state.isAdmin ? <Component {...props} /> : <h2>登录后, 再访问</h2>
                 }}
-                   />
-
+            />
         };
+
+
         return (
             <Router>
                 <div className='App'>
@@ -105,7 +114,7 @@ class App extends Component{
                             <Route path='/todoList' component={TodoList} />
                             <Route path='/about' component={About} />
                             <Route path='/user/:id' component={User} />
-                            <ProtectedRoute path='/admin' component={Admin} />
+                            <ProtectRoute path='/admin' component={Admin} />
 
                         </Switch>
                     </nav>

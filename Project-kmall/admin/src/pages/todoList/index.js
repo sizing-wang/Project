@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import {Button, Col, Input, List, Row} from "antd";
 import { connect } from "react-redux"
-import * as actionCreate from "./store/actionCreate"
+import { actionCreate } from "./store/store"
 
 import "./todoList.css"
 

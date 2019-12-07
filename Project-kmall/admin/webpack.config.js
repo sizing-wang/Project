@@ -1,7 +1,7 @@
 const path = require('path');
 const htmlWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
 
 module.exports = {
     // 指定开发环境
@@ -22,25 +22,14 @@ module.exports = {
         filename: "[name]-[hash]-bundle.js", // 多出口
         publicPath: "/" // 配置静态资源路径
     },
-    //配置别名
-    resolve:{
-        alias:{
-            pages:path.resolve(__dirname,'./src/pages'),
-            util:path.resolve(__dirname,'./src/util'),
-        }
-    },
    module: {
         // 处理css
     rules: [
         {
             test: /\.css$/,
             use: [
-                {
-                    loader: MiniCssExtractPlugin.loader,
-                    options: {
-                    }
-                },
-                "css-loader"
+                'style-loader',
+                'css-loader'
             ]
         },
         // 处理图片
@@ -68,31 +57,11 @@ module.exports = {
                         ["import", {
                             "libraryName": "antd",
                             "libraryDirectory": "es",
-                            // "style": "css" // `style: true` 会加载 less 文件
-                            "style": true // `style: true` 会加载 less 文件
+                            "style": "css" // `style: true` 会加载 less 文件
                         }]
                     ]
                 }
             }
-        },
-        // 添加less 自定义主题颜色
-        {
-            test: /\.less$/,
-            use: [{
-                loader: 'style-loader',
-            }, {
-                loader: 'css-loader', // translates CSS into CommonJS
-            }, {
-                loader: 'less-loader', // compiles Less to CSS
-                options: {
-                    modifyVars: {
-                        'primary-color': '#1DA57A',
-                        'link-color': '#1DA57A',
-                        'border-radius-base': '2px',
-                    },
-                    javascriptEnabled: true,
-                },
-            }],
         }
     ]
    },
@@ -106,9 +75,7 @@ module.exports = {
             chunks: ["index", "common"] // 只打包指定的文件
         }),
         // 自动清理多余文件
-        new CleanWebpackPlugin(),
-        // 单独打包css样式文件
-        new MiniCssExtractPlugin({})
+        new CleanWebpackPlugin()
     ],
     devServer:{
         contentBase: './dist', //内容的目录(自动刷新dist文件夹下的文件)
