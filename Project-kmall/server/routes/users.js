@@ -10,10 +10,11 @@ const UserModel = require('../models/user.js');
 const OrderModel = require('../models/order.js');
 const ProductModel = require('../models/product.js');
 const pagination = require('../util/pagination.js');
-const hmac = require('../util/hmac.js')
+const hmac = require('../util/hmac.js');
 
 const router = Router();
 
+// 注册管理员账号
 /*
 router.get('/init',(req,res)=>{
 	UserModel.insertMany({
@@ -25,11 +26,13 @@ router.get('/init',(req,res)=>{
 		res.send('ok')
 	})
 	.catch(err=>{
-		console.log(err)
+		console.log(err);
 		res.send('err')
 	})
 })
 */
+
+// 注册用户账号
 /*
 router.get('/init',(req,res)=>{
 	const users = []
@@ -50,7 +53,7 @@ router.get('/init',(req,res)=>{
 		res.send('err')
 	})
 })
-*/
+ */
 
 //检查用户名是否存在
 router.get("/checkUsername",(req,res)=>{

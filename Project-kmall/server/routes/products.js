@@ -62,7 +62,7 @@ async function getPaginationProducts(req){
 //获取商品列表
 router.get('/list',(req,res)=>{
 	/*
-	const {page,status,category,keyword,orderBy} = req.query
+	const {page,status,product,keyword,orderBy} = req.query
 	
 	let query = {};
 	
@@ -70,8 +70,8 @@ router.get('/list',(req,res)=>{
 	if(!req.userInfo.isAdmin){
 		query.status = 1
 	}	
-	if(category){
-		query.category = category;
+	if(product){
+		query.product = product;
 	}
 	else if(keyword){
 		query.name = {$regex:new RegExp(keyword,'i')}
@@ -154,7 +154,7 @@ router.post("/images",upload.single('file'),(req,res)=>{
     	"name": req.file.originalname,
     	"status": "done",
     	"url": filePath,
-    	"thumbUrl": filePath
+    	"thumbUrl": filePath // 图片地址为字符串
 	});
 	
 })
@@ -256,7 +256,7 @@ router.put("/order",(req,res)=>{
 	})
 })
 
-//更新排序
+//更新上架
 router.put("/status",(req,res)=>{
 	const {page,id,status}  = req.body;
 	ProductModel
@@ -285,6 +285,7 @@ router.put("/status",(req,res)=>{
 		}
 	})
 })
+// 更新首页是否显示
 router.put("/isShow",(req,res)=>{
 	const {id,isShow,page}  = req.body;
 	ProductModel
@@ -313,6 +314,7 @@ router.put("/isShow",(req,res)=>{
 		}
 	})
 })
+// 更新热卖
 router.put("/isHot",(req,res)=>{
 	const{id,isHot,page}  = req.body;
 	ProductModel

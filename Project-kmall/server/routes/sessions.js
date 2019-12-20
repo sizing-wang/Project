@@ -11,8 +11,9 @@ const hmac = require('../util/hmac.js')
 
 const router = Router();
 
-/*
+
 //用户退出
+/*
 router.get('/user',(req,res)=>{
 	req.session.destroy();
 	res.json({
@@ -23,10 +24,10 @@ router.get('/user',(req,res)=>{
 
 //用户登录
 router.post("/users",(req,res)=>{
-	const { username,password,role} = req.body
+	const { username,password,role } = req.body;
 	
-	let isAdmin = false
-	if(role == 'admin'){
+	let isAdmin = false;
+	if(role === 'admin'){
 		isAdmin = true
 	}
 
@@ -38,7 +39,7 @@ router.post("/users",(req,res)=>{
 			 	_id:user._id,
 			 	username:username,
 			 	isAdmin:isAdmin
-			 }
+			 };
 			 res.json({
 			 	code:0,
 			 	data:{
@@ -48,7 +49,7 @@ router.post("/users",(req,res)=>{
 		}else{
 			res.json({
 			 	code:1,
-			 	message:"用户名和密码错误",
+			 	message:"用户名或密码错误",
 			 	data:{
 			 		username:username
 			 	}

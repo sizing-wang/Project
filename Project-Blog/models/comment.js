@@ -9,7 +9,7 @@ const CommentSchema = new mongoose.Schema({
     // 内置验证
     content: {
         type: String,
-        required: [true, "请必须输入评论内容"],
+        required: [true, "请必须输入评论内容"]
     },
     user: {
         type: mongoose.Schema.Types.ObjectId,

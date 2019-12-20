@@ -1,0 +1,17 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.footer{
+    margin-top: 10px;
+    text-align: center;
+}
+.links{
+    margin-bottom: 10px;
+}
+.links .link{
+    padding:0 10px;
+}
+.copyright{
+    color: #999;
+}

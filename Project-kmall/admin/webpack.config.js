@@ -1,6 +1,7 @@
 const path = require('path');
 const htmlWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 
 module.exports = {
@@ -22,14 +23,36 @@ module.exports = {
         filename: "[name]-[hash]-bundle.js", // 多出口
         publicPath: "/" // 配置静态资源路径
     },
+    //配置文件别名
+    resolve:{
+        alias:{
+            pages:path.resolve(__dirname,'./src/pages'),
+            util:path.resolve(__dirname,'./src/util'),
+            common:path.resolve(__dirname,'./src/common'),
+            api:path.resolve(__dirname,'./src/api'),
+        }
+    },
    module: {
         // 处理css
     rules: [
+        /*
         {
             test: /\.css$/,
             use: [
                 'style-loader',
                 'css-loader'
+            ]
+        },
+         */
+        {
+            test: /\.css$/,
+            use: [
+                {
+                    loader: MiniCssExtractPlugin.loader,
+                    options: {
+                    }
+                },
+                "css-loader"
             ]
         },
         // 处理图片
@@ -57,11 +80,31 @@ module.exports = {
                         ["import", {
                             "libraryName": "antd",
                             "libraryDirectory": "es",
-                            "style": "css" // `style: true` 会加载 less 文件
+                            // "style": "css" // `style: true` 会加载 less 文件
+                            "style": true // `style: true` 会加载 less 文件(自定义主题颜色)
                         }]
                     ]
                 }
             }
+        },
+        // 配置自定义主题颜色
+        {
+            test: /\.less$/,
+            use: [{
+                loader: 'style-loader',
+            }, {
+                loader: 'css-loader', // translates CSS into CommonJS
+            }, {
+                loader: 'less-loader', // compiles Less to CSS
+                options: {
+                    modifyVars: {
+                        'primary-color': '#2295ff',
+                        'link-color': '#2295ff',
+                        'border-radius-base': '2px',
+                    },
+                    javascriptEnabled: true,
+                },
+            }],
         }
     ]
    },
@@ -75,11 +118,13 @@ module.exports = {
             chunks: ["index", "common"] // 只打包指定的文件
         }),
         // 自动清理多余文件
-        new CleanWebpackPlugin()
+        new CleanWebpackPlugin(),
+        // 单独打包css文件
+        new MiniCssExtractPlugin({})
     ],
     devServer:{
         contentBase: './dist', //内容的目录(自动刷新dist文件夹下的文件)
-        port:8080, //服务运行的端口
+        port:3001, //服务运行的端口
         historyApiFallback:true // h5路由刷新页面,不会向后台请求数据
     }
 };
