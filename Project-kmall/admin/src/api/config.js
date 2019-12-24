@@ -21,4 +21,5 @@ export const API_CONFIG = {
     getProductsIsHot: ["/products/isHot", "put"],
     getProductsIsOrder: ["/products/order", "put"],
     getProductsDetail: ["/products/detail", "get"],
+    getUpdataProducts: ["/products", "put"]
 };

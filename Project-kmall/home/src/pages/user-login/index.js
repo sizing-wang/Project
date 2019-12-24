@@ -22,6 +22,7 @@ let fromErr = {
 const page = {
     init: function () {
         this.bindEvent()
+        // console.log("::::::::::", window.location.href);
     },
     bindEvent: function (ev) {
         let $this = this;
@@ -29,8 +30,8 @@ const page = {
             $this.submit()
         });
 
-        $("input").on("keyup", function (ev) {
-            if (ev.keyCode === 13) {
+        $("[name='password']").on("keyup", function (ev) {
+            if (ev.keyCode == 13) {
                 $this.submit()
             }
         })
@@ -51,30 +52,12 @@ const page = {
             api.login({
                 data: fromDate,
                 success: function () {
-                    window.location.href = "/"
+                    window.location.href = _util.getParamsFromUrl("redirect") || "/"
                 },
                 error: function (errMsg) {
                     fromErr.show(errMsg)
                 }
             })
-            /*
-            $.ajax({
-                url: "/sessions/users",
-                method: "post",
-                dataType: "json",
-                data: fromDate,
-                success: function (result) {
-                    if (result.code === 0) {
-                        window.location.href = "/"
-                    } else {
-                        fromErr.show(result.message)
-                    }
-                },
-                error: function (err) {
-                    fromErr.show("请求失败, 请稍后再试!!!")
-                }
-            })
-            */
         } else {
             // 数据验证不通过, 错误信息提示
             fromErr.show(fromDataValiDate.msg)

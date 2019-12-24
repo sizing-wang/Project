@@ -203,6 +203,7 @@ const setImagesErr = () => ({
     type: type.SET_IMAGES_ERR
 })
 export const getProductsAction = (values) => {
+    
     return function (dispatch, getState) {
         const state = getState().get("product")
         const mainImage = state.get("mainImage")
@@ -215,7 +216,12 @@ export const getProductsAction = (values) => {
         if (!images) {
             dispatch(setImagesErr())
         }
-        api.getUpLoadProducts({
+
+        let request = api.getUpLoadProducts
+        if (values.id) {
+            request = api.getUpdataProducts
+        }
+        request({
             ...values,
             mainImage,
             images,
@@ -224,13 +230,13 @@ export const getProductsAction = (values) => {
             .then(result => {
                 const data = result.data
                 if (data.code === 0) {
-                    message.success("新增商品成功", () => {
+                    message.success("操作商品成功", () => {
                         window.location.href = "/product"
                     })
                 }
             })
             .catch(err => {
-                message.error("操作失败, 请稍后再试!!! ")
+                message.error(err.message)
             })
 
     }
@@ -244,18 +250,20 @@ const setProductDetailAction = (payload) => ({
 })
 export const getProductDetailAction = (productId) => {
     return function (dispatch, getState) {
-        api.getProductsDetail({
-            id: productId
-        })
-            .then(result => {
-                // console.log(":::::::::", result);
-                const data = result.data;
-                if (data.code === 0) {
-                    dispatch(setProductDetailAction(data.data))
-                }
+        // console.log(productId);
+            api.getProductsDetail({
+                id: productId
             })
-            .catch(err => {
-                message.error(err.message)
-            })
+                .then(result => {
+                    // console.log(":::::::::", result);
+                   const data = result.data;
+
+                   if (data.code == 0) {
+                        dispatch(setProductDetailAction(data.data))
+                   }
+                })
+                .catch(err => {
+                    message.error(err.message)
+                })
     }
 }

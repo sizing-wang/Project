@@ -32,6 +32,28 @@ const page = {
             if (ev.keyCode === 13) {
                 $this.submit()
             }
+        });
+        // 监听用户名输入框失去焦点事件, 判断是否已有用户名存在
+        $("[name='username']").on("blur", function () {
+            let username = $(this).val().trim();
+            if (!_util.valiDate(username, "require")) {
+                return
+            }
+            if (!_util.valiDate(username, "username")) {
+                return
+            }
+            api.checkUsername({
+                data: {
+                    username
+                },
+                success: function (result) {
+                    // console.log(result);
+                    fromErr.hide()
+                },
+                error: function (err) {
+                    fromErr.show(err)
+                }
+            })
         })
     },
     submit: function () {
@@ -53,23 +75,13 @@ const page = {
             api.register({
                 data: fromDate,
                 success: function (result) {
-                    console.log(result);
+                    // console.log(result);
+                    window.location.href = "/result.html?type=register"
                 },
                 error: function (msg) {
                     fromErr.show(msg)
                 }
             })
-            /*
-            api.login({
-                data: fromDate,
-                success: function () {
-                    window.location.href = "/"
-                },
-                error: function (errMsg) {
-                    fromErr.show(errMsg)
-                }
-            })
-             */
         } else {
             // 数据验证不通过, 错误信息提示
             fromErr.show(fromDataValiDate.msg)

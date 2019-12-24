@@ -26,9 +26,11 @@ class ProductSave extends Component{
     componentDidMount() {
         // 分类数据的回填
         this.props.handleLevelCategories()
-        // 商品信息的回填
+        // 如果有商品id, 就获取商品信息, 并回填
         const productId = this.state.productId
-        this.props.handleProductDetail(productId)
+        if (productId) {
+            this.props.handleProductDetail(productId)    
+        }
     }
 
     handleSubmit(e){
@@ -40,6 +42,8 @@ class ProductSave extends Component{
                 this.props.handleSaveProduct(values)
             }
              */
+            // 新增/编辑商品
+            values.id = this.state.productId;
             this.props.handleSaveProduct(values)
         });
     }
@@ -61,20 +65,62 @@ class ProductSave extends Component{
             images,
             detail
         } = this.props;
+        // console.log(":::::::", mainImage);
+        // 封面图片的回填
+        let mainImageList = [];
+        if (mainImage) {
+            mainImageList.push({
+                uid: "0",
+                name: "image.png",
+                status: "done",
+                url: mainImage,
+                response: {
+                    url: mainImage
+                }
+            })
+        }
+        // 商品图片的回填
+        // console.log(":::::::::", images);
+        let imagesList = []
+        if (images) {
+            imagesList = images.split(",").map((url, index) => {
+                return {
+                    uid: index,
+                    name: "image.png",
+                    status: "done",
+                    url: url,
+                    response: {
+                        url: url
+                    }
+                }
+            });
+        }
+        
         return (
             <div className="productAdd">
                 <Layout>
                     <Breadcrumb style={{ margin: "16px 0"}}>
                         <Breadcrumb.Item>首页</Breadcrumb.Item>
                         <Breadcrumb.Item>商品管理</Breadcrumb.Item>
-                        <Breadcrumb.Item>编辑商品</Breadcrumb.Item>
+                        {
+                            this.state.productId
+                                ?
+                                <Breadcrumb.Item>
+                                    编辑商品
+                                </Breadcrumb.Item>
+                                :
+                                <Breadcrumb.Item>
+                                    新增商品
+                                </Breadcrumb.Item>
+                        }
+
                     </Breadcrumb>
                     <div className="addContent">
                         <Form labelCol={{ span: 5 }} wrapperCol={{ span: 12 }}>
                             <Form.Item label="商品分类">
                                 {getFieldDecorator('category', {
                                     rules: [{ required: true, message: '请选择商品分类!' }],
-                                    initialValue: category.name
+                                    initialValue: category
                                 })(
                                     <Select
                                         placeholder="请选择商品分类!"
@@ -129,6 +175,7 @@ class ProductSave extends Component{
                                     getFileList={(fileList) => {
                                         this.props.handleMainImage(fileList)
                                     }}
+                                    fileList={mainImageList}
                                 />
                             </Form.Item>
                             <Form.Item
@@ -142,6 +189,7 @@ class ProductSave extends Component{
                                     getFileList={(fileList) => {
                                         this.props.handleImages(fileList)
                                     }}
+                                    fileList={imagesList}
                                 />
                             </Form.Item>
                             <Form.Item label="商品详情">
@@ -149,6 +197,7 @@ class ProductSave extends Component{
                                     getValues={(value) => {
                                         this.props.handleDetailValue(value)
                                     }}
+                                    values={detail}
                                 />
                             </Form.Item>
                             <Form.Item wrapperCol={{ span: 12, offset: 5 }}>

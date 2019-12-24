@@ -4,10 +4,7 @@ import { NavLink } from "react-router-dom"
 
 import "./index.css"
 
-
 const { Sider } = Layout;
-
-
 class AdminSider extends Component {
 
     render() {

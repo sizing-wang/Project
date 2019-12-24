@@ -26,6 +26,9 @@ module.exports = {
         "list": "./src/pages/list",
         "user-login": "./src/pages/user-login",
         "user-register": "./src/pages/user-register",
+        "result": "./src/pages/result",
+        "user-center": "./src/pages/user-center",
+        "user-update-password": "./src/pages/user-update-password"
     },
     // 出口
     output: {
@@ -80,6 +83,13 @@ module.exports = {
                     presets: ['env','es2015','stage-3']
                 }
             }
+        },
+        // 配置tpl
+        {
+            test:/\.tpl$/,
+            use: {
+                loader: 'html-loader'
+            }
         }
     ]
    },
@@ -89,6 +99,9 @@ module.exports = {
         new htmlWebpackPlugin(getHtmlConfig("list", "列表页")),
         new htmlWebpackPlugin(getHtmlConfig("user-login", "用户登录")),
         new htmlWebpackPlugin(getHtmlConfig("user-register", "用户注册")),
+        new htmlWebpackPlugin(getHtmlConfig("result", "结果页")),
+        new htmlWebpackPlugin(getHtmlConfig("user-center", "个人中心")),
+        new htmlWebpackPlugin(getHtmlConfig("user-update-password", "修改密码")),
         // 自动清理多余文件
         new CleanWebpackPlugin(),
         // 单独打包css文件
@@ -101,7 +114,7 @@ module.exports = {
         port:3002, //服务运行的端口
         proxy: [{
             // 以下代码的含义: 只要以sessions开头的地址请求, 都由target指定的地址代理发送请求
-            context: ['/sessions', "/users"],
+            context: ['/sessions', "/users", "/categories"],
             target: 'http://127.0.0.1:3000'
         }]
     }

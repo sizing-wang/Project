@@ -20,6 +20,7 @@ let defaultState = fromJS({
     imagesHelp: "",
 
     category: "",
+    categoryName: "",
     name: "",
     description: "",
     price: "",
@@ -55,7 +56,7 @@ let reducer = (state = defaultState, action) => {
     }
     if (action.type === type.SET_IMAGES) {
         return state.merge({
-            mainImage: action.payload,
+            images: action.payload,
             imagesErr: "",
             imagesHelp: ""
         })
@@ -65,8 +66,10 @@ let reducer = (state = defaultState, action) => {
     }
     // 编辑商品的数据回填
     if (action.type === type.SET_PRODUCTS_DETAIL) {
+        // console.log(":::::::::::::", action.payload);
         return state.merge({
-            category: action.payload.category,
+            category: action.payload.category._id,
+            categoryName: action.payload.category.name,
             name: action.payload.name,
             description: action.payload.description,
             price: action.payload.price,

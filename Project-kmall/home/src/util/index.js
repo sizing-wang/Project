@@ -1,3 +1,4 @@
+let Hogan = require("hogan.js")
 module.exports = {
     valiDate: function (value, type) {
         if (type === "require") {
@@ -24,7 +25,23 @@ module.exports = {
     showErrorMsg: function (msg) {
         alert(msg)
     },
-    goLogIn: function () {
-        window.location.href = "/user-login.html"
+    goLogIn: function () {                                    // 网址编码
+        window.location.href = "/user-login.html?redirect=" + encodeURIComponent(window.location.href)
+    },
+    getParamsFromUrl: function (key) {
+        // type=register
+        // type=register&name=tom
+        // name=tom&type=register
+        // name=tom&type=register&age=18
+        let query = window.location.search.substr(1);
+        let reg = new RegExp(`(^|&)${key}=([^&]*)`);
+        let result = query.match(reg);
+                        // 网址解码 
+        return result ? decodeURIComponent(result[2]) : "default"
+    },                  
+    render: function (tpl, data) {
+        let template = Hogan.compile(tpl);
+        let html = template.render(data);
+        return html
     }
 }

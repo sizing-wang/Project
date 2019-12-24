@@ -29,7 +29,8 @@ class RichEditor extends Component {
                 'indent',
                 'outdent',
                 'alignment'
-            ]
+            ],
+            isLoad: false
         }
         // 利用jquery, 携带cookie信息
         $.ajaxSetup({
@@ -51,10 +52,23 @@ class RichEditor extends Component {
         })
         const { getValues } = this.props;
         this.editor.on("valuechanged", () => {
-            getValues(this.editor.getValue());
+            // 因为只要输入文字时, 就会触发更新函数, 所以会不停的更新输入框中的内容, 会造成输入文字时和光标不一致
+            // 为了防止, 文字输入时和光标一致, 将isLoad改为true, 这样就阻止了, 内容的更新
+            this.setState({isLoad: true}, () => {
+                getValues(this.editor.getValue());
+            })
         })
     }
-
+    // 组件更新阶段, 进行数据的回填
+    componentDidUpdate () {
+        if(this.props.values && !this.state.isLoad) {
+            this.editor.setValue(this.props.values)
+            this.setState({
+                isLoad: true
+            })
+        }
+    //    this.editor.setValue(this.props.values)
+    }
 
     render() {
         return (

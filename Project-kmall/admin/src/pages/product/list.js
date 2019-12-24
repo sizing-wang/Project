@@ -119,7 +119,7 @@ class ProductList extends Component{
                         <span>
                             <Link to={"/product/save/" + record._id}>编辑</Link>
                             <Divider type="vertical" />
-                            <Link to={"/product/detail"}>查看</Link>
+                            <Link to={"/product/detail/" + record._id}>查看</Link>
                         </span>
                     )
                 }

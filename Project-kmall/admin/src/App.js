@@ -5,8 +5,8 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-d
 import LoginForm from "pages/login/index"
 import Home from "pages/home/index"
 import User from "pages/user/index"
-import Category from "pages/category/index";
-import Product from "pages/product/index";
+import Category from "pages/category/index"
+import Product from "pages/product/index"
 
 
 import { getUsername } from "util/index"
@@ -34,7 +34,7 @@ class App extends Component{
             />
         };
         return (
-            <Router>
+            <Router forceRefresh={true}>
                 <div className='App'>
                     <Switch>
                         <HomeRoute exact path="/" component={Home} />

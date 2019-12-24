@@ -15,6 +15,19 @@ class UpLoadImage extends Component {
         this.handleChange = this.handleChange.bind(this)
     }
 
+    // 商品图片的回填
+    static getDerivedStateFromProps(props, state) {
+        // console.log("::::::::::", props.fileList);
+        if (props.fileList) {
+            if (props.fileList.length > 0 && state.fileList.length == 0) {
+                return {
+                    fileList: props.fileList
+                }
+            }
+        }
+        return null
+    }
+
     handleCancel(){
         this.setState({ previewVisible: false })
     }
@@ -27,7 +40,7 @@ class UpLoadImage extends Component {
     }
 
     handleChange({ fileList }){
-        const { getFileList } = this.props
+        const { getFileList } = this.props;
         this.setState({fileList}, () => {
             getFileList(fileList.map((file) => {
                 if (file.response) {
@@ -35,9 +48,9 @@ class UpLoadImage extends Component {
                 }
             }).join(","))
         })
-
+    //    console.log(":::::::", fileList);
     }
-
+    
     render() {
         const { previewVisible, previewImage, fileList } = this.state;
         const uploadButton = (
