@@ -6,10 +6,10 @@
 }
 .search-box{
     background-color: #fff;
-    height: 80px;
-    padding: 18px 0;
+    /* height: 80px; */
+    padding: 18px 0 10px 0;
     box-sizing: border-box;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
     border-bottom: 1px solid #f21;
 }
 .logo{
@@ -29,7 +29,26 @@
     float: left;
 }
 .btn-search{
+    width: 100px;
     height: 42px;
     line-height: 42px;
     float: left;
+}
+
+/* 搜索框下部导航样式 */
+.nav-wrap .clearfix {
+    width: 500px;
+    margin-left: 250px;
+    margin-top: 20px;
+}
+.nav-wrap .clearfix li {
+    float: left;
+    margin-right: 30px;
+}
+.nav-wrap .link {
+    font-size: 16px;
+    font-weight: 200;
+}
+.nav-wrap .nav-item:nth-child(1) .link {
+    color: #f21;
 }

@@ -2,9 +2,9 @@ require("./index.css");
 require("../common/footer/index");
 require("../common/logo/index");
 
-let _util = require("util");
-let api = require("api");
-let fromErr = {
+var _util = require("util");
+var api = require("api");
+var fromErr = {
     show: function (msg) {
         $(".error-item")
             .show()
@@ -25,7 +25,7 @@ const page = {
         // console.log("::::::::::", window.location.href);
     },
     bindEvent: function (ev) {
-        let $this = this;
+        var $this = this;
         $(".btn-submit").on("click", function () {
             $this.submit()
         });
@@ -38,12 +38,12 @@ const page = {
     },
     submit: function () {
         // 获取数据
-        let fromDate = {
+        var fromDate = {
             username : $.trim($("[name='username']").val()),
             password : $.trim($("[name='password']").val())
         };
         // 验证数据合法性
-        let fromDataValiDate = this.valiDate(fromDate);
+        var fromDataValiDate = this.valiDate(fromDate);
         // 数据合法, 提交数据
         if (fromDataValiDate.status) {
             // 数据验证通过, 错误信息提示置空
@@ -52,6 +52,7 @@ const page = {
             api.login({
                 data: fromDate,
                 success: function () {
+                    // console.log(_util.getParamsFromUrl("redirect"))
                     window.location.href = _util.getParamsFromUrl("redirect") || "/"
                 },
                 error: function (errMsg) {
@@ -65,10 +66,10 @@ const page = {
 
     },
     valiDate: function (fromDate) {
-        let result = {
+        var result = {
             status : false,
             msg: ""
-        };
+        }
         // 验证数据
         if (!_util.valiDate(fromDate.username, "require")) {
             result.msg = "用户名不能为空";

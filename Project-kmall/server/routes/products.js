@@ -1,13 +1,14 @@
 /*
 * @Author: Tom
 * @Date:   2018-08-06 09:23:30
-* @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-25 15:27:54
+* @Last Modified by:   Tom
+* @Last Modified time: 2019-11-11 10:44:33
 */
 const Router = require('express').Router;
 const ProductModel = require('../models/product.js');
 const CategoryModel = require('../models/category.js');
 const {unlimitedForLevel,getChildsId} = require('../util/unlimitedCategory.js');
+const {UPLOAD_HOST} = require("../config")
 
 const path = require('path');
 const fs = require('fs');
@@ -26,8 +27,9 @@ const upload = multer({ storage: storage })
 
 const router = Router();
 
+//pc端获取分页商品列表
 async function getPaginationProducts(req){
-	const {page,status,category,keyword,orderBy} = req.query
+	const {page,status,category,keyword,orderBy,isHot} = req.query
 	let query = {};
 	
 	//如果是普通用户,只能获取上架的商品
@@ -45,7 +47,11 @@ async function getPaginationProducts(req){
 		query.name = {$regex:new RegExp(keyword,'i')}
 	}
 
-	let projection = 'name _id price status order isShow isHot mainImage';
+	if (isHot && isHot=='1'){
+		query.isHot = isHot
+	}
+
+	let projection = 'name _id price status order isShow isHot mainImage payNums';
 
 	let sort={order:-1,_id:-1};
 
@@ -59,26 +65,23 @@ async function getPaginationProducts(req){
 	return result
 }
 
-//获取商品列表
-router.get('/list',(req,res)=>{
-	/*
-	const {page,status,product,keyword,orderBy} = req.query
-	
-	let query = {};
-	
-	//如果是普通用户,只能获取上架的商品
-	if(!req.userInfo.isAdmin){
-		query.status = 1
-	}	
-	if(product){
-		query.product = product;
+//移动端
+async function getWapProductsList(req){
+	const start = parseInt(req.query.start || 0)
+	const limit = parseInt(req.query.limit || 20)
+	const { category,keyword,orderBy } = req.query
+	let query = {}
+	if(category){
+		//获取所有显示的子分类id
+		const showCategories = await CategoryModel.find({isShow:1},"-createdAt -updatedAt -__v")
+		const ids = getChildsId(showCategories,category)
+		ids.push(category)
+		query.category = {$in:ids};
 	}
 	else if(keyword){
 		query.name = {$regex:new RegExp(keyword,'i')}
 	}
-
-	let projection = 'name _id price status order isShow isHot mainImage';
-
+	
 	let sort={order:-1,_id:-1};
 
 	if(orderBy == 'price_asc'){
@@ -87,19 +90,70 @@ router.get('/list',(req,res)=>{
 		sort = {price:-1}
 	}
 
-	ProductModel.getPaginationProducts(page,query,projection,sort)
-	*/
-	getPaginationProducts(req)
-	.then(result=>{
+	const result = await ProductModel.find(query)
+	.populate({path: 'attrs',select:'_id key value',populate: { path: 'attrs' }})
+	.sort(sort)
+	.skip(start)
+	.limit(limit)
+
+	return result
+}
+//获取商品列表
+router.get('/list',(req,res)=>{
+	let channel = req.query.channel || 'page'
+	
+	if(channel == 'page'){//pc端获取列表
+		getPaginationProducts(req)
+		.then(result=>{
+			res.json({
+				code:0,
+				data:{
+					current:result.current,
+					total:result.total,
+					pageSize:result.pageSize,
+					list:result.list,
+					keyword:result.keyword					
+				}
+			})		
+		})
+		.catch(e=>{
+			res.json({
+				code:1,
+				message:'获取商品列表失败'
+			})
+		})
+	}
+	else{//移动端获取列表
+		getWapProductsList(req)
+		.then(result=>{
+			res.json({
+				code:0,
+				data:result
+			})				
+		})
+		.catch(e=>{
+			res.json({
+				code:1,
+				message:'获取商品列表失败'
+			})
+		})		
+	}
+})
+
+//搜索商品
+router.get('/search',(req,res)=>{
+	const {keyword} = req.query
+	const limit = parseInt(req.query.limit || 5)
+	let query = {
+		name:{$regex:new RegExp(keyword,'i')}
+	}
+	ProductModel
+	.find(query, 'name')
+	.limit(limit)
+	.then(products=>{
 		res.json({
 			code:0,
-			data:{
-				current:result.current,
-				total:result.total,
-				pageSize:result.pageSize,
-				list:result.list,
-				keyword:result.keyword					
-			}
+			data:products
 		})		
 	})
 	.catch(e=>{
@@ -107,9 +161,29 @@ router.get('/list',(req,res)=>{
 			code:1,
 			message:'获取商品列表失败'
 		})
-	})
+	})	
 })
-
+//首页热门商品
+router.get('/hot',(req,res)=>{
+	const limit = parseInt(req.query.limit || 4)
+	ProductModel
+	.find({
+		isHot:'1'
+	})
+	.limit(limit)
+	.then(products=>{
+		res.json({
+			code:0,
+			data:products
+		})		
+	})
+	.catch(e=>{
+		res.json({
+			code:1,
+			message:'获取热门商品失败'
+		})
+	})	
+})
 //获取商品详细信息
 router.get('/detail',(req,res)=>{
 	let query = {
@@ -122,6 +196,7 @@ router.get('/detail',(req,res)=>{
 	ProductModel
 	.findOne(query,"-__v -createdAt -updatedAt")
 	.populate({path:'category',select:'_id name'})
+	.populate({path: 'attrs',select:'_id key value',populate: { path: 'attrs' }})
 	.then(product=>{
 		res.json({
 			code:0,
@@ -149,18 +224,19 @@ router.use((req,res,next)=>{
 
 //处理商品图片
 router.post("/images",upload.single('file'),(req,res)=>{
-	const filePath = 'http://127.0.0.1:3000/product-images/'+req.file.filename;
+	const filePath = UPLOAD_HOST + '/product-images/'+req.file.filename;
 	res.send({
     	"name": req.file.originalname,
     	"status": "done",
     	"url": filePath,
-    	"thumbUrl": filePath // 图片地址为字符串
+    	"thumbUrl": filePath
 	});
 	
 })
+
 //处理商品详情图片
 router.post("/detailImages",upload.single('upload'),(req,res)=>{
-	const filePath = 'http://127.0.0.1:3000/product-images/'+req.file.filename;
+	const filePath = UPLOAD_HOST + '/product-images/'+req.file.filename;
 	res.json({
 		  "success": true,
 		  "msg": "上传成功",
@@ -171,6 +247,10 @@ router.post("/detailImages",upload.single('upload'),(req,res)=>{
 //添加商品
 router.post("/",(req,res)=>{
 	let body = req.body;
+	let attrs = []
+	if(body.attrs){
+		attrs = body.attrs.split(',')
+	}
 	new ProductModel({
 		name:body.name,
 		category:body.category,
@@ -179,7 +259,9 @@ router.post("/",(req,res)=>{
 		mainImage:body.mainImage,
 		images:body.images,
 		price:body.price,
-		stock:body.stock
+		stock:body.stock,
+		payNums:body.payNums,
+		attrs:attrs
 	})
 	.save()
 	.then((product)=>{
@@ -201,6 +283,10 @@ router.post("/",(req,res)=>{
 //编辑商品
 router.put("/",(req,res)=>{
 	let body = req.body;
+	let attrs = []
+	if(body.attrs){
+		attrs = body.attrs.split(',')
+	}	
 	let update = {
 		name:body.name,
 		category:body.category,
@@ -209,7 +295,9 @@ router.put("/",(req,res)=>{
 		mainImage:body.mainImage,
 		images:body.images,
 		price:body.price,
-		stock:body.stock
+		stock:body.stock,
+		payNums:body.payNums,
+		attrs:attrs
 	}
 	ProductModel
 	.update({_id:body.id},update)
@@ -256,7 +344,7 @@ router.put("/order",(req,res)=>{
 	})
 })
 
-//更新上架
+//更新排序
 router.put("/status",(req,res)=>{
 	const {page,id,status}  = req.body;
 	ProductModel
@@ -285,7 +373,6 @@ router.put("/status",(req,res)=>{
 		}
 	})
 })
-// 更新首页是否显示
 router.put("/isShow",(req,res)=>{
 	const {id,isShow,page}  = req.body;
 	ProductModel
@@ -314,7 +401,6 @@ router.put("/isShow",(req,res)=>{
 		}
 	})
 })
-// 更新热卖
 router.put("/isHot",(req,res)=>{
 	const{id,isHot,page}  = req.body;
 	ProductModel

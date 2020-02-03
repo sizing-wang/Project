@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux"
-import { Breadcrumb, Table, Button, InputNumber, Switch, Divider } from "antd"
+import {Breadcrumb, Table, Button, InputNumber, Switch, Divider, Input} from "antd"
 import { Link } from "react-router-dom"
 import * as actionCreate from "./store/actionCreate"
-
+const { Search } = Input
 
 import Layout from "common/layout/"
 import "./index.css"
@@ -17,7 +17,7 @@ class ProductList extends Component{
 
     componentDidMount() {
         // 获取商品列表数据
-        this.props.handleProductsList()
+        this.props.handleProductsList(1)
     }
 
     render() {
@@ -27,14 +27,25 @@ class ProductList extends Component{
             current,
             pageSize,
             total,
-            isLoading
+            isLoading,
+            keyword
         } = this.props;
 
         const columns = [
             {
                 title: '商品名称',
                 dataIndex: 'name',
-                key: 'name'
+                key: 'name',
+                render: (name) => {
+                    if (keyword) {
+                        let reg = new RegExp(keyword, "ig");
+                        let newName = name.replace(reg, `<b style="color: #2295ff">${keyword}</b>`);
+                        return <div dangerouslySetInnerHTML={{__html:newName}}
+                        />
+                    } else {
+                        return name
+                    }
+                }
             },
             {
                 title: '是否首页显示',
@@ -136,6 +147,16 @@ class ProductList extends Component{
                         <Breadcrumb.Item>商品列表</Breadcrumb.Item>
                     </Breadcrumb>
                     <div  className="productAddBtn">
+                        <Search
+                            placeholder="请输入关键字"
+                            onSearch={
+                                value => {
+                                    this.props.handleProductsList(1, value)
+                                }
+                            }
+                            enterButton
+                            style={{width: "400px"}}
+                        />
                         <Link to="/product/save" className="add-btn">
                             <Button type="primary">
                                 新增商品
@@ -154,7 +175,12 @@ class ProductList extends Component{
                             }}
                             onChange={(page) => {
                                 // console.log(":::::", page);
-                                this.props.handleProductsList(page.current)
+                                if (keyword) {
+                                    this.props.handleProductsList(page.current, keyword)
+                                } else {
+                                    this.props.handleProductsList(page.current)
+                                }
+
                             }}
                             loading={{
                                 spinning: isLoading,
@@ -176,14 +202,15 @@ const mapStateToProps = (state) => {
         current: state.get("product").get("current"),
         pageSize: state.get("product").get("pageSize"),
         total: state.get("product").get("total"),
-        isLoading: state.get("product").get("isLoading")
+        isLoading: state.get("product").get("isLoading"),
+        keyword: state.get("product").get("keyword")
     }
 };
 // 将store中的方法映射到当前组件中
 const mapDispatchToProps = (dispatch) => ({
-    handleProductsList: (page) => {
+    handleProductsList: (page, keyword) => {
         // 获取商品列表, 派发action
-        dispatch(actionCreate.getProductsListAction(page))
+        dispatch(actionCreate.getProductsListAction(page, keyword))
     },
     handleIsShowProduct: (id, newShow) => {
         dispatch(actionCreate.getIsShowProduct(id, newShow))

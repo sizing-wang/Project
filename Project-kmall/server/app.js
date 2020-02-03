@@ -1,8 +1,8 @@
 /*
 * @Author: Tom
 * @Date:   2018-08-06 09:14:54
-* @Last Modified by:   Chen
-* @Last Modified time: 2019-12-03 19:38:07
+* @Last Modified by:   Tom
+* @Last Modified time: 2020-01-13 17:52:43
 */
 //项目入口文件
 const express = require('express');
@@ -11,9 +11,10 @@ const mongoose = require('mongoose');
 const Cookies = require('cookies');
 const session = require('express-session');
 const MongoStore = require("connect-mongo")(session);
+const { DB_HOST } = require('./config/index.js')
 
 //启动数据库
-mongoose.connect('mongodb://localhost:27017/kmall',{ useNewUrlParser: true });
+mongoose.connect('mongodb://'+DB_HOST+':27017/kmall',{ useNewUrlParser: true });
 
 const db = mongoose.connection;
 
@@ -25,16 +26,20 @@ db.once('open',()=>{
 	console.log('DB connected....');
 });
 
-
 const app = express();
+
 
 //跨域设置
 app.use((req,res,next)=>{
-	res.append("Access-Control-Allow-Origin","http://localhost:3001");
-	res.append("Access-Control-Allow-Credentials",true);// 允许前台携带cookie
-	res.append("Access-Control-Allow-Methods","GET, POST, PUT,DELETE");
-	res.append("Access-Control-Allow-Headers", "Content-Type, X-Requested-With,X-File-Name"); 
-	next();
+    if(process.env.NODE_ENV === 'production'){
+        next()
+    }else{
+        res.append("Access-Control-Allow-Origin","http://localhost:3001");
+        res.append("Access-Control-Allow-Credentials",true);
+        res.append("Access-Control-Allow-Methods","GET, POST, PUT,DELETE");
+        res.append("Access-Control-Allow-Headers", "Content-Type, X-Requested-With,X-File-Name"); 
+        next();
+    }
 })
 
 //配置静态资源
@@ -54,7 +59,7 @@ app.use(session({
     //设置cookie名称
     name:'kmid',
     //用它来对session cookie签名，防止篡改
-    secret:'dsjfkdfd',
+    secret:'dsjfkdfdfdfd',
     //强制保存session即使它并没有变化
     resave: true,
     //强制将未初始化的session存储
@@ -77,7 +82,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 //处理路由
-app.use("/sessions",require('./routes/sessions.js'));
+app.use("/init",require('./routes/init.js'));
 app.use("/counts",require('./routes/counts.js'));
 app.use("/users",require('./routes/users.js'));
 app.use("/categories",require('./routes/categories.js'));
@@ -88,6 +93,7 @@ app.use("/shippings",require('./routes/shippings.js'));
 app.use("/orders",require('./routes/orders.js'));
 app.use("/payments",require('./routes/payments.js'));
 app.use("/ads",require('./routes/ads.js'));
+app.use("/attrs",require('./routes/attrs.js'));
 app.use("/floors",require('./routes/floors.js'));
 
 

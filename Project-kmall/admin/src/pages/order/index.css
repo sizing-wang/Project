@@ -1,0 +1,123 @@
+.ant-table-body {
+    min-height: 600px;
+}
+.orderAddBtn {
+    margin-bottom: 10px;
+}
+
+/* 订单详情 */
+ul li {
+    list-style: none;
+}
+.detailContent .product-title li,
+.detailContent .product-item li,
+.detailContent .product-footer li{
+    float: left;
+}
+.detailContent .product-title,
+.detailContent .product-item,
+.detailContent .product-footer {
+    padding-left: 10px;
+    box-sizing: border-box;
+}
+
+.detailContent .product-title {
+    height: 40px;
+    line-height: 40px;
+    background-color: #ddd;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.detailContent .product-item {
+    height: 80px;
+    line-height: 80px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+}
+
+.detailContent .product-item .product-info img{
+    width: 60px;
+    height: 60px;
+    vertical-align: middle;
+}
+
+.detailContent .product-item  .product-totalPrice{
+    font-size: 14px;
+    font-weight: bolder;
+}
+
+.detailContent .product-footer .product-submit{
+    float: right;
+}
+.detailContent .product-footer .product-submit .btn-submit{
+    height: 60px;
+    line-height: 60px;
+    width: 100px;
+} 
+
+.detailContent .product-footer .product-submit  .total-price{
+    display: inline-block;
+    line-height: 60px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #f21;
+    margin-right: 20px;
+}
+.detailContent .product-footer .product-submit .total-price-text{
+    position: relative;
+    top:-2px;
+}
+*/
+
+.detailContent .panel{
+    padding: 10px;
+    background-color: #fff;
+}
+.detailContent .panel-header{
+    height: 30px;
+    line-height: 30px;
+    font-size: 16px;
+    color: #666;
+    border-bottom: 1px solid #fafafa;
+}
+.detailContent .pandel-body{
+    padding: 10px;
+    overflow: hidden;
+}
+
+
+/*
+订单样式
+*/
+
+.detailContent .product-info{
+    width: 70%;
+}
+.detailContent .product-price{
+    width: 10%;
+}
+.detailContent .product-count{
+    width: 10%;
+}
+.detailContent .product-totalPrice{
+    width: 10%;
+}
+
+.detailContent .product-item{
+    margin-bottom: 0px;
+    margin-top: -1px;
+}
+
+.detailContent .order-info li{
+    height: 30px;
+    line-height: 30px;
+    color: #333;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+.detailContent .order-info li.order-payment .text{
+    color: #f21;
+    font-size: 16px;
+    font-weight: bold;
+}

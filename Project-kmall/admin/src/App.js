@@ -7,6 +7,8 @@ import Home from "pages/home/index"
 import User from "pages/user/index"
 import Category from "pages/category/index"
 import Product from "pages/product/index"
+import Ad from "pages/ad/index"
+import Order from "pages/order/index"
 
 
 import { getUsername } from "util/index"
@@ -14,9 +16,10 @@ import Err from "./common/err/index"
 import "./index.css"
 
 
-class App extends Component{
+class App extends Component {
 
     render() {
+        // 自定义路由
         const HomeRoute = ({component:Component, ...rest}) => {
             return <Route
                 {...rest}
@@ -41,6 +44,8 @@ class App extends Component{
                         <HomeRoute path="/user" component={User} />
                         <HomeRoute path="/category" component={Category} />
                         <HomeRoute path="/product" component={Product} />
+                        <HomeRoute path="/ad" component={Ad} />
+                        <HomeRoute path="/order" component={Order} />
                         <LoginRoute path="/login" component={LoginForm} />
                         <Route component={Err} />
                     </Switch>

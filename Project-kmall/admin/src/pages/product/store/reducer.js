@@ -25,7 +25,8 @@ let defaultState = fromJS({
     description: "",
     price: "",
     stock: "",
-    detail: ""
+    detail: "",
+    keyword: ""
 });
 
 let reducer = (state = defaultState, action) => {
@@ -35,6 +36,7 @@ let reducer = (state = defaultState, action) => {
             current: action.payload.current,
             pageSize: action.payload.pageSize,
             total: action.payload.total,
+            keyword: action.payload.keyword
         })
     }
     if (action.type === type.SET_LOADING_START) {

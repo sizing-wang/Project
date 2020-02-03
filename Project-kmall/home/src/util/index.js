@@ -28,6 +28,12 @@ module.exports = {
     goLogIn: function () {                                    // 网址编码
         window.location.href = "/user-login.html?redirect=" + encodeURIComponent(window.location.href)
     },
+    goResult: function (type) {
+        window.location.href = "/result.html?type=" + type
+    },
+    showConfirm: function (msg) {
+        return window.confirm(msg)
+    },
     getParamsFromUrl: function (key) {
         // type=register
         // type=register&name=tom
@@ -37,7 +43,7 @@ module.exports = {
         let reg = new RegExp(`(^|&)${key}=([^&]*)`);
         let result = query.match(reg);
                         // 网址解码 
-        return result ? decodeURIComponent(result[2]) : "default"
+        return result ? decodeURIComponent(result[2]) : null
     },                  
     render: function (tpl, data) {
         let template = Hogan.compile(tpl);

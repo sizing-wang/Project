@@ -5,8 +5,96 @@
     <title>列表页</title>
 </head>
 <body>
-
     <%= require("html-loader!./common/nav.html") %>
+    <%= require("html-loader!./common/search.html") %>
+    <div class="list">
+        <div class="container">
+            <div class="crumb">
+                <a href="/" class="link">首页</a>
+                <i class="fa fa-angle-right"></i>
+                <span class="link-text">
+                    列表页
+                </span>
+            </div>
+        </div>
+        <div class="container clearfix">
+            <div class="category-wrap">
+                <div class="category-title">
+                    <i class="fa fa-list"></i>
+                    所有分类
+                </div>
+                <div class="category-list">
+                    <ul>
+                        <li class="parent">
+                            <i class="icon fa fas fa-plus-square-o"></i>
+                            <a href="javascript:" class="link">图书文娱</a>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <a href="javascript:" class="link">精品服装</a>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <a href="javascript:" class="link">家用电器</a>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <a href="javascript:" class="link">居家生活</a>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <a href="javascript:" class="link">手机数码</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <div class="product-wrap">
+                <ul class="sort clearfix">
+                    <li class="sort-item default active">默认排序</li>
+                    <li class="sort-item price asc ">
+                        按价格
+                        <i class="fa fa-sort-asc"></i>
+                        <i class="fa fa-sort-desc"></i>
+                    </li>
+                </ul>
+                <div class="product-list-box">
+                    <!--
+                    <ul class="clearfix">
+                        <li class="product-list-item">
+                            <a href="./detail.html?productId=" target="_blank">
+                                <img class="product-img" src="" alt="{{name}}">
+                                <p class="product-price">77</p>
+                                <p class="product-name">aaa</p>
+                            </a>
+                        </li>
+                    </ul>
+                    -->
+
+                </div>
+            </div>
+            <div class="pagination-box">
+                <!--
+                <ul class="pagination">
+                    <li class="page-item disabled"  data-value="0">上一页</li>
+                    <li class="page-item active"  data-value="1">1</li>
+                    <li class="page-item"  data-value="2">2</li>
+                    <li class="page-item"  data-value="3">3</li>
+                    <li class="page-item"  data-value="4">4</li>
+                    <li class="page-item"  data-value="5">5</li>
+                    <li class="page-item"  data-value="2">下一页</li>
+                    <li class="page-summ">1/5</li>
+                </ul>
+                -->
+
+            </div>
+        </div>
+    </div>
     <%= require("html-loader!./common/footer.html") %>
 </body>
 </html>

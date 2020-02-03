@@ -1,5 +1,5 @@
 {
-  "name": "01-install",
+  "name": "kmall-admin",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -31,7 +31,7 @@
     "webpack-dev-server": "^3.9.0"
   },
   "dependencies": {
-    "antd": "^3.26.0",
+    "antd": "^3.26.6",
     "axios": "^0.19.0",
     "immutable": "^4.0.0-rc.12",
     "less": "^3.10.3",

@@ -6,7 +6,7 @@ import ProductSave from "./save"
 import ProductDetail from "./detail"
 
 
-export default class Category extends Component{
+export default class Product extends Component{
 
     render() {
         return (

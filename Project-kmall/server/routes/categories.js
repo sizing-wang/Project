@@ -1,19 +1,38 @@
 /*
 * @Author: Tom
 * @Date:   2018-08-06 09:23:30
-* @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-25 10:09:18
+* @Last Modified by:   Tom
+* @Last Modified time: 2019-10-29 16:10:55
 */
 const Router = require('express').Router;
 const CategoryModel = require('../models/category.js');
 const pagination = require('../util/pagination.js');
-const {unlimitedForLevel} = require('../util/unlimitedCategory.js');
+const {unlimitedForLevel,unlimitedForTree} = require('../util/unlimitedCategory.js');
+
+const {UPLOAD_HOST} = require("../config")
+
+const path = require('path');
+const fs = require('fs');
+const multer = require('multer');
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'public/category-icons/')
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now()+path.extname(file.originalname))
+  }
+})
+
+const upload = multer({ storage: storage })
 
 const router = Router();
 
 //获取分类数组数据
-router.get("/homeCategories",(req,res)=>{
-	CategoryModel.find({level:1,isShow:1},"-createdAt -updatedAt -__v -mobileName -pid")
+router.get("/arrayCategories",(req,res)=>{
+	const limit = parseInt(req.query.limit || 10)
+	CategoryModel.find({level:1,isShow:1},"-createdAt -updatedAt -__v -pid")
+	.limit(limit)
 	.sort({order:-1,_id:-1})
 	.then((categories)=>{
 		res.json({
@@ -29,7 +48,23 @@ router.get("/homeCategories",(req,res)=>{
 	})	
 });
 
-
+//获取分类树形数据
+router.get("/treeCategories",(req,res)=>{
+	CategoryModel.find({isShow:1},"-createdAt -updatedAt -__v -mobileName")
+	.sort({order:-1,_id:-1})
+	.then((categories)=>{
+		res.json({
+			code:0,
+			data:unlimitedForTree(categories)
+		})		
+	})
+	.catch(e=>{
+ 		res.json({
+ 			code:1,
+ 			message:"获取分类失败,服务器端错误"
+ 		})		
+	})	
+});
 //权限控制
 router.use((req,res,next)=>{
 	if(req.userInfo.isAdmin){
@@ -85,11 +120,42 @@ router.get("/list",(req,res)=>{
 	})		
 });
 
+router.get('/detail',(req,res)=>{
+	let query = {
+		_id:req.query.id
+	}
+	CategoryModel
+	.findOne(query,"-__v -createdAt -updatedAt")
+	.then(category=>{
+		res.json({
+			code:0,
+			data:category
+		})
+	})
+	.catch(e=>{
+		res.json({
+			code:1,
+			message:'获取分类详情失败'
+		})
+	})
+})
+
+
+//处理分类图片
+router.post("/icons",upload.single('file'),(req,res)=>{
+	const filePath = UPLOAD_HOST + '/category-icons/'+req.file.filename;
+	res.send({
+    	"name": req.file.originalname,
+    	"status": "done",
+    	"url": filePath,
+    	"thumbUrl": filePath
+	});
+	
+})
+
 //添加分类
 router.post("/",(req,res)=>{
-	
-	const {mobileName,name,pid} = req.body
-	
+	const {mobileName,name,pid,icon} = req.body
 	CategoryModel
 	.findOne({name:name,pid:pid})
 	.then((cate)=>{
@@ -114,6 +180,7 @@ router.post("/",(req,res)=>{
 							level:level,
 							name:name,
 							mobileName:mobileName,
+							icon:icon,
 							pid:pid
 						})
 						.save()
@@ -148,7 +215,74 @@ router.post("/",(req,res)=>{
 	})
 })
 
-
+//修改分类
+router.put("/",(req,res)=>{
+	const {mobileName,name,pid,icon,id} = req.body
+	CategoryModel
+	.findOne({$and:[
+		{name:name},
+		{pid:pid},
+		{_id:{$ne:id}}
+	]})
+	.then((cate)=>{
+		if(cate){
+	 		res.json({
+	 			code:1,
+	 			message:"修改分类失败,分类已存在"
+	 		})
+		}else{
+			CategoryModel
+			.findOne({$and:[
+				{mobileName:mobileName},
+				{pid:pid},
+				{_id:{$ne:id}}
+			]})
+			.then(cate2=>{
+				if(cate2){
+			 		res.json({
+			 			code:1,
+			 			message:"修改分类失败,手机分类已存在"
+			 		})
+			 	}else{
+			 		getLevel(pid)
+			 		.then(level=>{
+						CategoryModel.update({_id:id},{
+							level:level,
+							name:name,
+							mobileName:mobileName,
+							icon:icon,
+							pid:pid							
+						})
+						.then((newCate)=>{
+							//添加成功后返回新的分类
+							if(newCate){
+								CategoryModel.find({},"-createdAt -updatedAt -__v")
+								.then((categories)=>{
+									res.json({
+										code:0,
+										data:unlimitedForLevel(categories,'|--')
+									})	
+								})	
+							}
+						})
+						.catch((e)=>{
+					 		res.json({
+					 			code:1,
+					 			message:"修改分类失败,服务器端错误"
+					 		})
+						})
+			 		})
+			 		.catch(e=>{
+				 		res.json({
+				 			code:1,
+				 			message:"修改分类失败,"+e.message
+				 		})			 			
+			 		})
+			 	}				
+			})
+		}
+	})
+})
 //获取分类数组数据
 router.get("/levelCategories",(req,res)=>{
 	const level = req.query.level || 2
@@ -308,7 +442,35 @@ router.put("/isShow",(req,res)=>{
 		}else{
 	 		res.json({
 	 			code:1,
-	 			message:"更新排序失败,数据操作失败"
+	 			message:"更新显示失败,数据操作失败"
+	 		})					
+		}
+	})
+})
+//更新是否楼层
+router.put("/isFloor",(req,res)=>{
+	const {isFloor,id,page} = req.body
+	CategoryModel
+	.update({_id:id},{isFloor:isFloor})
+	.then((cate)=>{
+		if(cate){
+			CategoryModel
+			.getPaginationCategories(page)
+			.then((result)=>{
+				res.json({
+					code:0,
+					data:{
+						current:result.current,
+						total:result.total,
+						pageSize:result.pageSize,
+						list:result.list					
+					}
+				})	
+			})					
+		}else{
+	 		res.json({
+	 			code:1,
+	 			message:"更新是否楼层失败,数据操作失败"
 	 		})					
 		}
 	})

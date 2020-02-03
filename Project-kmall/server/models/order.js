@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2018-08-04 17:14:00
 * @Last Modified by:   Tom
-* @Last Modified time: 2019-07-08 17:31:04
+* @Last Modified time: 2019-11-12 16:01:40
 */
 const mongoose = require('mongoose');
 const pagination = require('../util/pagination.js');
@@ -12,6 +12,9 @@ const ProductSchema = new mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:'Product'
     },
+    attr:{
+        type:String
+    },    
     price:{
         type:Number
     },
@@ -28,7 +31,7 @@ const ProductSchema = new mongoose.Schema({
     totalPrice:{
         type:Number,
         default:0
-    }
+    },
 });
 
 const ShippingSchema = new mongoose.Schema({
@@ -44,6 +47,9 @@ const ShippingSchema = new mongoose.Schema({
     city:{
         type:String
     },
+    county:{
+        type:String
+    },    
     address:{
         type:String
     },
@@ -87,7 +93,7 @@ const OrderSchema = new mongoose.Schema({
         type:String,
         enum:["10","20","30","40","50"],//10-未支付 20-取消 30-已支付 40-已发货 50-完成
         default:"10"
-    },
+    },    
     statusDesc:{
         type:String,
         enum:["未支付","取消","已支付","已发货","完成"],
@@ -101,7 +107,16 @@ const OrderSchema = new mongoose.Schema({
     productList:{
         type:[ProductSchema],
         default:[]
-    }
+    },
+    expressNo:{
+        type:String//快递单号
+    },
+    expressCom:{
+        type:String//快递公司代码
+    },
+    expressName:{
+        type:String//快递公司名称
+    }    
 },{
   timestamps:true
 });

@@ -28,7 +28,13 @@ module.exports = {
         "user-register": "./src/pages/user-register",
         "result": "./src/pages/result",
         "user-center": "./src/pages/user-center",
-        "user-update-password": "./src/pages/user-update-password"
+        "user-update-password": "./src/pages/user-update-password",
+        "detail": "./src/pages/detail",
+        "cart": "./src/pages/cart",
+        "order-confirm": "./src/pages/order-confirm",
+        "payment": "./src/pages/payment",
+        "order-list": "./src/pages/order-list",
+        "order-detail": "./src/pages/order-detail"
     },
     // 出口
     output: {
@@ -36,6 +42,7 @@ module.exports = {
         filename: "js/[name]-[hash]-bundle.js", // 多出口
         publicPath: "/" // 配置静态资源路径
     },
+
     //配置文件别名
     resolve:{
         alias:{
@@ -102,6 +109,12 @@ module.exports = {
         new htmlWebpackPlugin(getHtmlConfig("result", "结果页")),
         new htmlWebpackPlugin(getHtmlConfig("user-center", "个人中心")),
         new htmlWebpackPlugin(getHtmlConfig("user-update-password", "修改密码")),
+        new htmlWebpackPlugin(getHtmlConfig("detail", "详情页")),
+        new htmlWebpackPlugin(getHtmlConfig("cart", "购物车")),
+        new htmlWebpackPlugin(getHtmlConfig("order-confirm", "订单确认")),
+        new htmlWebpackPlugin(getHtmlConfig("payment", "订单支付")),
+        new htmlWebpackPlugin(getHtmlConfig("order-list", "订单列表")),
+        new htmlWebpackPlugin(getHtmlConfig("order-detail", "订单详情")),
         // 自动清理多余文件
         new CleanWebpackPlugin(),
         // 单独打包css文件
@@ -114,7 +127,18 @@ module.exports = {
         port:3002, //服务运行的端口
         proxy: [{
             // 以下代码的含义: 只要以sessions开头的地址请求, 都由target指定的地址代理发送请求
-            context: ['/sessions', "/users", "/categories"],
+            context: [
+                '/sessions',
+                "/users",
+                "/categories",
+                "/ads",
+                "/floors",
+                "/products",
+                "/carts",
+                "/orders",
+                "/shippings",
+                "/payments"
+            ],
             target: 'http://127.0.0.1:3000'
         }]
     }

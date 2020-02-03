@@ -16,7 +16,7 @@ body{
 }
 .link{
     text-decoration: none;
-    color: #888;
+    color: #333;
     cursor: pointer;
 }
 .link:hover{

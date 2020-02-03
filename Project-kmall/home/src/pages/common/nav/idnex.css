@@ -7,7 +7,7 @@
     float: left;
 }
 .username{
-    color: #666;
+    color: #333;
     margin-right: 10px;
 }
 .nav-list{
@@ -31,7 +31,8 @@
     display: none;
     position: absolute;
     top:30px;
-    width: 300px;
+    right: 0;
+    width: 400px;
     min-height: 100px;
     z-index: 999;
     background-color: #fff;
@@ -42,10 +43,17 @@
     border-top: none;
 }
 .nav .cart-box .loader{
-    margin-top: 40px;
+    /* display: block; */
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    margin-top: 20px;
 }
-.nav .cart-box .empty-cart{
-    display: inline-block;
+.nav .cart-box .loader img {
+    width: 100px;
+}
+.nav .cart-box .empty-cart{ /* 提示信息 */
+    display: none;
     margin-top: 40px;
     font-size: 12px;
     font-weight: 400;
@@ -69,13 +77,14 @@
     float: right;
     width: 30px;
     color: #f21;
-    margin-right: 10px;
+    margin-right: 50px;
 }
 .nav .cart-item .product-count{
     float: right;
     width: 20px;
 }
 .nav .cart-tip{
+    font-size: 12px;
     color: #111;
     font-weight: 800;
 }

@@ -2,7 +2,7 @@
 * @Author: Tom
 * @Date:   2018-08-06 09:23:30
 * @Last Modified by:   Tom
-* @Last Modified time: 2019-07-08 17:07:48
+* @Last Modified time: 2019-11-12 12:18:19
 */
 const Router = require('express').Router;
 const UserModel = require('../models/user.js');
@@ -76,10 +76,10 @@ router.get("/detail",(req,res)=>{
 });
 //删除地址
 router.delete('/',(req,res)=>{
-	let body = req.body;
+	let id = req.query.id || req.body.id;
 	UserModel.findById(req.userInfo._id)
 	.then(user=>{
-		user.shipping.id(body.id).remove();
+		user.shipping.id(id).remove();
 		user.save()
 		.then(newUser=>{
 			res.json({
@@ -98,6 +98,8 @@ router.put("/",(req,res)=>{
 		shipping.name = body.name;
 		shipping.province = body.province;
 		shipping.city = body.city;
+		shipping.county = body.county;
+		shipping.areaCode = body.areaCode;
 		shipping.address = body.address;
 		shipping.phone = body.phone;
 		shipping.zip = body.zip;

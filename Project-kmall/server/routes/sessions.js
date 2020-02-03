@@ -1,55 +1,58 @@
 /*
 * @Author: Tom
 * @Date:   2018-08-06 09:23:30
-* @Last Modified by:   Chen
-* @Last Modified time: 2019-12-05 20:34:10
+* @Last Modified by:   Tom
+* @Last Modified time: 2019-10-31 15:19:05
 */
 const Router = require('express').Router
 
 const UserModel = require('../models/user.js')
+const OrderModel = require('../models/order.js')
 const hmac = require('../util/hmac.js')
 
 const router = Router();
 
-
-//用户退出
-/*
-router.get('/user',(req,res)=>{
-	req.session.destroy();
-	res.json({
-		code:0,
-	})
-})
-*/
-
 //用户登录
 router.post("/users",(req,res)=>{
-	const { username,password,role } = req.body;
+	const { username,password,role} = req.body
 	
-	let isAdmin = false;
-	if(role === 'admin'){
+	let isAdmin = false
+	if(role == 'admin'){
 		isAdmin = true
 	}
 
 	UserModel
-	.findOne({username:username,password:hmac(password),isAdmin:isAdmin})
+	.findOne({$or:[
+		{username:username,password:hmac(password),isAdmin:isAdmin},
+		{phone:username,password:hmac(password),isAdmin:isAdmin}
+	]})
 	.then((user)=>{
 		if(user){
-			 req.session.userInfo = {
-			 	_id:user._id,
-			 	username:username,
-			 	isAdmin:isAdmin
-			 };
-			 res.json({
-			 	code:0,
-			 	data:{
-			 		username:username
-			 	}
-			 });
+			if(user.isActive == '0'){
+				res.json({
+				 	code:1,
+				 	message:"用户名已经被锁定",
+				 	data:{
+				 		username:username
+				 	}
+				})
+				return;
+			}
+			req.session.userInfo = {
+				_id:user._id,
+				username:username,
+				isAdmin:isAdmin
+			}
+			res.json({
+				code:0,
+				data:{
+					username:username
+				}
+			});
 		}else{
 			res.json({
 			 	code:1,
-			 	message:"用户名或密码错误",
+			 	message:"用户名和密码错误",
 			 	data:{
 			 		username:username
 			 	}
@@ -94,11 +97,23 @@ router.use((req,res,next)=>{
 
 //获取登录用户的信息
 router.get("/users",(req,res)=>{
-	UserModel.findById(req.userInfo._id,"username phone email")
+	UserModel.findById(req.userInfo._id,"username phone email createdAt avatar")
 	.then(user=>{
-		res.json({
-			code:0,
-			data:user
+		OrderModel.countDocuments({user:req.userInfo._id})
+		.then((count)=>{
+			const userObj = {
+				orderNum:count,
+				email:user.email,
+				createdAt: user.createdAt,
+				phone: user.phone,
+				username: user.username,
+				avatar: user.avatar,
+				_id: user._id,
+			}
+			res.json({
+				code:0,
+				data:userObj
+			})
 		})
 	})
 	.catch(e=>{

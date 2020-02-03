@@ -13,11 +13,17 @@ const setIsLoadingStartAction = () => ({
 const setIsLoadingEndAction = () => ({
     type: type.SET_LOADING_END
 })
-export const getProductsListAction = (page) => {
+export const getProductsListAction = (page, keyword) => {
     return function (dispatch, getState) {
         // 请求之前, 派发action, 加载loading状态
-        dispatch(setIsLoadingStartAction())
-        api.getProductsList({page})
+        dispatch(setIsLoadingStartAction());
+        let options = {
+            page: page
+        };
+        if (keyword) {
+            options.keyword = keyword
+        }
+        api.getProductsList(options)
             .then(result => {
                 // console.log("::::::::", result);
                 const data = result.data;
@@ -49,7 +55,7 @@ export const getIsShowProduct = (id, newShow) => {
             .then(result => {
                 const data = result.data;
                 if (data.code === 0) {
-                    dispatch(setProductsListAction(data.data))
+                    dispatch(setProductsListAction(data.data));
                     message.success("显示隐藏更新成功")
                 } else {
                     message.error("显示隐藏更新失败, 请稍后再试!!!")

@@ -2,7 +2,7 @@
 * @Author: Tom
 * @Date:   2018-08-06 09:23:30
 * @Last Modified by:   Tom
-* @Last Modified time: 2019-07-08 16:31:31
+* @Last Modified time: 2019-10-22 17:07:59
 */
 const Router = require('express').Router;
 const UserModel = require('../models/user.js');
@@ -69,10 +69,12 @@ router.post("/",(req,res)=>{
 			})
 			if(cartItem){
 				cartItem.count = cartItem.count + parseInt(body.count)
+				cartItem.attr = body.attr
 			}else{
 				user.cart.cartList.push({
 					product:body.productId,
-					count:body.count
+					count:body.count,
+					attr:body.attr
 				})				
 			}
 
@@ -83,7 +85,8 @@ router.post("/",(req,res)=>{
 				cartList:[
 					{
 						product:body.productId,
-						count:body.count
+						count:body.count,
+						attr:body.attr
 					}
 				]
 			}

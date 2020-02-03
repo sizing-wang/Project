@@ -25,6 +25,7 @@ class UpLoadImage extends Component {
                 }
             }
         }
+
         return null
     }
 
@@ -47,8 +48,8 @@ class UpLoadImage extends Component {
                     return file.response.url
                 }
             }).join(","))
+            // console.log("::::::::::", fileList);
         })
-    //    console.log(":::::::", fileList);
     }
     
     render() {

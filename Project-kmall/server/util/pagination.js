@@ -1,8 +1,8 @@
 /*
 * @Author: TomChen
 * @Date:   2018-08-09 10:22:53
-* @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-21 09:54:47
+* @Last Modified by:   Tom
+* @Last Modified time: 2019-10-21 12:00:09
 */
 
 
@@ -33,7 +33,7 @@ let pagination = (options)=>{
 		}
 
 		//每页显示条数
-		let limit = options.pageSize || 2;
+		let limit = options.pageSize || 8;
 
 		/*
 		分页:

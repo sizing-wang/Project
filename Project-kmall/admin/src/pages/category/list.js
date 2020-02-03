@@ -17,14 +17,6 @@ class CategoryList extends Component{
         // 发送ajax请求, 处理异步任务
         this.props.handlePages()
     }
-    /*
-    componentWillUnmount(){
-        // 清除定时器
-        this.props.handleClearSetTimerOut()
-        const timer = this.props.timer
-        clearTimeout(timer)
-    }
-    */
 
     render() {
 
@@ -42,11 +34,11 @@ class CategoryList extends Component{
                 title: '分类名称',
                 dataIndex: 'name',
                 key: 'name',
-                width: "40%",
+                width: "30%",
                 render: (name, record) => {
                     return (
                         <Input
-                            style={{width: "60%"}}
+                            style={{width: "50%"}}
                             defaultValue={name}
                             onBlur={(ev) => {
                                 // console.log(record);
@@ -69,7 +61,7 @@ class CategoryList extends Component{
                 render: (mobileName, record) => {
                     return (
                         <Input
-                            style={{width: "30%"}}
+                            style={{width: "40%"}}
                             defaultValue={mobileName}
                             onBlur={(ev) => {
                                 // console.log(record);
@@ -88,6 +80,7 @@ class CategoryList extends Component{
                 title: '是否显示',
                 dataIndex: 'isShow',
                 key: 'isShow',
+                width: "20%",
                 render: (isShow, record) => {
                     return (
                         <Switch

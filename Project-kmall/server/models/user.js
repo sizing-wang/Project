@@ -2,15 +2,20 @@
 * @Author: TomChen
 * @Date:   2018-08-04 17:14:00
 * @Last Modified by:   Tom
-* @Last Modified time: 2019-07-08 15:55:26
+* @Last Modified time: 2019-11-05 10:47:56
 */
 const mongoose = require('mongoose');
 const ProductModel = require('./product.js');
+const pagination = require('../util/pagination.js');
+
 const CartItemSchema = new mongoose.Schema({
     product:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'Product'
     },
+    attr:{
+      type:String
+    },    
     count:{
         type:Number,
         default:1
@@ -48,6 +53,12 @@ const ShippingSchema = new mongoose.Schema({
     city:{
         type:String
     },
+    county:{
+        type:String
+    },
+    areaCode:{
+        type:String
+    },
     address:{
         type:String
     },
@@ -69,6 +80,13 @@ const UserSchema = new mongoose.Schema({
   	type:Boolean,
   	default:false//默认是普通用户
   },
+  avatar:{
+    type:String,
+  },
+  isActive:{
+      type: String,
+      default: '1' //是否是有效用户 0-不是 1-是
+  },  
   email:{
     type:String
   },
@@ -85,7 +103,23 @@ const UserSchema = new mongoose.Schema({
 },{
   timestamps:true
 });
-
+//获取用户列表
+UserSchema.statics.getPaginationUsers = function(page,query={},projection='-password -__v -updatedAt',sort={_id:-1}){
+    return new Promise((resolve,reject)=>{
+      let options = {
+        page: page,
+        model:this, 
+        query:query, 
+        projection:projection,
+        sort:sort, 
+      }
+      pagination(options)
+      .then((data)=>{
+        resolve(data); 
+      })
+    })
+}
+//获取当前用户的购物车
 UserSchema.methods.getCart = function(){
     return new Promise((resolve,reject)=>{
         //如果没有购物车信息返回空对象
@@ -137,7 +171,6 @@ UserSchema.methods.getCart = function(){
 
     });
 }
-
 //获取当前用户的订单商品列表
 UserSchema.methods.getOrderProductList = function(){
     return new Promise((resolve,reject)=>{

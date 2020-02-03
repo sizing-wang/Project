@@ -1,8 +1,8 @@
 /*
 * @Author: Tom
 * @Date:   2018-08-06 09:23:30
-* @Last Modified by:   Chen
-* @Last Modified time: 2019-12-05 10:24:41
+* @Last Modified by:   Tom
+* @Last Modified time: 2019-10-17 10:52:24
 */
 const Router = require('express').Router;
 
@@ -41,7 +41,11 @@ async function getCounts(){
         }        
     }
     catch(e){
-        console.log(e)        
+        return {
+            usernum:0,
+            ordernum:0,
+            productnum:0
+        }       
     }
 }
 

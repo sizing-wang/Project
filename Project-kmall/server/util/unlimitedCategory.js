@@ -2,7 +2,7 @@
 * @Author: Tom
 * @Date:   2019-06-25 17:04:43
 * @Last Modified by:   Tom
-* @Last Modified time: 2019-06-28 17:14:52
+* @Last Modified time: 2019-10-28 15:53:56
 */
 
 /**
@@ -57,7 +57,9 @@ function unlimitedForTree(categories,pid=0){
             cate['level']=category.level;
             cate['mobileName']=category.mobileName;
             cate['isShow']=category.isShow;
+            cate['isFloor']=category.isFloor;
             cate['order']=category.order;
+            cate['icon']=category.icon;
             var children = unlimitedForTree(categories,cate['_id']);
             if(children.length > 0){
                 cate['children'] = children;

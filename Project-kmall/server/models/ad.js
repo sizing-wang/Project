@@ -2,7 +2,7 @@
 * @Author: TomChen
 * @Date:   2018-08-04 17:14:00
 * @Last Modified by:   Tom
-* @Last Modified time: 2019-07-11 11:18:14
+* @Last Modified time: 2019-11-12 16:43:08
 */
 const mongoose = require('mongoose');
 const pagination = require('../util/pagination.js');
@@ -18,7 +18,7 @@ const AdSchema = new mongoose.Schema({
     type:String
   },
   position:{
-    type:String,//1-首页轮播图
+    type:String,//1-电脑端首页轮播图 2-移动端首页轮播图
     default:"1"
   },
   order:{
@@ -33,7 +33,8 @@ const AdSchema = new mongoose.Schema({
 },{
   timestamps:true
 });
-AdSchema.statics.getPaginationAds = function(page,query={},projection='-__v -createdAt -updatedAt',sort={order:-1}){
+
+AdSchema.statics.getPaginationAds = function(page,query={},projection='-__v -createdAt -updatedAt',sort={position:-1,order:-1,_id:-1}){
     return new Promise((resolve,reject)=>{
       let options = {
         page: page,

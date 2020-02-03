@@ -1,8 +1,8 @@
 /*
 * @Author: Tom
 * @Date:   2018-08-06 09:23:30
-* @Last Modified by:   TomChen
-* @Last Modified time: 2019-08-22 22:19:25
+* @Last Modified by:   Tom
+* @Last Modified time: 2019-11-12 16:43:20
 */
 const Router = require('express').Router;
 const AdModel = require('../models/ad.js');
@@ -10,6 +10,8 @@ const AdModel = require('../models/ad.js');
 const path = require('path');
 const fs = require('fs');
 const multer = require('multer');
+
+const {UPLOAD_HOST} = require("../config")
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -58,14 +60,9 @@ router.get('/list',(req,res)=>{
 	//如果是普通用户,只能获取显示的广告
 	if(!req.userInfo.isAdmin){
 		query.isShow = 1
-	}	
-
-	let projection = '-__v -createdAt -updatedAt';
-
-	let sort={order:-1,_id:-1};
-
-
-	AdModel.getPaginationAds(page,query,projection,sort)
+	}
+		
+	AdModel.getPaginationAds(page,query)
 	.then(result=>{
 		res.json({
 			code:0,
@@ -119,7 +116,7 @@ router.get('/detail',(req,res)=>{
 })
 //处理图片
 router.post("/image",upload.single('file'),(req,res)=>{
-	const filePath = 'http://127.0.0.1:3000/ad-images/'+req.file.filename;
+	const filePath = UPLOAD_HOST + '/ad-images/'+req.file.filename;
 	res.send({
     	"name": req.file.originalname,
     	"status": "done",
