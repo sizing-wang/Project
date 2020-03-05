@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux"
-import { Breadcrumb, Table, Button, Input, InputNumber, Switch } from "antd"
+import {Breadcrumb, Table, Button, Input, InputNumber, Switch, Divider} from "antd"
 import { Link } from "react-router-dom"
 import * as actionCreate from "./store/actionCreate"
 
@@ -28,13 +28,12 @@ class CategoryList extends Component{
             handlePages,
             isLoading
         } = this.props;
-
         const columns = [
             {
                 title: '分类名称',
                 dataIndex: 'name',
                 key: 'name',
-                width: "30%",
+                width: "200px",
                 render: (name, record) => {
                     return (
                         <Input
@@ -57,11 +56,11 @@ class CategoryList extends Component{
                 title: '手机分类名称',
                 dataIndex: 'mobileName',
                 key: 'mobileName',
-                width: "30%",
+                width: "200px",
                 render: (mobileName, record) => {
                     return (
                         <Input
-                            style={{width: "40%"}}
+                            style={{width: "50%"}}
                             defaultValue={mobileName}
                             onBlur={(ev) => {
                                 // console.log(record);
@@ -77,10 +76,19 @@ class CategoryList extends Component{
                 }
             },
             {
+                title: '手机图标',
+                dataIndex: '0',
+                key: '0',
+                render: (icons, record) => {
+                    // console.log("-----------", record)
+                    return <img className="mobileImage" src={record.icon} alt=""/>
+                }
+            },
+            {
                 title: '是否显示',
                 dataIndex: 'isShow',
                 key: 'isShow',
-                width: "20%",
+                // width: "20%",
                 render: (isShow, record) => {
                     return (
                         <Switch
@@ -97,13 +105,32 @@ class CategoryList extends Component{
                 }
             },
             {
+                title: '是否为楼层',
+                dataIndex: 'isFloor',
+                key: 'isFloor',
+                render: (isFloor, record) => {
+                    return (
+                        <Switch
+                            checkedChildren="是"
+                            unCheckedChildren="否"
+                            checked={isFloor == "0" ? false : true}
+                            onChange={(checked) => {
+                                const newIsFloor = checked ? "1" : "0";
+                                const id = record._id;
+                                this.props.handleIsFloorAction(id, newIsFloor)
+                            }}
+                        />
+                    )
+                }
+            },
+            {
                 title: '排序',
                 dataIndex: 'order',
                 key: 'order',
                 render: (order, record) => {
                     return (
                         <InputNumber
-                            style={{width: "30%"}}
+                            // style={{width: "30%"}}
                             defaultValue={order}
                             onBlur={(ev) => {
                                 const id = record._id;
@@ -116,11 +143,19 @@ class CategoryList extends Component{
                         />
                     )
                 }
+            },
+            {
+                title: "操作",
+                render: (record) => {
+                    return (
+                        <span>
+                            <Link to={"/category/add/" + record._id}>编辑</Link>
+                        </span>
+                    )
+                }
             }
         ];
 
-
-        // console.log(":::::::", list.toJS());
         const dataSource = list.toJS();
         return (
             <div className="categoryList">
@@ -171,8 +206,7 @@ const mapStateToProps = (state) => {
         current: state.get('category').get("current"),
         pageSize: state.get("category").get("pageSize"),
         total: state.get("category").get("total"),
-        isLoading: state.get("category").get("isLoading"),
-        timer: state.get("category").get("timer")
+        isLoading: state.get("category").get("isLoading")
     }
 };
 // 将store中的方法映射到当前组件中
@@ -197,9 +231,9 @@ const mapDispatchToProps = (dispatch) => ({
         // 派发action
         dispatch(actionCreate.UpdateIsShowAction(id, newIsShow))
     },
-    handleClearSetTimerOut: () => {
+    handleIsFloorAction: (id, newIsFloor) => {
         // 派发action
-        dispatch(actionCreate.getClearSetTimerOut())
+        dispatch(actionCreate.UpDateIsFloorAction(id, newIsFloor))
     }
 });
 export default connect (mapStateToProps, mapDispatchToProps)(CategoryList)

@@ -12,7 +12,6 @@ const getApiObj = (API_CONFIG) => {
             return request(url, method, data)
         }
     }
-    
     return apiObj
 };
 const request = (url, method, data) => {
@@ -47,4 +46,4 @@ const request = (url, method, data) => {
     })
 };
 
-export default getApiObj(API_CONFIG)
+export default getApiObj(API_CONFIG);

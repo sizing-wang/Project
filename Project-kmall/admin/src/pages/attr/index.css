@@ -1,0 +1,10 @@
+.ant-table-body {
+    min-height: 600px;
+}
+.attrAddBtn {
+    height: 40px;
+}
+.attrList .add-btn{
+    float: right;
+    height: 40px;
+}

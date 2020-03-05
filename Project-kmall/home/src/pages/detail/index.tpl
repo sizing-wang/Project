@@ -1,7 +1,8 @@
 <div class="product-intro clearfix">
     <div class="product-img">
         <div class="product-main-img">
-            <img src="{{activeImage}}"  alt="{{name}}" />
+            <img src="{{activeImage}}" alt="{{name}}" />
+            <div class="mask"></div>
         </div>
         <ul class="product-small-img-list clearfix">
         {{#images}}
@@ -10,6 +11,9 @@
             </li>
         {{/images}}
         </ul>
+        <div class="lImg">
+            <img src="{{activeImage}}" alt="{{name}}" />
+        </div>
     </div>
     <div class="product-info">
         <h2 class="product-name">{{name}}</h2>

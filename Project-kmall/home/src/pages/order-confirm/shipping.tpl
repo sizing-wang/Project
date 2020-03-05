@@ -1,5 +1,5 @@
 <div class="panel">
-    <h2 class="panel-header">送货地址</h2>
+    <h2 class="panel-header">送货地址<span class="shipping-add">添加新地址</span></h2>
     <div class="pandel-body">
         {{#shipping}}
         {{#active}}
@@ -18,9 +18,5 @@
                 </div>
             </div>
         {{/shipping}}
-        <div class="shipping-add">
-            <i class="fa fa-plus"></i>
-            <p class="shipping-add-text">添加新地址</p>
-        </div>
     </div>
 </div>

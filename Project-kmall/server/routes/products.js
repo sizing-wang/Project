@@ -247,10 +247,11 @@ router.post("/detailImages",upload.single('upload'),(req,res)=>{
 //添加商品
 router.post("/",(req,res)=>{
 	let body = req.body;
-	let attrs = []
+	let attrs = [];
 	if(body.attrs){
-		attrs = body.attrs.split(',')
+		attrs = body.attrs.split(",")
 	}
+	// console.log("----------", body.attrs)
 	new ProductModel({
 		name:body.name,
 		category:body.category,

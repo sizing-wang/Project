@@ -24,7 +24,7 @@ let page = {
             })
         })
         // 鼠标在购物车移入移出事件
-        $(".cart-box").on("mouseenter", function () { // mouseleave
+        $(".cart-small-panel").on("mouseenter", function () { // mouseleave
             // 显示购物车商品面板
             $(".cart-content").show()
             // 发送请求, 获取购物车商品信息
@@ -46,7 +46,7 @@ let page = {
             }, 1000);
             
         })
-        $(".cart-box").on("mouseleave", function () {
+        $(".cart-small-panel").on("mouseleave", function () {
             $(".cart-content").hide()
         })
 
@@ -64,12 +64,14 @@ let page = {
     loadUsername: function () { // 加载用户名
         api.getUsername({
             success: function (result) {
+                // console.log(":::::::::", result);
                 let username = result.data.username
                 $(".not-login").hide()
                 $('.login')
                     .show()
                     .find(".username")
                     .text(username)
+
             }
         })
     }

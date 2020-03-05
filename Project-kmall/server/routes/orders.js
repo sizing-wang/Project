@@ -12,7 +12,6 @@ const OrderModel = require('../models/order.js');
 const AliPay = require("../service/payment/alipay/Alipay")
 const {getRandomStr} = require('../util/random.js')
 const {HOST_DOMAIN,kuaidiExpressApiId} = require("../config")
-
 const router = Router();
 //用户登录权限控制
 router.use((req,res,next)=>{
@@ -193,10 +192,10 @@ router.get('/products',(req,res)=>{
  * @return {[type]}       [description]
  */
 function payOrder(order,channel,res){
-	const paymentType = order.paymentType
+	const paymentType = order.paymentType;
 	//支付渠道 
 	//page pc端 
-	//wap  手机端	
+	//wap  手机端
 	if(paymentType == '10'){//支付宝
 		const options = {
 		        outTradeNo: order.orderNo,
@@ -221,7 +220,7 @@ function payOrder(order,channel,res){
 				data:{
 					url:aliPay.wapPay(options)
 				}
-			})			
+			})
 		}
 	}
 	//微信
@@ -246,7 +245,7 @@ router.post('/',(req,res)=>{
 				return res.json({
 					code:1,
 					message:'购物车中已经没有选中的商品了'
-				})				
+				})
 			}
 			order.payment = result.totalCartPrice;
 			//构建订单的商品
@@ -281,7 +280,7 @@ router.post('/',(req,res)=>{
 
 			//赋值用户ID
 			order.user = user._id;
-			order.paymentType = req.body.paymentType
+			order.paymentType = req.body.paymentType;
 			
 			if(order.paymentType == '10'){
 				order.paymentTypeDesc = '支付宝'
@@ -289,7 +288,6 @@ router.post('/',(req,res)=>{
 			else if(order.paymentType == '20'){
 				order.paymentTypeDesc = '微信'
 			}
-			
 
 			new OrderModel(order)
 			.save()
@@ -304,11 +302,11 @@ router.post('/',(req,res)=>{
 					userUser.save()
 					.then(newUser2=>{
 						//返回支付信息到
-						let channel = req.body.channel || 'page'
-						payOrder(order,channel,res)					
+						let channel = req.body.channel || 'page';
+						payOrder(order,channel,res)
 					})
 				})
-			})	
+			})
 		})
 	})
 	.catch(e=>{
@@ -321,7 +319,7 @@ router.post('/',(req,res)=>{
 //支付订单
 router.put('/pay',(req,res)=>{
 	const {orderNo} = req.body
-	let channel = req.body.channel || 'page'
+	let channel = req.body.channel || 'page';
 	OrderModel.findOne({orderNo:orderNo})
 	.then(order=>{
 		payOrder(order,channel,res)

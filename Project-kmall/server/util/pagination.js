@@ -33,7 +33,7 @@ let pagination = (options)=>{
 		}
 
 		//每页显示条数
-		let limit = options.pageSize || 8;
+		let limit = options.pageSize || 2;
 
 		/*
 		分页:
@@ -79,7 +79,7 @@ let pagination = (options)=>{
 					current:page*1,
 					pageSize:limit,
 					total:count
-				})		
+				})
 			})
 		})
 	});

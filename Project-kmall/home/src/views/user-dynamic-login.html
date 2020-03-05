@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%= require('html-loader!./common/meta.html') %>
+    <title>
+        用户动态登录
+    </title>
+</head>
+<body>
+<%= require('html-loader!./common/logo.html') %>
+<div class="form">
+    <div class="container">
+        <div class="form-box">
+            <h2 class="title">验证码动态登陆</h2>
+            <div class="error-item">
+                <i class="fa fa-minus-circle error-icon"></i>
+                <p class="error-msg">error</p>
+            </div>
+            <div class="form-item">
+                <label for="" class="form-lable">
+                    <i class="fa fa-phone"></i>
+                </label>
+                <input type="text" class="form-content" name="phone" placeholder="请输入手机号" autocomplete="off">
+            </div>
+            <div class="form-item verify-box">
+                <input type="text" class="form-content verify-ipt" name="verify" placeholder="请输入手机验证码" autocomplete="off">
+                <a href="javascript:" class="link btn-verify-code">获取手机验证码</a>
+                <div class="captcha-box">
+                    <input type="text" class="captcha-ipt" name="captcha" placeholder="请输入图形验证码" autocomplete="off">
+                    <div class="captcha">
+                        <svg></svg>
+                    </div>
+                    <a class="link btn-captcha">发送验证码</a>
+                </div>
+            </div>
+            <div class="btn-item">
+                <a href="javascript:;" class="btn btn-submit" id="btn-submit">提交</a>
+            </div>
+            <div class="link-item">
+                <a href="/user-login.html" class="link">已有账号去登陆</a>
+            </div>
+        </div>
+    </div>
+</div>
+<%= require('html-loader!./common/footer.html') %>
+<!-- 手机短信验证码发送成功提示面板 -->
+<div class="msg-wrap">
+    <div class="msg-container">
+        <div class="msg-box">
+            <i class="success-icon icon fa fa-check-circle"></i>
+            <p class="verifyCode-msg">验证码已发送 ... </p>
+        </div>
+        <p class="btn-close">我知道了</p>
+    </div>
+</div>
+</body>
+</html>

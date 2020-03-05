@@ -6,6 +6,7 @@ import Layout from "common/layout/";
 import * as actionCreate from "./store/actionCreate";
 import RichEditor from "../../common/rich-editor/index"
 import UpLoadImage from "common/upLoad-image/"
+import Attr from "./transfer";
 import { UPLOADPATH } from "../../api/config"
 import "./index.css"
 
@@ -17,7 +18,7 @@ class ProductSave extends Component{
     constructor(props) {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
-        const productId = this.props.match.params.productId
+        const productId = this.props.match.params.productId;
         this.state = {
             productId: productId
         }
@@ -26,11 +27,17 @@ class ProductSave extends Component{
     componentDidMount() {
         // 分类数据的回填
         this.props.handleLevelCategories()
+
         // 如果有商品id, 就获取商品信息, 并回填
         const productId = this.state.productId
         if (productId) {
-            this.props.handleProductDetail(productId)    
-        }
+            this.props.handleProductDetail(productId)
+            // 获取所有商品属性数据
+            // this.props.handleGetAttrs()
+        } // else {
+            // 获取所有商品属性数据
+            // this.props.handleGetAttrs()
+        // }
     }
 
     handleSubmit(e){
@@ -42,6 +49,7 @@ class ProductSave extends Component{
                 this.props.handleSaveProduct(values)
             }
              */
+
             // 新增/编辑商品
             values.id = this.state.productId;
             this.props.handleSaveProduct(values)
@@ -61,11 +69,14 @@ class ProductSave extends Component{
             description,
             price,
             stock,
+            payNums,
+            checkedAttrs,
             mainImage,
             images,
-            detail
+            detail,
+            attrs
         } = this.props;
-        // console.log(":::::::", mainImage);
+        // console.log("--------------", attrs);
         // 封面图片的回填
         let mainImageList = [];
         if (mainImage) {
@@ -81,7 +92,7 @@ class ProductSave extends Component{
         }
         // 商品图片的回填
         // console.log(":::::::::", images);
-        let imagesList = []
+        let imagesList = [];
         if (images) {
             imagesList = images.split(",").map((url, index) => {
                 return {
@@ -95,7 +106,6 @@ class ProductSave extends Component{
                 }
             });
         }
-        
         return (
             <div className="productAdd">
                 <Layout>
@@ -164,10 +174,22 @@ class ProductSave extends Component{
                                     initialValue: stock
                                 })(<InputNumber min={0} />)}
                             </Form.Item>
+                            <Form.Item label="支付人数">
+                                {getFieldDecorator('payNums', {initialValue: payNums})(<InputNumber min={0} />)}
+                            </Form.Item>
+                            <Form.Item label="商品属性">
+                                <Attr
+                                    getAttrValues={(attrValues) => {
+                                        // 处理获取选择的商品属性数据
+                                        this.props.handleGetAttrValues(attrValues)
+                                    }}
+                                />
+                            </Form.Item>
                             <Form.Item
                                 label="封面图片"
                                 validateStatus={mainImageErr}
                                 help={mainHelp}
+                                required={true}
                             >
                                 <UpLoadImage
                                     max={1}
@@ -182,6 +204,7 @@ class ProductSave extends Component{
                                 label="商品图片"
                                 validateStatus={imagesErr}
                                 help={imagesHelp}
+                                required={true}
                             >
                                 <UpLoadImage
                                     max={5}
@@ -215,7 +238,7 @@ class ProductSave extends Component{
 
 // 将store中的属性映射到当前组件中
 const mapStateToProps = (state) => {
-
+    // console.log(":::::::::::", state.get("product").get("attrs"));
     return {
         categories: state.get("product").get("categories"),
         mainImageErr: state.get("product").get("mainImageErr"),
@@ -227,9 +250,12 @@ const mapStateToProps = (state) => {
         description: state.get("product").get("description"),
         price: state.get("product").get("price"),
         stock: state.get("product").get("stock"),
+        payNums: state.get("product").get("payNums"),
+        // checkedAttrs: state.get("product").get("checkedAttrs"),
         mainImage: state.get("product").get("mainImage"),
         images: state.get("product").get("images"),
-        detail: state.get("product").get("detail")
+        detail: state.get("product").get("detail"),
+        // attrs: state.get("product").get("attrs")
     }
 };
 // 将store中的方法映射到当前组件中
@@ -251,8 +277,13 @@ const mapDispatchToProps = (dispatch) => ({
     },
     handleProductDetail: (productId) => {
         dispatch(actionCreate.getProductDetailAction(productId))
+    },
+    // handleGetAttrs: () => {
+    //     dispatch(actionCreate.handleGetAttrsAction())
+    // },
+    handleGetAttrValues: (attrValues) => {
+        dispatch(actionCreate.handleGetAttrValuesAction(attrValues))
     }
-
 
 });
 const WrappedApp = Form.create({ name: 'coordinated' })(ProductSave);

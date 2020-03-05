@@ -15,8 +15,10 @@ const router = Router();
 async function getFloor(limit){
 	//1.获取:显示并且是楼层的一级分类
 	const categories = await CategoryModel.find({level:1,isShow:1,isFloor:1},"-createdAt -updatedAt -__v -mobileName -pid")
+
 	//2.根据获取的一级分类找到所有的子分类
 	const showCategories = await CategoryModel.find({isShow:1},"-createdAt -updatedAt -__v")
+
 	/*
 		{
 			title:'F1 家用电器',
@@ -64,7 +66,6 @@ router.get("/",(req,res)=>{
 		})
 	})
 	.catch(e=>{
-		console.log(e)
  		res.json({
  			code:1,
  			message:"获取分类失败,服务器端错误"

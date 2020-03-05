@@ -8,8 +8,6 @@ import "./index.css"
 
 const { Header } = Layout;
 
-
-
 class AdminHeader extends Component {
 
     handleLogout () {

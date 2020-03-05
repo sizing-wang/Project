@@ -36,7 +36,7 @@ router.get('/list',(req,res)=>{
 				pageSize:result.pageSize,
 				list:result.list,
 			}
-		})		
+		})
 	})
 	.catch(e=>{
 		res.json({
@@ -52,7 +52,7 @@ router.get('/allAttrs',(req,res)=>{
 		res.json({
 			code:0,
 			data:attrs
-		})		
+		})
 	})
 	.catch(e=>{
 		res.json({

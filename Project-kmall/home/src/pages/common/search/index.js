@@ -14,6 +14,7 @@ const page = {
                 $this.submit()
             }
         })
+
     },
     submit: function () {
        var keyword = $(".search-input").val().trim();

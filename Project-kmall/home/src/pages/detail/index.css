@@ -2,6 +2,7 @@
     margin-bottom: 20px;
 }
 .product-img{
+    position: relative;
     float: left;
     width: 440px;
     margin-right: 20px;
@@ -16,6 +17,16 @@
 .product-main-img img{
     width: 100%;
     height: 100%;
+}
+.product-main-img .mask {
+    display: none;
+    width: 200px;
+    height: 200px;
+    background: rgba(100,100,100,0.5);
+    cursor: move;
+    position: absolute;
+    top: 0px;
+    left: 0px;
 }
 
 .product-small-img-item{
@@ -37,6 +48,27 @@
 .product-small-img-item:last-child{
     margin-right: 0px;
 }
+
+/* 放大镜商品图片样式 */
+.product-img .lImg {
+    display: none;
+    width: 550px;
+    height: 550px;
+    border: 1px solid #999;
+    position: absolute;
+    top: 0;
+    left: 440px;
+    z-index: 99;
+    overflow: hidden;
+}
+.product-img .lImg img {
+    width: 700px;
+    height: 700px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
 .product-info{
     float: left;
     width: 620px;
@@ -129,8 +161,10 @@
 .product-detail .tab-content{
     padding: 10px;
     min-height: 200px;
+    text-align: center;
 }
 .product-detail .tab-content img{
-    width: 100%;
+    width: 70%;
     height: 100%;
 }
+

@@ -2,42 +2,55 @@ import * as type from "./actionTypes"
 import { message } from "antd"
 import api from "api/"
 
-const setLevelCategoriesAction = (payload) => ({
-    type: type.SET_LEVEL_CATEGORIES,
-    payload
-});
-
-
-// 处理新增根分类数据
+// 处理新增/编辑根分类数据
 export const getCategoriesAction = (values) => {
     return function (dispatch, getState) {
+        // 添加手机图标数据参数
+        values.id ? values.icon = getState().get("category").get("icon")
+            :
+        values.icon = getState().get("category").get("mobileImage");
         // 发送ajax请求
-        api.addCategory(values)
+        let request = api.addCategory;
+        if (values.id) {
+            request = api.upDateCategory
+        }
+        request(values)
             .then(result => {
                 // console.log("--------", result);
                 const data = result.data;
-                // console.log(data)
                 if (data.code === 0) {
                     // 派发action
-                    dispatch(setLevelCategoriesAction(data.data));
-                    message.success("新增分类成功")
+                    // dispatch(setLevelCategoriesAction(data.data));
+                    if (values.id) {
+                        message.success("编辑分类成功", () => {
+                            window.location.href = "/category"
+                        })
+                    } else {
+                        message.success("新增分类成功", () => {
+                            window.location.href = "/category"
+                        })
+                    }
                 } else {
-                    message.error("分类数据回填失败, 请稍后再试!!!")
+                    message.error("获取分类数据失败, 请稍后再试!!!")
                 }
             })
             .catch(err => {
-                console.log(err);
+                message.error(err)
             })
     }
 
 };
 
-// 处理分类数据的回填
+// 处理选择根分类数据的回填
+const setLevelCategoriesAction = (payload) => ({
+    type: type.SET_LEVEL_CATEGORIES,
+    payload
+});
 export const getLevelCategories = () => {
     return function (dispatch, getState) {
         // 发送ajax请求
         api.setLevelCategory({
-            level: 2
+            level: 3
         })
             .then(result => {
                 // console.log("::::::::", result);
@@ -45,7 +58,7 @@ export const getLevelCategories = () => {
                 if (data.code === 0) {
                     dispatch(setLevelCategoriesAction(data.data))
                 } else {
-                    message.error("获取分类数据失败, 请稍后再试!!!")
+                    message.error("根分类数据回填失败, 请稍后再试!!!")
                 }
             })
             .catch(err => {
@@ -54,6 +67,7 @@ export const getLevelCategories = () => {
     }
 };
 
+// 处理分类名称列表
 const getSetPageAction = (payload) => ({
     type: type.SET_PAGE,
     payload
@@ -64,36 +78,11 @@ const getPageLoadingStart = () => ({
 const getPageLoadingEnd = () => ({
     type: type.SET_LOADING_END
 });
-
-// 处理分类名称列表
-let timer;
 export const getPageAction = (page) => {
     return function (dispatch, getState) {
         // 发送请求前, 派发loading状态action
         dispatch(getPageLoadingStart());
         // 发送ajax请求
-        /*
-        timer = setTimeout(() => {
-            api.getCategoriesList({
-                page: page
-            })
-                .then(result => {
-                    // console.log("--------", result.data);
-                    let data = result.data;
-                    if (data.code === 0) {
-                        dispatch(getSetPageAction(result.data.data))
-                    }
-                })
-                .catch(err => {
-                    console.log(err);
-                })
-                .finally(() => {
-                    // 请求结束后, 派发取消loading状态的action
-                    dispatch(getPageLoadingEnd())
-                })
-        }, 500)
-        */
-
         api.getCategoriesList({
             page: page
         })
@@ -101,11 +90,11 @@ export const getPageAction = (page) => {
                 // console.log("--------", result.data);
                 let data = result.data;
                 if (data.code === 0) {
-                    dispatch(getSetPageAction(result.data.data))
+                    dispatch(getSetPageAction(data.data))
                 }
             })
             .catch(err => {
-                console.log(err);
+                message.error("分类名称列表加载失败, 请稍后再试!!!")
             })
             .finally(() => {
                 // 请求结束后, 派发取消loading状态的action
@@ -138,7 +127,7 @@ export const getUpdateAction = (id, newName) => {
                 }
             })
             .catch(err => {
-                console.log(err);
+                message.error("分类名称更新失败, 请稍后再试!!!")
             })
     }
 
@@ -228,17 +217,61 @@ export const UpdateIsShowAction = (id, newIsShow) => {
 
 };
 
-const clearSetTimerOut = (payload) => ({
-    type: type.CLEAR_SETTIMEROUT,
+// 处理手机图标数据
+const setMobileImage = (payload) => ({
+    type: type.SET_MOBILE_IMAGE,
     payload
 })
-// 处理清除定时器
-export const getClearSetTimerOut = () => {
+export const handleMobileImageAction = (mobileImage) => {
     return function (dispatch, getState) {
-        // 派发action, 清除定时器
-        dispatch(clearSetTimerOut(timer))
+        // 派发action, 将手机图标数据存储到store中
+        dispatch(setMobileImage(mobileImage))
     }
 }
 
+// 处理分类数据的回填
+const setCategoryDetail = (payload) => ({
+    type: type.SET_CATEGORY_DETAIL,
+    payload
+})
+export const handleCategoryDetailAction = (id) => {
+    return function (dispatch, getState) {
+        // 发送请求, 获取相对应分类数据
+        api.getCategoryDetail({id})
+            .then(result => {
+                const categoryDetail = result.data;
+                // console.log("::::::::::::", categoryDetail);
+                if (categoryDetail.code === 0) {
+                    // 派发action, 将获取到的分类详情数据存储到store中
+                    dispatch(setCategoryDetail(categoryDetail.data))
+                }
+            })
+            .catch(err => {
+                message.error(err.onmessage)
+            })
+    }
+}
+
+// 处理更新是否为楼层
+export const UpDateIsFloorAction = (id, isFloor) => {
+    return function (dispatch, getState) {
+        const page = getState().get("category").get("current");
+        // 发送请求, 更新是否为楼层
+        api.getUpDateIsFloor({id, isFloor, page})
+            .then(result => {
+                // console.log(result)
+                const data = result.data;
+                if (data.code == 0) {
+                    dispatch(getSetPageAction(data.data));
+                    message.success("操作成功")
+                } else {
+                    message.error("更新是否为楼层失败, 请稍后在试 !")
+                }
+            })
+            .catch(err => {
+                message.error("操作失败, 刷新再试 !")
+            })
+    }
+}
 
 

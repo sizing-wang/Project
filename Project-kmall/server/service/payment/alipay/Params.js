@@ -25,27 +25,27 @@ class Params{
 	getTradeParams(){
 		//公共请求参数
 		let bizParams = {
-	        app_id: this.appId,
-	        method: this.method,
-	        format: 'JSON',
-	        charset: 'utf-8',
-	        sign_type: this.signType,
-	        timestamp: moment(new Date()).format("YYYY-MM-DD HH:mm:ss"),
-	        version: '1.0',
-	        biz_content: JSON.stringify(this.bizContent)
-	    }
-	    if(this.returnUrl){
-	    	bizParams.return_url = this.returnUrl;	
-	    }
-	    if(this.notifyUrl){
-	    	bizParams.notify_url = this.notifyUrl;	
-	    }
-	    
-	    let encodeParams = this._encodeParams(bizParams)
+			app_id: this.appId,
+			method: this.method,
+			format: 'JSON',
+			charset: 'utf-8',
+			sign_type: this.signType,
+			timestamp: moment(new Date()).format("YYYY-MM-DD HH:mm:ss"),
+			version: '1.0',
+			biz_content: JSON.stringify(this.bizContent)
+		}
+		if(this.returnUrl){
+			bizParams.return_url = this.returnUrl;
+		}
+		if(this.notifyUrl){
+			bizParams.notify_url = this.notifyUrl;
+		}
 
-	    let sign = this._sign(encodeParams.unencode, this.appPrivAteKey, this.signType);
-	    
-	    return encodeParams.encode + '&sign=' + encodeURIComponent(sign);
+		let encodeParams = this._encodeParams(bizParams)
+
+		let sign = this._sign(encodeParams.unencode, this.appPrivAteKey, this.signType);
+
+		return encodeParams.encode + '&sign=' + encodeURIComponent(sign);
 	}
 
 	/**
@@ -54,26 +54,26 @@ class Params{
 	 * @returns {Object}
 	 */
 	_encodeParams(params) {
-	    var keys = [];
-	    for(var k in params) {
-	        var v = params[k];
-	        if (params[k] !== undefined && params[k] !== "") keys.push(k);
-	    }
-	    keys.sort();
+		var keys = [];
+		for(var k in params) {
+			var v = params[k];
+			if (params[k] !== undefined && params[k] !== "") keys.push(k);
+		}
+		keys.sort();
 
-	    var unencodeStr = "";
-	    var encodeStr = "";
-	    var len = keys.length;
-	    for(var i = 0; i < len; ++i) {
-	        var k = keys[i];
-	        if(i !== 0) {
-	            unencodeStr += '&';
-	            encodeStr += '&';
-	        }
-	        unencodeStr += k + '=' + params[k];
-	        encodeStr += k + '=' + encodeURIComponent(params[k]);
-	    }
-	    return {unencode:unencodeStr, encode:encodeStr};
+		var unencodeStr = "";
+		var encodeStr = "";
+		var len = keys.length;
+		for(var i = 0; i < len; ++i) {
+			var k = keys[i];
+			if(i !== 0) {
+				unencodeStr += '&';
+				encodeStr += '&';
+			}
+			unencodeStr += k + '=' + params[k];
+			encodeStr += k + '=' + encodeURIComponent(params[k]);
+		}
+		return {unencode:unencodeStr, encode:encodeStr};
 	};
 
 	/**
@@ -84,15 +84,15 @@ class Params{
 	 * @returns {String}
 	 */
 	_sign(str, appPrivAteKey, signType) {
-	    var sha;
-	    if(signType === 'RSA2') {
-	        sha = crypto.createSign('RSA-SHA256');
-	    } else {
-	        sha = crypto.createSign('RSA-SHA1');
-	    }
-	    sha.update(str, 'utf8');
-	    return sha.sign(appPrivAteKey, 'base64');
-	}	
+		var sha;
+		if(signType === 'RSA2') {
+			sha = crypto.createSign('RSA-SHA256');
+		} else {
+			sha = crypto.createSign('RSA-SHA1');
+		}
+		sha.update(str, 'utf8');
+		return sha.sign(appPrivAteKey, 'base64');
+	}
 }
 
-module.exports = Params
+module.exports = Params;

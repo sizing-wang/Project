@@ -90,7 +90,7 @@ app.use("/products",require('./routes/products.js'));
 app.use("/orders",require('./routes/orders.js'));
 app.use("/carts",require('./routes/carts.js'));
 app.use("/shippings",require('./routes/shippings.js'));
-app.use("/orders",require('./routes/orders.js'));
+app.use("/sessions",require('./routes/sessions.js'));
 app.use("/payments",require('./routes/payments.js'));
 app.use("/ads",require('./routes/ads.js'));
 app.use("/attrs",require('./routes/attrs.js'));

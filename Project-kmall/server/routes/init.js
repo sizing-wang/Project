@@ -30,7 +30,8 @@ router.get('/',(req,res)=>{
             console.log(err)
             res.send('初始化失败')
         })        
-    }    
+    }      
+
 
 })
 

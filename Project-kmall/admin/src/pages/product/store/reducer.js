@@ -25,8 +25,13 @@ let defaultState = fromJS({
     description: "",
     price: "",
     stock: "",
+    payNums: "",
     detail: "",
-    keyword: ""
+    keyword: "",
+
+    attrs: [],
+    attrValues: [],
+    checkedAttrs: []
 });
 
 let reducer = (state = defaultState, action) => {
@@ -47,6 +52,12 @@ let reducer = (state = defaultState, action) => {
     }
     if (action.type === type.SET_LEVEL_CATEGORIES) {
         return state.set("categories", fromJS(action.payload))
+    }
+    if (action.type === type.GET_PRODUCT_ATTRS) {
+        return state.set("attrs", action.payload)
+    }
+    if (action.type === type.GET_ATTR_VALUES) {
+        return state.set("attrValues", action.payload)
     }
     // 自定义组件存值
     if (action.type === type.SET_MAIN_IMAGE) {
@@ -76,6 +87,8 @@ let reducer = (state = defaultState, action) => {
             description: action.payload.description,
             price: action.payload.price,
             stock: action.payload.stock,
+            payNums: action.payload.payNums,
+            checkedAttrs: action.payload.attrs,
             mainImage: action.payload.mainImage,
             images: action.payload.images,
             detail: action.payload.detail

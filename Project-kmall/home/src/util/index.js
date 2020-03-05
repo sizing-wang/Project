@@ -25,7 +25,7 @@ module.exports = {
     showErrorMsg: function (msg) {
         alert(msg)
     },
-    goLogIn: function () {                                    // 网址编码
+    goLogIn: function () {                                    // 网址编码 // 记住当前网址, 登录成功后,继续跳转到当前网址
         window.location.href = "/user-login.html?redirect=" + encodeURIComponent(window.location.href)
     },
     goResult: function (type) {

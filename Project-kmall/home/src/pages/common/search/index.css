@@ -49,6 +49,6 @@
     font-size: 16px;
     font-weight: 200;
 }
-.nav-wrap .nav-item:nth-child(1) .link {
+.nav-wrap .nav-item .active {
     color: #f21;
 }

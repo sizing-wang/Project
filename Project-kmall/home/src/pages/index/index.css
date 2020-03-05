@@ -102,7 +102,10 @@
     font-size: 16px;
     color: #111;
     text-align: left;
-    margin-left: 10px;
+    /*margin-left: 10px;*/
+    padding-left: 10px;
+    padding-right: 10px;
+    box-sizing: border-box;
 }
 .floor-price{
     font-size: 16px;

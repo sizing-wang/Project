@@ -11,14 +11,16 @@ let page = {
         id: _util.getParamsFromUrl("productId")
     },
     init: function () {
-        this.$detailBox = $(".detail-box")
+        this.$detailBox = $(".detail-box");
         // 加载商品详情
-        this.loadProductDetail()
+        this.loadProductDetail();
         // 监听事件
         this.bindEvent()
     },
     bindEvent: function () {
-        let _this = this
+        let t = 0;
+        let l = 0;
+        let _this = this;
         // 事件代理, 监听事件
         // 切换商品图片
         this.$detailBox.on("mouseenter", ".product-small-img-item", function () {
@@ -30,6 +32,37 @@ let page = {
             // 获取当前选中图片的地址
             let imageUrl = $this.find("img").attr("src")
             $(".product-main-img>img").attr("src", imageUrl)
+            $(".lImg>img").attr("src", imageUrl)
+        })
+        // 处理商品图片放大镜效果
+        this.$detailBox.on("mousemove", ".product-main-img", function (ev) {
+            let $mask = $(".mask");
+            let $productImg = $(".product-img");
+            $mask.show();
+            t = ev.clientY - $mask.height() / 2 - $productImg.offset().top;
+            l = ev.clientX - $mask.width() / 2 - $productImg.offset().left;
+            if (t < 0) {
+                t = 0
+            } else if (t >= ($(".product-img").height() - $(".mask").height())) {
+                t = $(".product-img").height() - $(".mask").height();
+            }
+            if (l < 0) {
+                l = 0
+            } else if (l >= ($(".product-img").width() - $(".mask").width())) {
+                l = $(".product-img").width() - $(".mask").width();
+            }
+            $mask.css({"top": t, "left": l});
+            $(".lImg").show();
+            let scaleX = l / $productImg.width();
+            let scaleY = t / $productImg.height();
+            let lImgX = ($(".lImg").width() - $(".lImg img").width()) * scaleX * 2 + "px";
+            let lImgY = ($(".lImg").height() - $(".lImg img").height()) * scaleY * 2 + "px";
+            $(".lImg img").css({"top": lImgY, "left": lImgX})
+        })
+        this.$detailBox.on("mouseleave", ".product-main-img", function () {
+            $(".mask").hide();
+            $(".lImg").hide();
+
         })
         // 处理增加/减少商品数量
         this.$detailBox.on("click", ".count-btn", function () {
@@ -57,6 +90,7 @@ let page = {
                 }
             })
         })
+
     },
     loadProductDetail: function () {
         let _this = this

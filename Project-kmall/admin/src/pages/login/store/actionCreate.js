@@ -94,3 +94,27 @@ export const getClearTimerOutAction = () => {
         dispatch(setClearTimerOut(timer))
     }
 }
+
+// 处理获取图形验证码
+const getCaptcha = (payload) => ({
+    type: type.GET_CAPTCHA,
+    payload
+})
+export const getCaptchaAction = () => {
+    return function (dispatch, getState) {
+        api.getCaptcha()
+        .then(result => {
+            let captcha = result.data
+            if (captcha.code == 0) {
+                // 派发action, 处理获取图形验证码
+                dispatch(getCaptcha(captcha.data))
+            } else {
+                message.error("验证码加载失败, 请稍后再试!!!")
+            }
+        })
+        .catch(err => {
+            message.error("网络错误, 请稍后再试!!!")
+        })
+        
+    }
+}

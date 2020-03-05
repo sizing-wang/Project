@@ -463,7 +463,7 @@ router.put("/isFloor",(req,res)=>{
 						current:result.current,
 						total:result.total,
 						pageSize:result.pageSize,
-						list:result.list					
+						list:result.list
 					}
 				})	
 			})					

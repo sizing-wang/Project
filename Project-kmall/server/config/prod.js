@@ -32,5 +32,5 @@ exports.ALIPAY_PUBLIC_KEY = ``
 exports.kuaidiExpressApiId = ''
 
 //短信
-exports.accessKeyId = ''
-exports.secretAccessKey = ''
+exports.accessKeyId = '111111'
+exports.secretAccessKey = '111111'

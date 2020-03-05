@@ -62,14 +62,14 @@ ProductSchema.statics.getPaginationProducts = function(page,query={},projection=
     return new Promise((resolve,reject)=>{
       let options = {
         page: page,
-        model:this, 
-        query:query, 
+        model:this,
+        query:query,
         projection:projection,
-        sort:sort, 
+        sort:sort,
       }
       pagination(options)
       .then((data)=>{
-        resolve(data); 
+        resolve(data);
       })
     })
  }

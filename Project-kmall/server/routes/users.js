@@ -31,6 +31,7 @@ const upload = multer({ storage: storage })
 
 const router = Router();
 
+
 //检查用户名是否存在
 router.get("/checkUsername",(req,res)=>{
 	const username = req.query.username;
@@ -124,7 +125,7 @@ router.post("/",(req,res)=>{
 			code:1,
 			message:'手机号和短信验证码错误'
 		})		
-		return;			
+		return;
 	}	
 	//2.注册
 	UserModel
@@ -217,8 +218,9 @@ router.post("/login",(req,res)=>{
 		}else{
 			res.json({
 			 	code:1,
-			 	message:"用户名和密码错误"
+			 	message:"用户名或密码错误"
 			 })
+
 		}
 	})
 })
@@ -230,8 +232,8 @@ router.get("/loginVerifyCode",(req,res)=>{
 		res.json({
 			code:1,
 			message:'图形验证码错误'
-		})		
-		return;		
+		})
+		return;
 	}
 	UserModel.findOne({phone:phone})
 	.then((user)=>{
@@ -243,14 +245,14 @@ router.get("/loginVerifyCode",(req,res)=>{
 				res.json({
 					code:0,
 					message:'手机验证码已发送'
-				})	
+				})
 			})
 			.catch((e)=>{
 				res.json({
 					code:1,
 					message:'验证码发送失败'
 				})						
-			})				
+			})
 		}else{
 			res.json({
 				code:1,
@@ -267,8 +269,8 @@ router.post("/dynamicLogin",(req,res)=>{
 		res.json({
 			code:1,
 			message:'手机号和短信验证码错误'
-		})		
-		return;			
+		})
+		return;
 	}
 
 	let isAdmin = false
@@ -314,6 +316,7 @@ router.get('/logout',(req,res)=>{
 		code:0,
 	})
 })
+
 //获取登录用户的用户名
 router.get("/username",(req,res)=>{
 	if(req.userInfo._id){
@@ -329,6 +332,7 @@ router.get("/username",(req,res)=>{
 		});
 	}
 });
+
 //登录权限控制
 router.use((req,res,next)=>{
 	if(req.userInfo._id){
@@ -339,6 +343,7 @@ router.use((req,res,next)=>{
 		})
 	}
 })
+
 //获取登录用户的信息
 router.get("/info",(req,res)=>{
 	UserModel.findById(req.userInfo._id,"username phone email createdAt avatar")

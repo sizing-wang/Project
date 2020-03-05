@@ -140,8 +140,6 @@ export const getIsOrderAction = (id, newOrder) => {
     }
 }
 
-
-
 // 处理分类数据的回填
 const setLevelCategoriesAction = (payload) => ({
     type: type.SET_LEVEL_CATEGORIES,
@@ -215,6 +213,11 @@ export const getProductsAction = (values) => {
         const mainImage = state.get("mainImage")
         const images = state.get("images")
         const detail = state.get("detailValue")
+        const attrValues = state.get("attrValues")
+        let attrsID = attrValues.map((item, index) => {
+            return item.id
+        })
+        var attrs = attrsID.join(",");
         // 处理自定义组件的验证
         if (!mainImage) {
             dispatch(setMainImageErr())
@@ -222,8 +225,8 @@ export const getProductsAction = (values) => {
         if (!images) {
             dispatch(setImagesErr())
         }
-
-        let request = api.getUpLoadProducts
+        // console.log("----------",values);
+        let request = api.getUpLoadProducts;
         if (values.id) {
             request = api.getUpdataProducts
         }
@@ -231,7 +234,8 @@ export const getProductsAction = (values) => {
             ...values,
             mainImage,
             images,
-            detail
+            detail,
+            attrs
         })
             .then(result => {
                 const data = result.data
@@ -239,7 +243,10 @@ export const getProductsAction = (values) => {
                     message.success("操作商品成功", () => {
                         window.location.href = "/product"
                     })
+                } else {
+                    message.error(data.message)
                 }
+
             })
             .catch(err => {
                 message.error(err.message)
@@ -263,13 +270,53 @@ export const getProductDetailAction = (productId) => {
                 .then(result => {
                     // console.log(":::::::::", result);
                    const data = result.data;
-
-                   if (data.code == 0) {
+                    // console.log(data.data);
+                    if (data.code == 0) {
                         dispatch(setProductDetailAction(data.data))
-                   }
+                   } else {
+                        message.error("获取商品详情失败, 刷新再试 !")
+                    }
                 })
                 .catch(err => {
                     message.error(err.message)
                 })
+    }
+}
+
+// 处理所有商品属性的数据
+const getProductAttrs = (payload) => ({
+    type: type.GET_PRODUCT_ATTRS,
+    payload
+})
+export const handleGetAttrsAction = () => {
+    return function (dispatch, getState) {
+        // 发送请求, 获取所有商品属性
+        api.getProductAttrs()
+            .then(result => {
+                // console.log(":::::::::", result)
+                const data = result.data;
+                if (data.code == 0) {
+                    // 派发action, 将商品属性数据存储到store中
+                    dispatch(getProductAttrs(data.data))
+                } else {
+                    message.error("商品属性加载失败, 请刷新再试 !")
+                }
+            })
+            .catch(err => {
+                message.error(err.message)
+            })
+    }
+}
+
+// 处理获取选择的商品属性数据
+const getAttrValues = (payload) => ({
+    type: type.GET_ATTR_VALUES,
+    payload
+})
+export const handleGetAttrValuesAction = (attrValues) => {
+    return function (dispatch, getState) {
+        // 派发action, 将获取到的商品属性数据存储到store中
+        dispatch(getAttrValues(attrValues))
+        // console.log("------------", attrValues)
     }
 }

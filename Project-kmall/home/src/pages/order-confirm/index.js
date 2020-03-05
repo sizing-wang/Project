@@ -4,6 +4,7 @@ require("../common/search/index")
 require("../common/footer/index")
 let shippingTpl = require("./shipping.tpl")
 let productsTpl = require('./product.tpl')
+let paymentTypeTpl = require("./paymentType.tpl")
 
 let _util = require("util")
 let api = require("api/")
@@ -11,12 +12,15 @@ let _modal = require("./modal")
 
 let page = {
     init: function () {
-        this.$shippingBox = $(".shipping-box")
-        this.$productBox = $(".product-box")
+        this.$shippingBox = $(".shipping-box");
+        this.$paymentTypeItem = $(".payment-type-box");
+        this.$productBox = $(".product-box");
         // 加载收货地址
-        this.loadShipping()
+        this.loadShipping();
+        // 加载支付方式
+        this.loadPaymentType();
         // 加载商品列表
-        this.loadProductsList()
+        this.loadProductsList();
         // 监听事件
         this.bindEvent()
     },
@@ -80,7 +84,7 @@ let page = {
             })
 
         })
-        // 处理选中状态
+        // 处理收货地址选中状态
         this.$shippingBox.on("click", ".shipping-item", function () {
             let $this = $(this)
             $this.addClass("active")
@@ -90,22 +94,45 @@ let page = {
             // 将当前选中状态的地址id 存储到this全局中(方便判断)
             _this.selectShippingId = $this.data('shipping-id')
         })
+        // 处理支付方式选中状态
+        this.$paymentTypeItem.on("click", ".paymentType-item", function () {
+            const $this = $(this);
+            if ($this.hasClass("active")) {
+                // $this.siblings().removeClass("active")
+                return
+            } else {
+                $this.addClass("active").siblings().removeClass("active")
+            }
+        })
         // 提交订单: 创建订单; 成功; 进入订单支付页面
         this.$productBox.on('click', ".btn-submit", function () {
+            const $weiXin = _this.$paymentTypeItem.find(".-weiXin");
+            const $zhiFuBao = _this.$paymentTypeItem.find(".-zhiFuBao");
+            let paymentType;
             // 判断有没有选中收货地址, 如果选中提交订单, 否则,相反
             if (_this.selectShippingId) {
+                if ($weiXin.hasClass("active")) {
+                    paymentType = "20"
+                } else if ($zhiFuBao.hasClass("active")) {
+                    paymentType = "10"
+                } else {
+                    _util.showErrorMsg("请选择支付方式")
+                }
                 // 发送请求, 创建订单
                 api.createProductOrder({
                     data: {
-                        shippingId: _this.selectShippingId
+                        shippingId: _this.selectShippingId,
+                        paymentType: paymentType
                     },
                     success: function (result) {
-                        let order = result.data
+                        let order = result.data;
+                        console.log("::::::::::", order);
                         // 去支付页面
-                        window.location.href = "payment.html?orderNo=" + order.orderNo
+                        // window.location.href = "payment.html?orderNo=" + order.orderNo
+                        // window.location.href = order.url
                     },
-                    error: function () {
-                        _util.showErrorMsg("创建订单失败, 请稍后再试!!!")
+                    error: function (err) {
+                        _util.showErrorMsg(err)
                     }
                 })
             } else { // 提示信息
@@ -124,6 +151,10 @@ let page = {
         })
         let html = _util.render(shippingTpl, {shipping})
         this.$shippingBox.html(html)
+    },
+    loadPaymentType: function () {
+        let html = _util.render(paymentTypeTpl)
+        $(".payment-type-box").html(html)
     },
     loadShipping: function () {
         let _this = this

@@ -10,7 +10,7 @@ export default class Category extends Component{
             <div>
                 <Switch>
                     <Route exact path="/category" component={CategoryList} />
-                    <Route path="/category/add" component={CategoryAdd} />
+                    <Route path="/category/add/:categoryId?" component={CategoryAdd} />
                 </Switch>
             </div>
         )

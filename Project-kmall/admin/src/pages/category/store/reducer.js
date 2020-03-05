@@ -11,7 +11,12 @@ let defaultState = fromJS({
     total: 0,
     isLoading: false,
     categories: [],
-    timer: null
+    timer: null,
+    mobileImage: "",
+    pid: "",
+    name: "",
+    mobileName: "",
+    icon: ""
 });
 
 let reducer = (state = defaultState, action) => {
@@ -20,7 +25,7 @@ let reducer = (state = defaultState, action) => {
             list: fromJS(action.payload.list),
             current: action.payload.current,
             pageSize: action.payload.pageSize,
-            total: action.payload.total,
+            total: action.payload.total
         })
     }
     if (action.type === type.SET_LOADING_START) {
@@ -30,10 +35,20 @@ let reducer = (state = defaultState, action) => {
         return state.set("isLoading", false)
     }
     if (action.type === type.SET_LEVEL_CATEGORIES) {
-        return state.set("categories", fromJS(action.payload)) // 问题: 为什么要再包装成immutable对象?
+        return state.set("categories", fromJS(action.payload))
     }
-    if (action.type === type.CLEAR_SETTIMEROUT) {
-        return state.set("timer", action.payload)
+    if (action.type === type.SET_MOBILE_IMAGE) {
+        return state.set("mobileImage", action.payload)
+    }
+
+    // 处理分类详情数据
+    if (action.type === type.SET_CATEGORY_DETAIL) {
+        return state.merge({
+            pid: action.payload.pid,
+            name: action.payload.name,
+            mobileName: action.payload.mobileName,
+            icon: action.payload.icon
+        })
     }
     return state
 };

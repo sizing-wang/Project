@@ -23,6 +23,28 @@ const page = {
     init: function () {
         this.bindEvent()
         // console.log("::::::::::", window.location.href);
+        // 发送请求, 加载图形验证码
+        this.handleGetCaptcha()
+    },
+    handleGetCaptcha: function () {
+        let _this = this
+        // 发送请求, 获取图形验证码
+        api.getCaptcha({
+            success: function (result) {
+                const captcha = result.data
+                if (result.code == 0) {
+                    // 将获取到的验证码, 插入到dom节点中
+                    $(".captcha-img svg").replaceWith(captcha)
+                    // _this.captcha = captcha
+                    
+                } else {
+                    fromErr.show("获取验证码失败, 请稍后再试!!!")
+                }
+            },
+            error: function (err) {
+                fromErr.show(err)
+            }
+        })
     },
     bindEvent: function (ev) {
         var $this = this;
@@ -30,17 +52,35 @@ const page = {
             $this.submit()
         });
 
-        $("[name='password']").on("keyup", function (ev) {
+        $("[name='captcha']").on("keyup", function (ev) {
             if (ev.keyCode == 13) {
                 $this.submit()
             }
+        });
+
+        $(".captcha-img").on("click", function () {
+            api.getCaptcha({
+                success: function (result) {
+                    const captcha = result.data
+                    if (result.code == 0) {
+                        // 将获取到的验证码插入到dom节点中
+                        $(".captcha-box svg").replaceWith(captcha)
+                    } else {
+                        fromErr.show("获取验证码失败, 请稍后再试!!!")
+                    }
+                },
+                error: function (err) {
+                    fromErr.show(err)
+                }
+            })
         })
     },
     submit: function () {
         // 获取数据
         var fromDate = {
-            username : $.trim($("[name='username']").val()),
-            password : $.trim($("[name='password']").val())
+            username : $.trim($("[name='phone']").val()),
+            password : $.trim($("[name='password']").val()),
+            captchaCode: $.trim($("[name='captcha']").val())
         };
         // 验证数据合法性
         var fromDataValiDate = this.valiDate(fromDate);
@@ -51,9 +91,13 @@ const page = {
             // 发送ajax
             api.login({
                 data: fromDate,
-                success: function () {
+                success: function (result) {
                     // console.log(_util.getParamsFromUrl("redirect"))
-                    window.location.href = _util.getParamsFromUrl("redirect") || "/"
+                    if (result.code == 0) {
+                        window.location.href = _util.getParamsFromUrl("redirect") || "/"
+                    } else {
+                        fromErr.show("登陆失败, 刷新再试 !")
+                    }
                 },
                 error: function (errMsg) {
                     fromErr.show(errMsg)
@@ -75,8 +119,8 @@ const page = {
             result.msg = "用户名不能为空";
             return result
         }
-        if (!_util.valiDate(fromDate.username, "username")) {
-            result.msg = "用户名请以字母开头的3-6位字符";
+        if (!_util.valiDate(fromDate.username, "phone")) {
+            result.msg = "用户名或手机号格式不正确";
             return result
         }
         if (!_util.valiDate(fromDate.password, "require")) {
@@ -85,6 +129,11 @@ const page = {
         }
         if (!_util.valiDate(fromDate.password, "password")) {
             result.msg = "密码请以3-6位的任意字符";
+            return result
+        }
+        // 校验验证码
+        if (!_util.valiDate(fromDate.captchaCode, "require")) {
+            result.msg = "验证码不能为空";
             return result
         }
 

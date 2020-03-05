@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Icon, Input, Button } from 'antd';
+import { Form, Icon, Input, Button, Row, Col, Svg } from 'antd';
 import { connect } from "react-redux"
 import { actionCreate } from "./store/store"
 
@@ -21,16 +21,17 @@ class LoginForm extends React.Component {
             }
         });
     }
-    /*
-    componentWillUnmount() {
-        this.props.handleClearTimerOut()
-        const time = this.props.timer
-        clearTimeout(time)
+
+    componentDidMount () {
+        // 组件挂在完毕, 发送请求, 获取图形验证码
+        this.props.handleGetCaptcha()
     }
-    */
 
     render() {
         const { getFieldDecorator } = this.props.form;
+        const { captcha } = this.props
+        // console.log(":::::::::::", captcha);
+        
         return (
             <div className="login">
                 <Form className="login-form">
@@ -52,7 +53,7 @@ class LoginForm extends React.Component {
                         {getFieldDecorator('password', {
                             rules: [
                                 { required: true, message: '请输入密码!' },
-                                { pattern: /^\w{3,6}$/i, message: "请以任意字符, 3-6位字符"}
+                                { pattern: /^\w{3,10}$/i, message: "请以任意字符, 3-10位字符"}
                             ],
                         })(
                             <Input
@@ -61,6 +62,29 @@ class LoginForm extends React.Component {
                                 placeholder="密码"
                             />,
                         )}
+                    </Form.Item>
+                    <Form.Item>
+                        <Row gutter={8}>
+                            <Col span={12}>
+                            {getFieldDecorator('captcha', {
+                                rules: [{ required: true, message: '验证码不正确!' }],
+                            })(
+                                <Input
+                                    prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                                    placeholder="请输入验证码"
+                                    autoComplete="off"
+                                />
+                            )
+                            }
+                            </Col>
+                            <Col span={12}>
+                                <div 
+                                className="captcha" 
+                                dangerouslySetInnerHTML={{__html: captcha}}//dangerouslySetInnerHTM: 将带有html标签元素的字符串, 转换成html标签元素 
+                                onClick={this.props.handleGetCaptcha}
+                                />
+                            </Col>
+                        </Row>
                     </Form.Item>
                     <Form.Item>
                         <Button
@@ -80,10 +104,11 @@ class LoginForm extends React.Component {
 }
 // 将store中的属性, 映射到当前组件
 const mapStateToProps = (state) => {
-    // console.log("---------", state.get("login").get("isLoading"));
+    // console.log("---------", state.get("login").get("captcha"));
     return {
         isLoading: state.get("login").get("isLoading"),
-        timer: state.get("login").get("timer")
+        timer: state.get("login").get("timer"),
+        captcha: state.get("login").get("captcha")
     }
 };
 // 将store中的方法, 映射到当前组件比如(getHandleLogin())
@@ -94,6 +119,9 @@ const mapDispatchToProps = (dispatch) => ({
     },
     handleClearTimerOut: () => {
         dispatch(actionCreate.getClearTimerOutAction())
+    },
+    handleGetCaptcha: () => {
+        dispatch(actionCreate.getCaptchaAction())
     }
 });
 const WrappedNormalLoginForm = Form.create({ name: 'normal_login' })(LoginForm);

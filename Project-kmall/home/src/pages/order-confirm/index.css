@@ -72,7 +72,6 @@
     line-height: 30px;
     font-size: 16px;
     color: #666;
-    border-bottom: 1px solid #fafafa;
 }
 .pandel-body{
     padding: 10px;
@@ -81,38 +80,37 @@
 /*
 送货地址
 */
-.shipping-item,
-.shipping-add{
-    float: left;
-    width: 280px;
-    margin: 0px 20px 20px 0px;
+.shipping-item{
+    position: relative;
+    box-sizing: border-box;
+    display: flex;
+    width: 100%;
+    margin: 0px 0px 20px 0px;
     padding: 10px;
-    border: 4px dashed #ddd;
+    border: 2px dashed #ddd;
     cursor: pointer;
 }
 .shipping-item.active{
     border-color: #f21;
 }
 .shipping-title{
-    height: 30px;
-    line-height: 30px;
-    border-bottom: 1px dashed #ddd;
+    margin-right: 10px;
     font-size: 16px;
     color: #666;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 .shipping-detail{
-    height: 60px;
-    line-height: 30px;
-    margin-top: 10px;
+    margin-top: 2px;
     font-size: 14px;
     color: #666;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 .shipping-footer{
-    text-align: right;
+    position: absolute;
+    right: 16px;
+    top: 12px;
     visibility: hidden;
 }
 .shipping-item:hover{
@@ -121,12 +119,48 @@
 .shipping-item:hover .shipping-footer{
     visibility: visible;
 }
-.shipping-add{
-    height: 103px;
-    padding-top: 25px;
-    font-size: 30px;
+.shipping-add {
+    display: inline-block;
+    width: 100px;
+    float: right;
+    margin-right: 10px;
     text-align: center;
-    color: #eee;
+    background: #f21;
+    color: #fff;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+/*
+    支付方式
+*/
+.payment-type-box .panel-body {
+    padding: 10px;
+}
+.payment-type-box .paymentType-item {
+    display: inline-block;
+    height: 90px;
+    cursor: pointer;
+    border: 2px dashed #cccccc;
+    border-radius: 5px;
+    margin-right: 50px;
+    text-align: center;
+    font-size: 16px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+.payment-type-box .paymentType-item:hover {
+    background: #fafafa;
+}
+.payment-type-box .paymentType-item img {
+    width: auto;
+    height: 80px;
+}
+.payment-type-box .-zhiFuBao img {
+    margin-top: 3px;
+}
+.payment-type-box .active {
+    border-color: #f21;
 }
 /*
 商品列表

@@ -1,7 +1,7 @@
 const {getRandomStr} = require('../../util/random.js')
 const SMSClient = require('@alicloud/sms-sdk')
 const {
-	accessKeyId,     
+	accessKeyId,
 	secretAccessKey,
 } = require("../../config/index.js")
 //初始化sms_client

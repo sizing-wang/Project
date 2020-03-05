@@ -8,3 +8,5 @@ export const SET_DETAIL_VALUE = "product@set_detail_value";
 export const SET_MAIN_IMAGE_ERR = "product@set_main_image_err";
 export const SET_IMAGES_ERR = "product@set_images_err";
 export const SET_PRODUCTS_DETAIL = "product@set_products_detail";
+export const GET_PRODUCT_ATTRS = "product@get_product_attrs";
+export const GET_ATTR_VALUES = "product@get_attr_values";

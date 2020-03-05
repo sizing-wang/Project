@@ -11,7 +11,7 @@
                     <p class="floor-text text-ellipsis">{{name}}</p>
                     <p class="floor-price">
                         ￥{{price}}
-                        <span class="paynums"><i>1</i>人已购买</span>    
+                        <span class="paynums"><i>{{payNums}}</i>人 已购买</span>
                     </p>
                 </a>
             </li>
