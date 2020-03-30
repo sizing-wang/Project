@@ -128,7 +128,7 @@ const page = {
         api.getCaptcha({
             success: function (result) {
                 // console.log("::::::::::::", result);
-                const captcha = result.data
+                const captcha = result.data;
                 if (result.code == 0) {
                     // 将获取到的图形验证码数据, 替换到指定的dom节点中
                     $(".captcha-box .captcha svg").replaceWith(captcha)

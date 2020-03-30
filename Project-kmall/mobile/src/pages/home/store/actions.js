@@ -2,7 +2,6 @@
 import * as type from "./actionsType"
 import api from "api/"
 
-
 export default {
    async [type.GET_ADS] ({ commit }) {
         // 发送请求, 获取数据
@@ -19,6 +18,8 @@ export default {
          const floors = result.data
          if (floors.code == 0) {
             commit(type.GET_FLOORS, floors)
+         } else {
+             alert("请求失败, 请稍后再试 !")
          }
    }
 }

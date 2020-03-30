@@ -6,7 +6,7 @@
                 <div 
                 class="swiper-slide"     
                 v-for="(ad, index) in homeAds" 
-                :key="index"      
+                :key="index"
                 >
                     <img :src="ad.image" alt="ad.name">
                 </div>
@@ -27,7 +27,7 @@
 		                    <p class="product-price">{{product.price | priceFormt}}</p>
 		                    <span class="btn-buy">购买</span>
 		                </div>
-		            </li>           
+		            </li>
 		        </ul>
 		    </li>       
 		</ul>

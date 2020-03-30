@@ -17,11 +17,12 @@ let page = {
         this.bindEvent()
     },
     bindEvent: function () {
-        let _this = this
+        let _this = this;
         // 处理单个选中/取消状态
         this.$cartBox.on('click', ".select-one", function () {
-            let $this = $(this)
-            let productId = $this.parents(".product-item").data("product-id")
+            let $this = $(this);
+            let productId = $this.parents(".product-item").data("product-id");
+            console.log("--------------",productId);
             if ($this.is(":checked")) {
                 // 发送请求, 改变选中状态
                 api.getCartsChoices({
@@ -44,6 +45,7 @@ let page = {
                         checked: false
                     },
                     success: function (result) {
+                        console.log(result);
                         // 更新数据
                         _this.renderCarts(result.data)
                     },

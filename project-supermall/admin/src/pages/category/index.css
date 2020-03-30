@@ -1,0 +1,15 @@
+.ant-table-body {
+    min-height: 600px;
+}
+.categoryAddBtn {
+    height: 40px;
+}
+.categoryList .add-btn{
+    float: right;
+    height: 40px;
+}
+.mobileImage {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}

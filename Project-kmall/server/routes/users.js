@@ -87,7 +87,7 @@ router.get("/registerVerifyCode",(req,res)=>{
 		res.json({
 			code:1,
 			message:'图形验证码错误'
-		})		
+		})
 		return;		
 	}
 	UserModel.findOne({phone:phone})
@@ -124,14 +124,14 @@ router.post("/",(req,res)=>{
 		res.json({
 			code:1,
 			message:'手机号和短信验证码错误'
-		})		
+		})
 		return;
-	}	
+	}
 	//2.注册
 	UserModel
 	.findOne({phone:phone})
 	.then((user)=>{
-		//已经有该用户
+		// 已经有该用户
 		if(user){
 			 res.json({
 			 	code:1,

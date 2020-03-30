@@ -71,7 +71,6 @@ let page = {
                     .show()
                     .find(".username")
                     .text(username)
-
             }
         })
     }

@@ -1,0 +1,12 @@
+export const SET_LEVEL_CATEGORIES = "product@set_level_categories";
+export const SET_PRODUCTS_LIST = "product@set_products_lsit";
+export const SET_LOADING_START = "product@set_loading_start";
+export const SET_LOADING_END = "product@set_loading_end";
+export const SET_MAIN_IMAGE = "product@set_main_image";
+export const SET_IMAGES = "product@set_images";
+export const SET_DETAIL_VALUE = "product@set_detail_value";
+export const SET_MAIN_IMAGE_ERR = "product@set_main_image_err";
+export const SET_IMAGES_ERR = "product@set_images_err";
+export const SET_PRODUCTS_DETAIL = "product@set_products_detail";
+export const GET_PRODUCT_ATTRS = "product@get_product_attrs";
+export const GET_ATTR_VALUES = "product@get_attr_values";

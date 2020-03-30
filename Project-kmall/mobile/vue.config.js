@@ -17,5 +17,5 @@ module.exports = {
         config.resolve.alias
         .set('pages',path.resolve(__dirname,'./src/pages'))
         .set('api',path.resolve(__dirname,'./src/api'))
-    }     
+    }
 }

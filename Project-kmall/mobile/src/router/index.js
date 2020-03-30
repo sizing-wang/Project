@@ -8,7 +8,7 @@ import Carts from "pages/carts/index.vue"
 import Me from "pages/me/index.vue"
 
 // 3. 声明使用
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 // 4. 导出路由对象
 export default new VueRouter({
