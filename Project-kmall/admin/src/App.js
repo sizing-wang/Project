@@ -35,7 +35,7 @@ class App extends Component {
                 {...rest}
                 render = {(props) => {
                     return getUsername() ? <Redirect to="/" /> : <Component {...props}/>
-                 }}
+                }}
             />
         };
         return (

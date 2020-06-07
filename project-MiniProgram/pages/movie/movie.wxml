@@ -1,0 +1,4 @@
+<import src="./movie-list-template/movie-list-template.wxml" />
+<template is="movie-list" data="{{movies: inTheatersMovie, tag: '正在热映', type: 'inTheaters'}}" />
+<template is="movie-list" data="{{movies: comingSoonMovie, tag: '即将上映', type: 'comingSoon'}}" />
+<template is="movie-list" data="{{movies: top250Movie, tag: 'top250', type: 'top250'}}" />

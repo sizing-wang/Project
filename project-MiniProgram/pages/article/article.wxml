@@ -1,0 +1,74 @@
+<import src="./article-item-template/article-item-template.wxml" />
+<view>
+  <swiper indicator-dots="true"
+    autoplay="true" interval="5000" duration="500">
+      <swiper-item>
+        <image class="swiper-img" src="/images/swiper/s1.jpg" />
+      </swiper-item>
+      <swiper-item>
+        <image class="swiper-img" src="/images/swiper/s2.jpg" />
+      </swiper-item>
+      <swiper-item>
+        <image class="swiper-img" src="/images/swiper/s3.jpg" />
+      </swiper-item>
+  </swiper>
+  <!--
+  <view class='article-wrap'>
+    <view class='article-item'>
+      <view class='article-head'>
+        <image class='article-head-avatar' src='/images/avatar/u1.jpeg'></image>
+        <text class='article-head-date'>2019-05-06</text>
+      </view>
+      <text class='article-title'>我是文章标题</text>
+      <image class='article-img' src='/images/article/a1.jpg'></image>
+      <text class='article-desc'>我是描述</text>
+      <view class='article-footer'>
+        <image class='article-footer-icon' src='/images/icon/star.jpg'></image>
+        <text class='article-footer-text'>20</text>
+        <image class='article-footer-icon' src='/images/icon/view.jpg'></image>
+        <text class='article-footer-text'>33</text> 
+      </view>
+    </view>
+    <view class='article-item'>
+      <view class='article-head'>
+        <image class='article-head-avatar' src='/images/avatar/u2.jpeg'></image>
+        <text class='article-head-date'>2019-05-06</text>
+      </view>
+      <text class='article-title'>我是文章标题</text>
+      <image class='article-img' src='/images/article/a2.jpg'></image>
+      <text class='article-desc'>我是描述</text>
+      <view class='article-footer'>
+        <image class='article-footer-icon' src='/images/icon/star.jpg'></image>
+        <text class='article-footer-text'>20</text>
+        <image class='article-footer-icon' src='/images/icon/view.jpg'></image>
+        <text class='article-footer-text'>33</text>
+      </view>
+    </view>
+  </view>
+-->
+  <view class='article-wrap'>
+  <!--
+    <view class='article-item' wx:for="{{articles}}" wx:key="index">
+      <view class='article-head'>
+        <image class='article-head-avatar' src='{{item.avatar}}'></image>
+        <text class='article-head-date'>{{item.date}}</text>
+      </view>
+      <text class='article-title'>{{item.title}}</text>
+      <image class='article-img' src='{{item.img}}'></image>
+      <text class='article-desc'>{{item.desc}}</text>
+      <view class='article-footer'>
+        <image class='article-footer-icon' src='/images/icon/star.jpg'></image>
+        <text class='article-footer-text'>{{item.star}}</text>
+        <image class='article-footer-icon' src='/images/icon/view.jpg'></image>
+        <text class='article-footer-text'>{{item.view}}</text> 
+      </view>
+    </view>
+  -->
+    <block wx:for="{{articles}}" wx:key="index">
+    <!-- catchtap点击时, 不会冒泡 -->
+      <view catchtap="handleItemTap" data-article-id="{{item.articleId}}" >
+        <template is="articles" data="{{...item}}" />
+      </view>
+    </block>
+  </view>
+</view>

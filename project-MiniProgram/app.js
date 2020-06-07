@@ -33,7 +33,8 @@ App({
       }
     })
   },
+  // 定义全局变量
   globalData: {
-    userInfo: null
+    baseUrl: 'http://t.yushu.im/v2/movie'
   }
 })

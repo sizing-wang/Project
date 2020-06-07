@@ -1,4 +1,5 @@
 // action中可以包含异步操作
+// import * as type from "./actionsType"
 import * as type from "./actionsType"
 import {Dialog, Notify} from 'vant';
 

@@ -1,14 +1,36 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/movie/movie",
+    "pages/movie/movie-more/movie-more",
+    "pages/article/article",
+    "pages/article/article-detail/article-detail"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
+    "navigationBarBackgroundColor": "#0094ff",
     "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true,
+    "backgroundColor": "#EEE"
+  },
+  "tabBar": {
+    "selectedColor": "#0094ff",
+    "borderStyle": "white",
+    "list": [{
+      "pagePath": "pages/article/article",
+      "text": "文章",
+      "iconPath": "/images/icon/article-none.png",
+      "selectedIconPath": "/images/icon/article.png"
+
+    }, {
+      "pagePath": "pages/movie/movie",
+      "text": "放映厅",
+      "iconPath": "/images/icon/movie-none.png",
+      "selectedIconPath": "/images/icon/movie.png"
+    }]
   },
   "style": "v2",
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "requiredBackgroundModes": ["audio", "location"]
 }

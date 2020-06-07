@@ -28,7 +28,7 @@
       <!-- 轮播图 -->
       <home-swiper
         :list="homeAds"
-        @swiperImageLoad="getScrollOffsetTop"/>
+        @swiperImageLoad="getScrollOffsetTop" />
       <!-- 商品分类导航 -->
       <home-category />
       <!-- 可控选项卡 -->

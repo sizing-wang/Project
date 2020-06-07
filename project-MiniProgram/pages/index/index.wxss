@@ -1,4 +1,7 @@
 /**index.wxss**/
+.container {
+  padding-top: 200rpx;
+}
 .userinfo {
   display: flex;
   flex-direction: column;
@@ -17,5 +20,8 @@
 }
 
 .usermotto {
-  margin-top: 200px;
+  margin-top: 400rpx;
+  border: 2rpx solid #333;
+  border-radius: 10rpx;
+  padding: 20rpx;
 }
